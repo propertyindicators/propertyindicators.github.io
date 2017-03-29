@@ -56,17 +56,18 @@
         google.charts.load("visualization", "1", {packages:["corechart"]});
         
         var gdata1={};
-        var datecur={};
+        var goptions1={};
+        var datemax={};
+        var datemin={};
+        var gchart1={};
+    
         
         google.charts.setOnLoadCallback(initialize1);
         google.charts.setOnLoadCallback(initialize2);
         google.charts.setOnLoadCallback(initialize3);
         google.charts.setOnLoadCallback(initialize4);
-        
-        
 
-        //фиксируем текущую дату на уровне последней даты в таблице
-        //var curdate = gdata1.getColumnRange(0);
+        //массив соответствий отступов месяцев для каждой кнопки
         var miar=[0,60,36,24,12,6,3]
 
         var b1 = document.getElementById('butt1');
@@ -88,14 +89,12 @@
 
         function DrawWithPeriod() {
             var callname = $(this).attr('id');
-            var butnum=	+callname.substring(4,5);
-            if (butnum==1) {drawChart1(gdata1); return};
-            var mindata=new Date(datecur);
-            mindata.setMonth(-1*miar[butnum-1]);
-            var view = new google.visualization.DataView(gdata1);
-            view.setRows(view.getFilteredRows([{column: 0, minValue: mindata}]));
-            var data=view.toDataTable();
-            drawChart11(data);
+            var butnum = +callname.substring(4, 5);
+            var tmind = {};
+            if (butnum == 1) {tmind=new Date(datemin);}
+            else { tmind = new Date(datemax); tmind.setMonth(-1 * miar[butnum - 1]) }
+            goptions1.hAxis.viewWindow.min = tmind;
+            gchart1.draw(gdata1, goptions1);
         }
 
         function initialize1() {
@@ -116,12 +115,13 @@
 
             //передаем базовый набор элементов в глобальную видимость
             gdata1 = response.getDataTable();
-            datecur=gdata1.getColumnRange(0).max;
-            drawChart1(gdata1);
-        }
-
-         function drawChart1(data) {
-            var options = {
+            datemax=gdata1.getColumnRange(0).max;
+            datemin=gdata1.getColumnRange(0).min;
+            gdata1.pg[1].label = "Центр";
+            gdata1.pg[2].label = "Близко к центру";
+            gdata1.pg[3].label = "Середина";
+            gdata1.pg[4].label = "Периферия";
+            goptions1 = {
                 title: 'Динамика цен аренды на нежилые помещения в г.Киеве',
                 //hAxis: {title: 'Периоды (годы)',  titleTextStyle: {color: '#333'}},
                 vAxis: { minValue: 0, format: '$#' },
@@ -130,42 +130,15 @@
                     0: { color: '#0000FF' },
                     1: { color: '#FF8C00' },
                     2: { color: '#FF0000' },
-                    3: { color: '#006400' }
+                    3: { color: '#006400' },
                 },
                 animation:{ duration: 1000, easing: 'linear', startup: true},
+                hAxis: { viewWindow:{min: datemin, max: datemax} },
             };
-            data.pg[1].label = "Центр";
-            data.pg[2].label = "Близко к центру";
-            data.pg[3].label = "Середина";
-            data.pg[4].label = "Периферия";
-
-            var chart = new google.visualization.AreaChart(document.getElementById('chart_div1'));
-            chart.draw(data, options);
+            gchart1 = new google.visualization.AreaChart(document.getElementById('chart_div1'));
+            gchart1.draw(gdata1, goptions1);
         }
-        
-        function drawChart11(data) {
-            var options = {
-                title: 'Динамика цен аренды на нежилые помещения в г.Киеве',
-                //hAxis: {title: 'Периоды (годы)',  titleTextStyle: {color: '#333'}},
-                vAxis: { minValue: 0, format: '$#' },
-                legend: { position: 'bottom' },
-                series: {
-                    0: { color: '#0000FF' },
-                    1: { color: '#FF8C00' },
-                    2: { color: '#FF0000' },
-                    3: { color: '#006400' }
-                },
-                animation:{ duration: 1000, easing: 'linear', startup: true},
-            };
-            data.pg[1].label = "Центр";
-            data.pg[2].label = "Близко к центру";
-            data.pg[3].label = "Середина";
-            data.pg[4].label = "Периферия";
-
-            var chart = new google.visualization.AreaChart(document.getElementById('chart_div1'));
-            chart.draw(data, options);
-        }
-
+  
 
         function initialize2() {
             //https://fusiontables.google.com/data?docid=1orRRsnXzp-wDVxcZKBo1B7BKULyVKo4qT9vLHHzU
