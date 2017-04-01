@@ -9,7 +9,6 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,8 +17,6 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-    
-    
 
 <body>
 
@@ -30,40 +27,30 @@
     <!-- Google Vizualization plugins -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
 
     <div class="container">
         <h1> Здравствуй, аналитик рынка недвижимости!</h1>
-
-    </div>
-    
-    
-    
-    <div class="container">
-        <div class="rowbutton">            
-                <a id="butt1" class="button xbox firstbutton">с 2010 года</a>
-                <a id="butt2" class="button xbox">5 лет</a>
-                <a id="butt3" class="button xbox">3 года</a>
-                <a id="butt4" class="button xbox">2 года</a>
-                <a id="butt5" class="button xbox">1 год</a>
-                <a id="butt6" class="button xbox">полгода</a>
-                <a id="butt7" class="button xbox">квартал</a>
-        </div>
-        
-        <div class="rowchart2">
-            <div id="chart_div1" style="width: 50%; height: 100%;" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 fullchartL"></div>
-            <div id="chart_div2" style="width: 50%; height: 100%;" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 fullchartR"></div>
-        </div>
-        
-        <div class="rowchart2">
-            <div id="chart_div3" style="width: 50%; height: 100%;" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 fullchartL"></div>
-            <div id="chart_div4" style="width: 50%; height: 100%;" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 fullchartR"></div>
-        </div>
+        <button type="button" id="butt1" class="btn btn-warning">с 2010 года</button>
+        <button type="button" id="butt2" class="btn btn-warning">5 лет</button>
+        <button type="button" id="butt3" class="btn btn-warning">3 года</button>
+        <button type="button" id="butt4" class="btn btn-warning">2 года</button>
+        <button type="button" id="butt5" class="btn btn-warning">1 год</button>
+        <button type="button" id="butt6" class="btn btn-warning">полгода</button>
+        <button type="button" id="butt7" class="btn btn-warning">квартал</button>
     </div>
 
-    <!--<div class="container" id="chart_div1" style="width: 1170px; height: 600px;"> </div> -->
-    <!--<div class="container" id="chart_div2" style="width: 1170px; height: 600px;"> </div> -->
-    <!--<div class="container" id="chart_div3" style="width: 1170px; height: 600px;"> </div> -->
-    <!--<div class="container" id="chart_div4" style="width: 1170px; height: 600px;"> </div> -->
+    <div class="container" id="chart_div1" style="width: 1170px; height: 600px;"> </div>
+    <div class="container" id="chart_div2" style="width: 1170px; height: 600px;"> </div>
+    <div class="container" id="chart_div3" style="width: 1170px; height: 600px;"> </div>
+    <div class="container" id="chart_div4" style="width: 1170px; height: 600px;"> </div>
 
     <script type="text/javascript">
         google.charts.load("visualization", "1", {packages:["corechart"]});
