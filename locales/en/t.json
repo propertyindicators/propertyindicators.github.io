@@ -15,8 +15,28 @@
   },
   "mycontact": {
     "hc": "CONTACTS",
-    "chat": "'aaa_xxx_aaa' Skype",
+    "chat": "aaa_xxx_aaa",
     "skypehref": "skype:aaa_xxx_aaa?chat"
+  },
+  "inx": {
+    "hello": "Hello, real estate market analyst!",
+    "prjdet": "About the project »",
+    "h3comerc": "Indicators of the commercial real estate market in Kiev",
+    "h3resident": "Indicators of the residential real estate market in Kiev",
+    "prdyn": "Dynamics of prices",
+    "prlvl": "Current price level",
+    "btnsale": "Sale »",
+    "btnrent": "Rent »",
+    "nrpricechng": "Live charts of price changes in the secondary market of non-residential premises in Kiev",
+    "nrpricelvl": "Live diagrams of the current price level in the secondary market of non-residential premises in Kiev",
+    "rpricechng": "Live charts of price changes in the secondary market of apartments in Kiev",
+    "rpricelvl": "Live diagrams of the current price level in the secondary market of apartments in Kiev"
+  },
+  "diacomr": {
+    "name1": "Current rental rates for non-residential premises in the secondary market in Kiev (for 1 sq.m per month)",
+    "name2": "Current rates for renting office space in the secondary market in Kiev (for 1 sq.m per month)",
+    "name3": "Current rates for renting commercial premises in the secondary market in Kiev (for 1 sq.m per month)",
+    "name4": "Current rates for renting basements in the secondary market in Kiev (for 1 sq.m per month)"
   }
 } 
 
