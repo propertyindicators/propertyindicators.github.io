@@ -1,3 +1,3 @@
-/*! PILab 08-05-2017 (c) 2017 propertyindicators@gmail.com */
+/*! PILab 09-05-2017 (c) 2017 propertyindicators@gmail.com */
 
 var i18nextOpts={debug:!0,backend:{loadPath:"locales/{{lng}}/{{ns}}.json"},fallbackLng:!1,ns:"t",defaultNS:"t",load:"languageOnly",whitelist:["ru","ua","en"],useLocalStorage:!1};i18next.use(i18nextXHRBackend).use(i18nextBrowserLanguageDetector).init(i18nextOpts,function(a,b){jqueryI18next.init(i18next,$),$(".nav").localize(),$(".content").localize(),$(".my-page-container").localize()}),i18next.on("languageChanged",function(a){if(a){var b=a.split("-");i18next.language!==b[0]&&i18next.changeLanguage(b[0],function(a,b){})}}),$("#i18n-chart-ref").click(function(){var a=i18next.t("mycontact.skypehref");a&&(this.href=a)});
