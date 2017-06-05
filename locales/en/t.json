@@ -32,13 +32,31 @@
     "rpricechng": "Live charts of price changes in the secondary market of apartments in Kiev",
     "rpricelvl": "Live diagrams of the current price level in the secondary market of apartments in Kiev"
   },
-  "diacomr": {
-    "name1": "Current rental rates for non-residential premises in the secondary market in Kiev (for 1 sq.m per month)",
-    "name2": "Current rates for renting office space in the secondary market in Kiev (for 1 sq.m per month)",
-    "name3": "Current rates for renting commercial premises in the secondary market in Kiev (for 1 sq.m per month)",
-    "name4": "Current rates for renting basements in the secondary market in Kiev (for 1 sq.m per month)"
+  "dyn": {
+    "terzona": "Territorial zones of Kiev",
+    "dynapppi": "General indicators of the market of Kiev apartments",
+    "f2006": "since 2006",
+    "f2010": "since 2010",
+    "10y": "10 years",
+    "5y": "5 years",
+    "3y": "3 years",
+    "2y": "2 years",
+    "1y": "1 year",
+    "half": "half-year",
+    "quarter": "quarter"
+  },
+  "bkind": {
+    "nm": "Type of apartment building",
+    "st": "Stalin's",
+    "hr": "Khrushchev's",
+    "ser": "series",
+    "mod": "modern"
+  },
+  "rooms": {
+    "nm": "Number of rooms (bedrooms including)",
+    "r1": "1 room",
+    "r2": "2 rooms",
+    "r3": "3 rooms",
+    "r4p": "4 rooms and more"
   }
-} 
-
-
-
+}

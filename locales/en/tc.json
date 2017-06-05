@@ -1,0 +1,29 @@
+﻿{
+  "title": {
+    "diacomrent": "Current rental rates for __kkind__ in the secondary market in Kiev (for 1 sq.m per month)",
+    "diacomsale": "Current selling prices for __kkind__ in the secondary market in Kiev (for 1 sq.m)",
+    "dyncomsale": "Current selling prices for __kkind__ in Kiev (for 1 sq.m)",
+    "dyncomrent": "Current rental rates for __kkind__ in Kiev (for 1 sq.m per month)"
+  },
+  "kindnm": {
+    "nonresidential": "non-residential premises",
+    "office": " office spaces",
+    "trading": "trading premises",
+    "basement": "basements"
+  },
+  "zone": {
+    "nm": "Zone",
+    "kiev": "Kiev",
+    "center": "Center",
+    "nearcenter": "Close to center",
+    "midcenter": "In middle to center",
+    "periphery": "Outskirts"
+  },
+  "kind": {
+    "proftrading": "Professional trading",
+    "trading": "Trading",
+    "profoffice": "Professional Offices",
+    "office": "Offices",
+    "basement": "Basement"
+  }
+}
