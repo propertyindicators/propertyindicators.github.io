@@ -2,15 +2,22 @@
   "title": {
     "diacomrent": "Current rental rates for __kkind__ in the secondary market in Kiev (for 1 sq.m per month)",
     "diacomsale": "Current selling prices for __kkind__ in the secondary market in Kiev (for 1 sq.m)",
-    "dyncomsale": "Current selling prices for __kkind__ in Kiev (for 1 sq.m)",
-    "dyncomrent": "Current rental rates for __kkind__ in Kiev (for 1 sq.m per month)"
+    "dyncomsale": "Dynamics of selling prices for __kkind__ in Kiev (for 1 sq.m)",
+    "dyncomrent": "Dynamics of rental rates for __kkind__ in Kiev (for 1 sq.m per month)",
+    "dynressale1": "Dynamics of average selling prices of apartments in Kiev (per 1 sq.m of all square)",
+    "dynressale24": "Dynamics of selling prices of apartments in Kiev differences by __kkind__ (per 1 sq.m of all square)"
   },
+
   "kindnm": {
     "nonresidential": "non-residential premises",
     "office": " office spaces",
     "trading": "trading premises",
-    "basement": "basements"
+    "basement": "basements",
+    "zones": "territorial zones",
+    "rooms": "number of rooms",
+    "types": "building types"
   },
+
   "zone": {
     "nm": "Zone",
     "kiev": "Kiev",
@@ -19,11 +26,16 @@
     "midcenter": "In middle to center",
     "periphery": "Outskirts"
   },
+
   "kind": {
     "proftrading": "Professional trading",
     "trading": "Trading",
     "profoffice": "Professional Offices",
     "office": "Offices",
-    "basement": "Basement"
+    "basement": "Basement",
+    "1k": "1 room",
+    "2k": "2 rooms",
+    "3k": "3 rooms",
+    "4k": "4 and more rooms"
   }
 }
