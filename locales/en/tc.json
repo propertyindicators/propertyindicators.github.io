@@ -37,12 +37,5 @@
     "2k": "2 rooms",
     "3k": "3 rooms",
     "4k": "4 and more rooms"
-  },
-
-
-  "currency": {
-    "hrn": "In hrivnies",
-    "usd": "In dollars",
-    "eur": "In euro"
   }
 }
