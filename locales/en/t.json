@@ -40,9 +40,9 @@
     "f2006": "since 2006",
     "f2010": "since 2010",
     "10y": "10 years",
-    "5y": "5 years",
-    "3y": "3 years",
-    "2y": "2 years",
+    "5y": "5 y",
+    "3y": "3 y",
+    "2y": "2 y",
     "1y": "1 year",
     "half": "half-year",
     "quarter": "quarter"
@@ -51,8 +51,8 @@
     "nm": "Type of apartment building",
     "st": "Stalin's",
     "hr": "Khrushchev's",
-    "ser": "series",
-    "mod": "modern"
+    "ser": "Series",
+    "mod": "Modern"
   },
   "rooms": {
     "nm": "Number of rooms (bedrooms including)",
