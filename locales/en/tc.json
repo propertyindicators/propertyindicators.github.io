@@ -15,7 +15,7 @@
     "basement": "basements",
     "zones": "territorial zones",
     "rooms": "number of rooms",
-    "types": "building types"
+    "types": "types of building"
   },
 
   "zone": {
@@ -36,7 +36,11 @@
     "1k": "1 room",
     "2k": "2 rooms",
     "3k": "3 rooms",
-    "4k": "4 and more rooms"
+    "4k": "4 and more rooms",
+    "st": "Stalin's",
+    "hr": "Khrushchev's",
+    "ser": "Series",
+    "mod": "Modern"
   },
 
 
