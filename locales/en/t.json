@@ -60,5 +60,11 @@
     "r2": "2 rooms",
     "r3": "3 rooms",
     "r4": "4 and more rooms"
+  },
+  "pubs": {
+    "nm": "Our publications",
+    "ba": "Business analysis",
+    "prog": "Software Development",
+    "art": "Author's article",
   }
 }
