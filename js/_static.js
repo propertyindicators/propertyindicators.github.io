@@ -1,3 +1,3 @@
-/*! PILab 23-08-2017 (c) 2017 propertyindicators@gmail.com */
+/*! PILab 24-08-2017 (c) 2017 propertyindicators@gmail.com */
 
 function _MyBuildTest(){alert("TEST: Static build")}
