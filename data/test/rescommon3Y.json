@@ -2,22 +2,22 @@
    "cols": [
     {
       "id": "col0",
-      "lable": "RegDate",
+      "lable": "Key",
       "type": "date"
     },
     {
       "id": "col1",
-      "lable": "col1",
+      "lable": "v1",
       "type": "number"
     },
     {
       "id": "col2",
-      "lable": "col2",
+      "lable": "v2",
       "type": "number"
     },
     {
       "id": "col3",
-      "lable": "col3",
+      "lable": "v3",
       "type": "number"
     }
   ],
