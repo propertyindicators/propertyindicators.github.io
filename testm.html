@@ -1,0 +1,395 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=description content="Property Indicators Lab Official Site"><meta name=author content="Property Indicators Lab propertyindicators@gmail.com"><link rel=icon href=favicon.ico><title>Property Indicators Lab</title><link rel=stylesheet href=assets/css/font-awesome.min.css><link href=assets/css/bootstrap.min.css rel=stylesheet><link href=assets/css/ie10-viewport-bug-workaround.css rel=stylesheet><link href=css/fortest1.css rel=stylesheet><!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]--><script src=assets/js/ie-emulation-modes-warning.js></script><!--[if lt IE 9]>
+ <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+ <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+ <![endif]--></head><body><div class=row><div class=col-md-4><div class="btn-group btn-group-sm"><button type=button id=buttb_c0 class="btn btn-primary">Общие индикаторы рынка кавартир Киева</button></div></div><div class=col-md-5><div class="btn-group btn-group-sm"><button type=button id=buttp_c1 class="btn btn-primary">с 2006 года</button> <button type=button id=buttp_c2 class="btn btn-primary">10 лет</button> <button type=button id=buttp_c3 class="btn btn-primary">5 лет</button> <button type=button id=buttp_c4 class="btn btn-primary">3 г</button> <button type=button id=buttp_c5 class="btn btn-primary">2 г</button> <button type=button id=buttp_c6 class="btn btn-primary">1 г</button> <button type=button id=buttp_c7 class="btn btn-primary">полгода</button> <button type=button id=buttp_c8 class="btn btn-primary">квартал</button></div></div><div class=col-md-3><div class="btn-group btn-group-sm"><button type=button id=buttc_cdh class="btn btn-primary">USD / UAH</button> <button type=button id=buttc_ceh class="btn btn-primary">EUR / UAH</button> <button type=button id=buttc_cde class="btn btn-primary">USD / EUR</button></div></div></div><div class=row><div class=col-md-12><div><div id=chart_div1 class="mygrid mydynchart"><div class=vertical-center><h1>Loading...</h1></div></div></div></div></div><script src=assets/js/vendor/jquery.min.js></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src=assets/js/vendor/bootstrap.min.js></script><script src=assets/js/ie10-viewport-bug-workaround.js></script><script type=text/javascript src=https://www.gstatic.com/charts/loader.js></script><script>
+    //DataTableSource
+    var GET_DT_FROM_FILE = false;
+    var GET_DT_FILE_PATH = "./data/test/";
+    function GET_DTAsync(table_id, select_fields, callback) {
+        var dts = new DataTableSource(GET_DT_FROM_FILE);
+        dts.TableId = table_id;
+        dts.Fields = select_fields;
+        dts.FilePath = GET_DT_FILE_PATH;
+        dts.initialize(function (ds) { callback(ds.DataSource); });
+    }
+    var DataTableSource = (function () {
+        function DataTableSource(is_file_src) {
+            this.IsFileSrc = is_file_src;
+        }
+        DataTableSource.prototype.initialize = function (cb_on_load) {
+            if (this.IsFileSrc)
+                this.initializeFile(cb_on_load);
+            else
+                this.initializeFusion(cb_on_load);
+        };
+
+        DataTableSource.prototype.initializeFile = function (cb_on_load) {
+            var url = this.FilePath + this.TableId + ".json";
+            $.getJSON(url, function (data) {
+                this.DataSource = new google.visualization.DataTable();
+                var date_inxs = [];
+                for (var inx = 0; inx < data.cols.length; inx++) {
+                    if (data.cols[inx].type == 'date')
+                        date_inxs.push(inx);
+                    this.DataSource.addColumn(data.cols[inx].type, data.cols[inx].label, data.cols[inx].id);
+                }
+                for (var inx = 0; inx < data.rows.length; inx++) {
+                    var row = data.rows[inx];
+                    for (var dfinx = 0; dfinx < date_inxs.length; dfinx++) {
+                        row[dfinx] = new Date(row[dfinx]);
+                    }
+                    this.DataSource.addRow(row);
+                }
+                cb_on_load(this);
+            }).fail(function (xhr, textStatus, errorThrown) {
+                alert("error occurred:" + xhr.responseText);
+            });
+        };
+        DataTableSource.prototype.getQuery = function () {
+            var sel_fields = this.Fields.toString();
+            var uriq = "SELECT " + sel_fields + " FROM " + this.TableId;
+            var queryText = "https://www.google.com/fusiontables/gvizdata?tq=" + encodeURIComponent(uriq);
+            return queryText;
+        };
+        DataTableSource.prototype.initializeFusion = function (cb_on_load) {
+            var query = new google.visualization.Query(this.getQuery());
+            // Send the query with a callback function.
+            query.send(function (response) {
+                if (response.isError()) {
+                    alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+                    return;
+                }
+                this.DataSource = response.getDataTable();
+                cb_on_load(this);
+            });
+        };
+        return DataTableSource;
+    }());
+
+    ///Прорисовка графика -------------------------------------------------------------------------------------------------------
+    /// <reference path="dyn_com_sale.js" />
+    google.charts.load("visualization", "1", { packages: ["corechart"] });
+
+
+    //Инициализация графиков
+    google.charts.setOnLoadCallback(initialize_base_common);
+    //Программный функционал
+
+
+    //----------------------------------------------- 1 ---------------------- СРЕДНИЙ ИНДИКАТОР В РАЗНЫХ ВАЛЮИАХ---------------
+    var gdataC_DH_All = {};
+    var gdataC_EH_All = {};
+    var gdataC_DE_All = {};
+    var gdataC_DH_10Y = {};
+    var gdataC_EH_10Y = {};
+    var gdataC_DE_10Y = {};
+    var gdataC_DH_5Y = {};
+    var gdataC_EH_5Y = {};
+    var gdataC_DE_5Y = {};
+    var gdataC_DH_3Y = {};
+    var gdataC_EH_3Y = {};
+    var gdataC_DE_3Y = {};
+    var gdataC_DH_work = {};
+    var gdataC_EH_work = {};
+    var gdataC_DE_work = {};
+    var gdataC_mainwork = {};
+    var gdataC_curpress = "dh";
+    var gdataC_perpress = 1;
+    var goptionsC = {};
+    var gchartC = {};
+    //var gwrapper = {};
+    var dateminC = {};
+    var datemaxC = {};
+
+
+
+
+    var bpc1 = document.getElementById('buttp_c1');
+    var bpc2 = document.getElementById('buttp_c2');
+    var bpc3 = document.getElementById('buttp_c3');
+    var bpc4 = document.getElementById('buttp_c4');
+    var bpc5 = document.getElementById('buttp_c5');
+    var bpc6 = document.getElementById('buttp_c6');
+    var bpc7 = document.getElementById('buttp_c7');
+    var bpc8 = document.getElementById('buttp_c8');
+
+    bpc1.onclick = perbutfun_C;
+    bpc2.onclick = perbutfun_C;
+    bpc3.onclick = perbutfun_C;
+    bpc4.onclick = perbutfun_C;
+    bpc5.onclick = perbutfun_C;
+    bpc6.onclick = perbutfun_C;
+    bpc7.onclick = perbutfun_C;
+    bpc8.onclick = perbutfun_C;
+
+
+    var bccdh = document.getElementById('buttc_cdh');
+    var bcceh = document.getElementById('buttc_ceh');
+    var bccde = document.getElementById('buttc_cde');
+
+    bccdh.onclick = curbutfun_C;
+    bcceh.onclick = curbutfun_C;
+    bccde.onclick = curbutfun_C;
+
+
+
+    function initialize_base_common() {
+        var sel_fields = ["RegDate", "D", "H", "E"];
+        //GET_DT_FROM_FILE = true;
+        GET_DTAsync(
+                '1_J_qzDxEGsQDpwLs7VOVbJh73Tkitz44NjbMVr9K'
+                , sel_fields
+                , function (BaseDataTable) {
+                    init_common(BaseDataTable);
+                    GET_DTAsync(
+                        '1P1s_HKSdSwN2bJIZi-_7x5WIxm28FLYVsqffWnDp'
+                        , sel_fields
+                        , function (BaseDataTable) {
+                            var t = clonetab_common(BaseDataTable);
+                            gdataC_DH_10Y = t.DH;
+                            gdataC_EH_10Y = t.EH;
+                            gdataC_DE_10Y = t.DE;
+                        });
+                    GET_DTAsync(
+                        '1QSI54v7rSDFzkUnKd11MYhILU6PqsVRL8kGXEerZ'
+                        , sel_fields
+                        , function (BaseDataTable) {
+                            var t = clonetab_common(BaseDataTable);
+                            gdataC_DH_5Y = t.DH;
+                            gdataC_EH_5Y = t.EH;
+                            gdataC_DE_5Y = t.DE;
+                        });
+                    GET_DTAsync(
+                        '12iM-1Bo6P3kuHAhqCrmhCojz16rPBfpmcL9iFsrO'
+                        , sel_fields
+                        , function (BaseDataTable) {
+                            var t = clonetab_common(BaseDataTable);
+                            gdataC_DH_3Y = t.DH;
+                            gdataC_EH_3Y = t.EH;
+                            gdataC_DE_3Y = t.DE;
+                        });
+                });
+    }
+
+    function init_common(BaseDataTable) {
+        gdataC_DH_All = BaseDataTable;
+        //запоминаем крайние даты
+        dateminC = gdataC_DH_All.getColumnRange(0).min;
+        datemaxC = gdataC_DH_All.getColumnRange(0).max;
+        //даем имена столбцов таблицы - упразднено
+        //namecol_common(gdataC_DH_All);
+        //делаем вариацию таблиц с двумя столбцами (сразу именует)
+        var temp = clonetab_common(gdataC_DH_All);
+        gdataC_DH_All = temp.DH;
+        gdataC_EH_All = temp.EH;
+        gdataC_DE_All = temp.DE;
+
+        gdataC_DH_work = gdataC_DH_All;
+        gdataC_EH_work = gdataC_EH_All;
+        gdataC_DE_work = gdataC_DE_All;
+
+        goptionsC =
+            {
+                title: "Динамика средних индикаторов продажи квартир (за 1 кв.м)",
+                //hAxis: {title: 'Периоды (годы)',  titleTextStyle: {color: '#333'}},
+
+                legend: { position: 'bottom' },
+                series: {
+                    0: { targetAxisIndex: 0, color: '#0000FF' },
+                    1: { targetAxisIndex: 1, color: '#8B0000' }
+                },
+                animation: { duration: 1000, easing: 'linear', startup: true },
+                hAxis: { viewWindow: { min: dateminC, max: datemaxC } },
+                chartArea: { left: "5%", width: '90%' },
+                vAxes: {
+                    0: { viewWindow: { min: 750 }, format: '$#', textStyle: { color: '#0000FF' } },
+                    1: { viewWindow: { min: 8000 }, format: '₴#', textStyle: { color: '#8B0000' } }
+                }
+            };
+
+
+        gdataC_mainwork = gdataC_DH_work;
+        gchartC = new google.visualization.LineChart(document.getElementById('chart_div1'));
+        drawChartC();
+        //инициализация следующего графика 2 - жилая по зонам
+        //setTimeout(initialize_base_zones, 1000);
+
+    }
+
+    function other_common(BaseDataTable) {
+        //даем имена столбцов таблицы
+        //namecol_common(BaseDataTable);
+        //делаем и возвращаем вариацию таблиц с двумя столбцами
+        return clonetab_common(BaseDataTable);
+    }
+
+    function curbutfun_C() {
+        var callname = $(this).attr('id');
+        var butnum = callname.substring(7, 9);
+        if (butnum === gdataC_curpress) { return; }
+        if (butnum === "dh") {
+            gdataC_mainwork = gdataC_DH_work;
+            goptionsC.series[0].targetAxisIndex = 0; goptionsC.series[0].color = '#0000FF';
+            goptionsC.series[1].targetAxisIndex = 1; goptionsC.series[1].color = '#8B0000';
+            goptionsC.vAxes[0].format = '$#'; goptionsC.vAxes[0].textStyle.color = '#0000FF'; goptionsC.vAxes[0].viewWindow.min = 700;
+            goptionsC.vAxes[1].format = '₴#'; goptionsC.vAxes[1].textStyle.color = '#8B0000'; goptionsC.vAxes[1].viewWindow.min = 8000;
+        }
+        if (butnum === "eh") {
+            gdataC_mainwork = gdataC_EH_work;
+            goptionsC.series[0].targetAxisIndex = 1; goptionsC.series[0].color = '#8B0000';
+            goptionsC.series[1].targetAxisIndex = 0; goptionsC.series[1].color = '#228B22';
+            goptionsC.vAxes[0].format = '€#'; goptionsC.vAxes[0].textStyle.color = '#228B22'; goptionsC.vAxes[0].viewWindow.min = 700;
+            goptionsC.vAxes[1].format = '₴#'; goptionsC.vAxes[1].textStyle.color = '#8B0000'; goptionsC.vAxes[1].viewWindow.min = 8000;
+        }
+        if (butnum === "de") {
+            gdataC_mainwork = gdataC_DE_work;
+            goptionsC.series[0].targetAxisIndex = 0; goptionsC.series[0].color = '#0000FF';
+            goptionsC.series[1].targetAxisIndex = 1; goptionsC.series[1].color = '#228B22';
+            goptionsC.vAxes[0].format = '$#'; goptionsC.vAxes[0].textStyle.color = '#0000FF'; goptionsC.vAxes[0].viewWindow.min = 700;
+            goptionsC.vAxes[1].format = '€#'; goptionsC.vAxes[1].textStyle.color = '#228B22'; goptionsC.vAxes[1].viewWindow.min = 700;
+        }
+        drawChartC();
+        gdataC_curpress = butnum;
+    }
+
+    function perbutfun_C() {
+        var callname = $(this).attr('id');
+        var butnum = +callname.substring(7, 8);
+        if (gdataC_perpress === butnum) { return; }
+        var tmind = {};
+
+        //
+        if (butnum === 1 && !$.isEmptyObject(gdataC_DH_All)) {
+            gdataC_DH_work = gdataC_DH_All;
+            gdataC_EH_work = gdataC_EH_All;
+            gdataC_DE_work = gdataC_DE_All;
+        }
+        if (butnum === 2 && !$.isEmptyObject(gdataC_DH_10Y)) {
+            gdataC_DH_work = gdataC_DH_10Y;
+            gdataC_EH_work = gdataC_EH_10Y;
+            gdataC_DE_work = gdataC_DE_10Y;
+        }
+        if (butnum === 3 && !$.isEmptyObject(gdataC_DH_5Y)) {
+            gdataC_DH_work = gdataC_DH_5Y;
+            gdataC_EH_work = gdataC_EH_5Y;
+            gdataC_DE_work = gdataC_DE_5Y;
+        }
+        if (butnum > 3 && !$.isEmptyObject(gdataC_DH_3Y)) {
+            gdataC_DH_work = gdataC_DH_3Y;
+            gdataC_EH_work = gdataC_EH_3Y;
+            gdataC_DE_work = gdataC_DE_3Y;
+        }
+        //отрабатываем логику комбинаций в зависимости от порядка нажатия последних двух кнопок
+        if (gdataC_perpress > 3 && butnum > 3) //данный вызовы происходят без смены DataTable - только смена окна вывода
+        {
+            tmind = new Date(datemaxC); tmind.setMonth(-1 * miar[butnum - 1]);
+            goptionsC.hAxis.viewWindow.min = tmind;
+            drawChartC();
+        }
+        else {
+            if (butnum > gdataC_perpress) {
+                if (butnum === 1) { tmind = new Date(dateminC); }
+                else { tmind = new Date(datemaxC); tmind.setMonth(-1 * miar[butnum - 1]); }
+                goptionsC.hAxis.viewWindow.min = tmind;
+                var secondsetDtab = {};
+                if (gdataC_curpress === 'dh') { secondsetDtab = gdataC_DH_work; }
+                if (gdataC_curpress === 'eh') { secondsetDtab = gdataC_EH_work; }
+                if (gdataC_curpress === 'de') { secondsetDtab = gdataC_DE_work; }
+                drawChartC();
+                setTimeout(drawWithSetC, 1000, { "Dtab": secondsetDtab, "MinD": tmind, "Dur": 500 });
+            }
+            else {
+                if (gdataC_curpress === 'dh') { gdataC_mainwork = gdataC_DH_work; }
+                if (gdataC_curpress === 'eh') { gdataC_mainwork = gdataC_EH_work; }
+                if (gdataC_curpress === 'de') { gdataC_mainwork = gdataC_DE_work; }
+                if (butnum === 1) { tmind = new Date(dateminC); }
+                else { tmind = new Date(datemaxC); tmind.setMonth(-1 * miar[butnum - 1]); }
+                goptionsC.animation.duration = 500;
+                drawChartC();
+                goptionsC.animation.duration = 1000;
+                setTimeout(drawWithSetC, 500, { "Dtab": gdataC_mainwork, "MinD": tmind, "Dur": 1000 });
+            }
+        }
+        gdataC_perpress = butnum;
+    }
+
+    function drawChartC() {
+        gchartC.draw(gdataC_mainwork, goptionsC);
+    }
+
+    function drawWithSetC(chartset) {
+        //gdataC_mainwork = new google.visualization.DataTable(chartset.Dtab.toJSON());
+        gdataC_mainwork = chartset.Dtab;
+        goptionsC.hAxis.viewWindow.min = chartset.MinD;
+        var t = goptionsC.animation.duration;
+        goptionsC.animation.duration = chartset.Dur;
+        drawChartC();
+        goptionsC.animation.duration = t;
+    }
+
+    //Фцнкция, которая именует столбцы таблицах Common - упразднена
+    function namecol_common(DTable) {
+        DTable.setColumnLabel(1, "в долларах");
+        DTable.setColumnLabel(2, "в гривнах");
+        DTable.setColumnLabel(3, "в евро");
+    }
+
+    //Удаляем в каждой таблице ненужный столбец- чтобы оставить нужные 2 - в  итоге получаем 3 непересекающихся (по столбцам данных) таблицы, объединение которых образует таблицу на гуглдиске
+    function clonetab_common(TSource) {
+        //парсим базовую большую DataTable в массив
+        var TSourceJSON = TSource.toJSON();
+        var TSourceAR = JSON.parse(TSourceJSON);
+        //задаем индексированные матрицы распределения
+        var tmatrixDH = [0, 1, 2];
+        var tmatrixEH = [0, 2, 3];
+        var tmatrixDE = [0, 1, 3];
+        //Создаем заголовки для каждой комбинации валют
+        var headerbaseDH = [{ id: 'col0', label: 'RegDate', type: 'date' },
+                            { id: 'col1', label: "в долларах", type: 'number' },
+                            { id: 'col2', label: "в гривнах", type: 'number' }];
+
+        var headerbaseEH = [{ id: 'col0', label: 'RegDate', type: 'date' },
+                            { id: 'col1', label: "в гривнах", type: 'number' },
+                            { id: 'col2', label: "в евро", type: 'number' }];
+
+        var headerbaseDE = [{ id: 'col0', label: 'RegDate', type: 'date' },
+                            { id: 'col1', label: "в долларах", type: 'number' },
+                            { id: 'col2', label: "в евро", type: 'number' }];
+
+        var tempDH = { cols: headerbaseDH };
+        var tempEH = { cols: headerbaseEH };
+        var tempDE = { cols: headerbaseDE };
+
+        ///временные массивы с рядами данных 
+        var tarDH = [];
+        var tarEH = [];
+        var tarDE = [];
+        //раскидываем
+        for (ii = 0; ii < TSourceAR.rows.length; ii++) {
+            tarDH.push({ c: [{ v: TSourceAR.rows[ii].c[tmatrixDH[0]].v }, { v: TSourceAR.rows[ii].c[tmatrixDH[1]].v }, { v: TSourceAR.rows[ii].c[tmatrixDH[2]].v }] });
+            tarEH.push({ c: [{ v: TSourceAR.rows[ii].c[tmatrixEH[0]].v }, { v: TSourceAR.rows[ii].c[tmatrixEH[1]].v }, { v: TSourceAR.rows[ii].c[tmatrixEH[2]].v }] });
+            tarDE.push({ c: [{ v: TSourceAR.rows[ii].c[tmatrixDE[0]].v }, { v: TSourceAR.rows[ii].c[tmatrixDE[1]].v }, { v: TSourceAR.rows[ii].c[tmatrixDE[2]].v }] });
+        }
+        ///помещаем массивы в ствойство rows
+        tempDH.rows = tarDH;
+        tempEH.rows = tarEH;
+        tempDE.rows = tarDE;
+        ///в темпах теперь объекты для получения DataTable
+        var TDestDH = new google.visualization.DataTable(tempDH);
+        var TDestEH = new google.visualization.DataTable(tempEH);
+        var TDestDE = new google.visualization.DataTable(tempDE);
+
+
+        return { DH: TDestDH, EH: TDestEH, DE: TDestDE };
+
+        //var TDestEH = TSourceDH.clone();
+        //var TDestDE = TSourceDH.clone();
+        //TSourceDH.removeColumn(3);
+        //TDestEH.removeColumn(1);
+        //TDestDE.removeColumn(2);
+
+    }
+
+    //массив соответствий отступов месяцев для каждой кнопки
+    var miar = [0, 120, 60, 36, 24, 12, 6, 3];
+</script></body></html>

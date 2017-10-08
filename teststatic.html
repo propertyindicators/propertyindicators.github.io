@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=description content="Property Indicators Lab Official Site"><meta name=author content="Property Indicators Lab propertyindicators@gmail.com"><link rel=icon href=favicon.ico><title>Property Indicators Lab</title><link rel=stylesheet href=assets/css/font-awesome.min.css><link href=assets/css/bootstrap.min.css rel=stylesheet><link href=assets/css/ie10-viewport-bug-workaround.css rel=stylesheet><link href=css/mysite.css rel=stylesheet><!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]--><script src=assets/js/ie-emulation-modes-warning.js></script><!--[if lt IE 9]>
+ <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+ <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+ <![endif]--></head><body><script type=text/javascript src=https://www.gstatic.com/charts/loader.js></script><script src=js/DataTableSource.js></script><div class="container my-page-container"><h1>Здравствуй Сева! Надеюсь тебе понравится!</h1><div class=row><div class="col-md-6 mygrid fullchartL"><div class=butabovechart><div class="btn-group btn-group-sm"><button type=button id=buttc_cd class="btn btn-primary">USD</button> <button type=button id=buttc_ce class="btn btn-primary">EUR</button> <button type=button id=buttc_ch class="btn btn-primary">UAH</button></div></div><div id=chart_div1 class=mychart><div class=vertical-center><i class="fa fa-refresh fa-spin fa-3x fa-fw center-block"></i> <span class=sr-only>Loading...</span></div></div></div><div class="col-md-6 mygrid fullchartR"><div class=butabovechart><div class="btn-group btn-group-sm"><button type=button id=buttc_od class="btn btn-primary">USD</button> <button type=button id=buttc_oe class="btn btn-primary">EUR</button> <button type=button id=buttc_oh class="btn btn-primary">UAH</button></div></div><div id=chart_div2 class=mychart><div class=vertical-center><i class="fa fa-refresh fa-spin fa-3x fa-fw center-block"></i> <span class=sr-only>Loading...</span></div></div></div><div class="col-md-12 emptyline"></div><div class="col-md-6 mygrid fullchartL"><div class=butabovechart><div class="btn-group btn-group-sm"><button type=button id=buttc_td class="btn btn-primary">USD</button> <button type=button id=buttc_te class="btn btn-primary">EUR</button> <button type=button id=buttc_th class="btn btn-primary">UAH</button></div></div><div id=chart_div3 class=mychart><div class=vertical-center><i class="fa fa-refresh fa-spin fa-3x fa-fw center-block"></i> <span class=sr-only>Loading...</span></div></div></div><div class="col-md-6 mygrid fullchartR"><div class=butabovechart><div class="btn-group btn-group-sm"><button type=button id=buttc_bd class="btn btn-primary">USD</button> <button type=button id=buttc_be class="btn btn-primary">EUR</button> <button type=button id=buttc_bh class="btn btn-primary">UAH</button></div></div><div id=chart_div4 class=mychart><div class=vertical-center><i class="fa fa-refresh fa-spin fa-3x fa-fw center-block"></i> <span class=sr-only>Loading...</span></div></div></div></div></div><script>
+        //инициализация
+        google.charts.load("visualization", "1", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(initialize_data);
+
+        //свойства и методы
+        var gdataC_D = {};
+        var gdataC_H = {};
+        var gdataC_E = {};
+        var gdataC_work = {};
+        var goptionsC = {};
+        var gchartC = {};
+        var pressbuttC = "d";
+
+        var gdataO_D = {};
+        var gdataO_H = {};
+        var gdataO_E = {};
+        var gdataO_work = {};
+        var goptionsO = {};
+        var gchartO = {};
+        var pressbuttO = "d";
+
+        var gdataT_D = {};
+        var gdataT_H = {};
+        var gdataT_E = {};
+        var gdataT_work = {};
+        var goptionsT = {};
+        var gchartT = {};
+        var pressbuttT = "d";
+
+        var gdataB_D = {};
+        var gdataB_H = {};
+        var gdataB_E = {};
+        var gdataB_work = {};
+        var goptionsB = {};
+        var gchartB = {};
+        var pressbuttB = "d";
+
+
+        var zonesnames = [];
+
+
+        var bccd = document.getElementById('buttc_cd');
+        var bcce = document.getElementById('buttc_ce');
+        var bcch = document.getElementById('buttc_ch');
+        var bcod = document.getElementById('buttc_od');
+        var bcoe = document.getElementById('buttc_oe');
+        var bcoh = document.getElementById('buttc_oh');
+        var bctd = document.getElementById('buttc_td');
+        var bcte = document.getElementById('buttc_te');
+        var bcth = document.getElementById('buttc_th');
+        var bcbd = document.getElementById('buttc_bd');
+        var bcbe = document.getElementById('buttc_be');
+        var bcbh = document.getElementById('buttc_bh');
+
+        bccd.onclick = DrawWithCurrencyC;
+        bcce.onclick = DrawWithCurrencyC;
+        bcch.onclick = DrawWithCurrencyC;
+
+        function DrawWithCurrencyC() {
+            var callname = $(this).attr('id');
+            var butnum = callname.substring(7, 8);
+            if (butnum === pressbuttC) { return; }
+            pressbuttC = butnum;
+            if (butnum === "d") { gdataC_work = gdataC_D; goptionsC.vAxis.format = "$#"; }
+            if (butnum === "h") { gdataC_work = gdataC_H; goptionsC.vAxis.format = "₴#"; }
+            if (butnum === "e") { gdataC_work = gdataC_E; goptionsC.vAxis.format = "€#"; }
+            drawChartC();
+        }
+
+        bcod.onclick = DrawWithCurrencyO;
+        bcoe.onclick = DrawWithCurrencyO;
+        bcoh.onclick = DrawWithCurrencyO;
+
+        function DrawWithCurrencyO() {
+            var callname = $(this).attr('id');
+            var butnum = callname.substring(7, 8);
+            if (butnum === pressbuttO) { return; }
+            pressbuttO = butnum;
+            if (butnum === "d") { gdataO_work = gdataO_D; goptionsO.vAxis.format = "$#"; }
+            if (butnum === "h") { gdataO_work = gdataO_H; goptionsO.vAxis.format = "₴#"; }
+            if (butnum === "e") { gdataO_work = gdataO_E; goptionsO.vAxis.format = "€#"; }
+            drawChartO();
+        }
+
+        bctd.onclick = DrawWithCurrencyT;
+        bcte.onclick = DrawWithCurrencyT;
+        bcth.onclick = DrawWithCurrencyT;
+
+        function DrawWithCurrencyT() {
+            var callname = $(this).attr('id');
+            var butnum = callname.substring(7, 8);
+            if (butnum === pressbuttT) { return; }
+            pressbuttT = butnum;
+            if (butnum === "d") { gdataT_work = gdataT_D; goptionsT.vAxis.format = "$#"; }
+            if (butnum === "h") { gdataT_work = gdataT_H; goptionsT.vAxis.format = "₴#"; }
+            if (butnum === "e") { gdataT_work = gdataT_E; goptionsT.vAxis.format = "€#"; }
+            drawChartT();
+        }
+
+        bcbd.onclick = DrawWithCurrencyB;
+        bcbe.onclick = DrawWithCurrencyB;
+        bcbh.onclick = DrawWithCurrencyB;
+
+        function DrawWithCurrencyB() {
+            var callname = $(this).attr('id');
+            var butnum = callname.substring(7, 8);
+            if (butnum === pressbuttB) { return; }
+            pressbuttB = butnum;
+            if (butnum === "d") { gdataB_work = gdataB_D; goptionsB.vAxis.format = "$#"; }
+            if (butnum === "h") { gdataB_work = gdataB_H; goptionsB.vAxis.format = "₴#"; }
+            if (butnum === "e") { gdataB_work = gdataB_E; goptionsB.vAxis.format = "€#"; }
+            drawChartB();
+        }
+
+        //функции отрисовки
+        function drawChartC() {
+            gchartC.draw(gdataC_work, goptionsC);
+        }
+
+        function drawChartO() {
+            gchartO.draw(gdataO_work, goptionsO);
+        }
+
+        function drawChartT() {
+            gchartT.draw(gdataT_work, goptionsT);
+        }
+
+        function drawChartB() {
+            gchartB.draw(gdataB_work, goptionsB);
+        }
+
+
+        function initialize_data() {
+            var sel_fields = ["ID", "Name", "D_K_1", "D_K_2", "D_C_1", "D_C_2", "D_NC_1", "D_NC_2", "D_EV_1", "D_EV_2", "D_P_1", "D_P_2",
+                                           "H_K_1", "H_K_2", "H_C_1", "H_C_2", "H_NC_1", "H_NC_2", "H_EV_1", "H_EV_2", "H_P_1", "H_P_2",
+                                           "E_K_1", "E_K_2", "E_C_1", "E_C_2", "E_NC_1", "E_NC_2", "E_EV_1", "E_EV_2", "E_P_1", "E_P_2"];
+            GET_DT_FROM_FILE = true;
+            GET_DTAsync(
+                    'comdiagsale'
+                    , sel_fields
+                    , function (BaseDataTable) {
+                        //парсим базовую большую DataTable в массив
+                        var TSourceJSON = BaseDataTable.toJSON();
+                        var TSourceAR = JSON.parse(TSourceJSON);
+                        //определяяем цвета столбиков для каждой диаграммы
+                        var colorsdict = {
+                            Диаграмма1: { first: ['#8B0000', '#FF0000'], other: ['#9932CC', '#808000'] },
+                            Диаграмма2: { first: ['#8B0000', '#FF0000'], other: ['#006400', '#808000'] },
+                            Диаграмма3: { first: ['#8B0000', '#FF0000'], other: ['#800080', '#9932CC'] },
+                            Диаграмма4: { first: ['#8B0000'], other: ['#D2691E'] }
+                        };
+                        //определяем подписи для каждой диаграммы
+                        var itemdict = {
+                            Диаграмма1: { name: tct("diacomsale", "nonresidential"), rows: [tck("trading"), tck("office")] },
+                            Диаграмма2: { name: tct("diacomsale", "office"), rows: [tck("profoffice"), tck("office")] },
+                            Диаграмма3: { name: tct("diacomsale", "trading"), rows: [tck("proftrading"), tck("trading")] },
+                            Диаграмма4: { name: tct("diacomsale", "basement"), rows: [tck("basement")] }
+                        };
+                        //инициализируем глобальный массив подптсей зон для более быстрой работы "разбросатора"
+                        zonesnames = [tcz("nm"), tcz("kiev"), tcz("center"), tcz("nearcenter"), tcz("midcenter"), tcz("periphery")];
+                        //запускаем разбросатор и получаем новый массив с объектами DataTable и Options
+                        var DTArr = TSourceAR.rows.map(function (onerow, i) {
+                            return GetDiagDataTableFromRow(onerow, colorsdict[onerow.c[1].v], itemdict[onerow.c[1].v]);
+                        });
+                        //разбрасываем полученный массив по глобальным переменным
+                        gdataC_D = DTArr[0].D; gdataC_H = DTArr[0].H; gdataC_E = DTArr[0].E; goptionsC = DTArr[0].OPT;
+                        gdataO_D = DTArr[1].D; gdataO_H = DTArr[1].H; gdataO_E = DTArr[1].E; goptionsO = DTArr[1].OPT;
+                        gdataT_D = DTArr[2].D; gdataT_H = DTArr[2].H; gdataT_E = DTArr[2].E; goptionsT = DTArr[2].OPT;
+                        gdataB_D = DTArr[3].D; gdataB_H = DTArr[3].H; gdataB_E = DTArr[3].E; goptionsB = DTArr[3].OPT;
+                        //рисуем диаграммы
+                        //1 - нежилые помещения
+                        gdataC_work = gdataC_D;
+                        gchartC = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+                        drawChartC();
+                        //2-Офсиные помещения
+                        gdataO_work = gdataO_D;
+                        gchartO = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+                        drawChartO();
+                        //3 - Торговые помещения
+                        gdataT_work = gdataT_D;
+                        gchartT = new google.visualization.ColumnChart(document.getElementById('chart_div3'));
+                        drawChartT();
+                        //3 - подвалы
+                        gdataB_work = gdataB_D;
+                        gchartB = new google.visualization.ColumnChart(document.getElementById('chart_div4'));
+                        drawChartB();
+                    });
+
+        }
+
+
+        function GetDiagDataTableFromRow(row, colors, items) {
+            var cc = items.rows.length;//в сс определяем количество столбиков в точке диаграм (1 или 2)
+            var workarrs = [];
+            for (i = 0; i < 3; i++) {
+                //сначала помещаем в массив первый столбец с именами рядов и типами форматирования
+                var temp = [zonesnames[0]];
+                for (iii = 0; iii < cc; iii++) { temp.push(items.rows[iii], { role: 'style' }); }
+                workarrs[i] = [temp];
+                //добавляем точки диаграммы с 1-м или 2-мя рядами
+                for (ii = 0; ii < 5; ii++) {
+                    //сначала помещаем в массив название точки диаграммы
+                    var temp1 = [zonesnames[ii + 1]];
+                    //нарабатываем во временном массиве цвета столбиков точки (для первой точки - одни, для других точек - другие)
+                    var tcolors = [];
+                    for (iii = 0; iii < cc; iii++) {
+                        if (ii === 0) { tcolors[iii] = colors.first[iii]; }
+                        else { tcolors[iii] = colors.other[iii]; }
+                    }
+                    //помещаем в массив (1 или 2 значения) цвета столбиков - если первая точка - красные, для других столбцов иные
+                    for (iii = 0; iii < cc; iii++) { temp1.push(row.c[2 + i * 10 + ii * 2 + iii].v, tcolors[iii]); }
+                    workarrs[i].push(temp1);
+                }
+            }
+            //массив с данными готов, собираем объект с опциями - внизу типичные опции для всех графиков
+            var opt = {
+                title: items.name,
+                //hAxis: {title: 'Территориальные зоны',  titleTextStyle: {color: '#333'}},
+                vAxis: { minValue: 0, format: '$#' },
+                legend: { position: 'bottom' },
+                colors: [],
+                animation: { duration: 1000, easing: 'linear', startup: true },
+                chartArea: { left: "9%", width: '90%' }
+            };
+            //задаем цвета легенды
+            for (i = 0; i < cc; i++) { opt.colors[i] = colors.other[i]; }
+            return {
+                D: google.visualization.arrayToDataTable(workarrs[0]),
+                H: google.visualization.arrayToDataTable(workarrs[1]),
+                E: google.visualization.arrayToDataTable(workarrs[2]),
+                OPT: opt
+            };
+        }
+
+    </script><script src=assets/js/vendor/jquery.min.js></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src=assets/js/vendor/bootstrap.min.js></script><script src=assets/js/ie10-viewport-bug-workaround.js></script><script src=assets/js/vendor/i18next.min.js></script><script src=assets/js/vendor/i18nextBrowserLanguageDetector.min.js></script><script src=assets/js/vendor/jquery-i18next.min.js></script><script src=assets/js/vendor/i18nextXHRBackend.min.js></script><script src=js/mylocale.js></script></body></html>
