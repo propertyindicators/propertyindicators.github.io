@@ -5,7 +5,8 @@
     "dyncomsale": "Dynamics of selling prices for __kkind__ in Kiev (for 1 sq.m)",
     "dyncomrent": "Dynamics of rental rates for __kkind__ in Kiev (for 1 sq.m per month)",
     "dynressale1": "Dynamics of average selling prices of apartments in Kiev (per 1 sq.m of all square)",
-    "dynressale24": "Dynamics of selling prices of apartments in Kiev differences by __kkind__ (per 1 sq.m of all square)"
+    "dynressale24": "Dynamics of selling prices of apartments in Kiev differences by __kkind__ (per 1 sq.m of all square)",
+    "diaressale": "Current selling prices for residential appartaments in Kiev (__kkind__)"
   },
 
   "kindnm": {
@@ -15,7 +16,9 @@
     "basement": "basements",
     "zones": "territorial zones",
     "rooms": "number of rooms",
-    "types": "types of building"
+    "types": "types of building",
+    "ressqm": "per 1 sq.m of all square",
+    "resflat": "per appartment in all"
   },
 
   "zone": {
@@ -40,7 +43,8 @@
     "st": "Stalin's",
     "hr": "Khrushchev's",
     "ser": "Series",
-    "mod": "Modern"
+    "mod": "Modern",
+    "allt": "All types"
   },
 
 
@@ -48,5 +52,18 @@
     "hrn": "In hrivnies",
     "usd": "In dollars",
     "eur": "In euro"
+  },
+
+  "subtitleres": {
+    "k": " - averages for Kiev",
+    "c": " - central zone",
+    "nc": " - close to center zone",
+    "m": " - in midle to centre zone",
+    "o": " - outskirts zone",
+    "allt": " - в среднем по Киеву",
+    "st": " - apartments in buildings of Stalin's type and in other old buildings",
+    "hr": " - apartments in buildings of Hrushiv's type",
+    "ser": " - apartments in tipical siries buildings of last period USSR residential construction industry",
+    "mod": " - apartments in modern buildings and complexes"
   }
 }

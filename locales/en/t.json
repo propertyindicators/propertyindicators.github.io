@@ -52,7 +52,8 @@
     "st": "Stalin's",
     "hr": "Khrushchev's",
     "ser": "Series",
-    "mod": "Modern"
+    "mod": "Modern",
+    "allt": "All types"
   },
   "rooms": {
     "nm": "Number of rooms (bedrooms including)",
@@ -66,5 +67,13 @@
     "ba": "Business analysis",
     "prog": "Software Development",
     "art": "Author's article"
+  },
+
+  "zones": {
+    "k": "Kiev",
+    "c": "Center",
+    "nc": "Close to center",
+    "m": "In middle to center",
+    "o": "Outskirts"
   }
 }
