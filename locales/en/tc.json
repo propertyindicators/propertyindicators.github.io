@@ -17,8 +17,8 @@
     "zones": "territorial zones",
     "rooms": "number of rooms",
     "types": "types of building",
-    "ressqm": "per 1 sq.m of all square",
-    "resflat": "per appartment in all"
+    "ressqm": "price per 1 sq.m",
+    "resflat": "price per apartment"
   },
 
   "zone": {
@@ -60,7 +60,7 @@
     "nc": " - close to center zone",
     "m": " - in midle to centre zone",
     "o": " - outskirts zone",
-    "allt": " - в среднем по Киеву",
+    "allt": " - averages for Kiev",
     "st": " - apartments in buildings of Stalin's type and in other old buildings",
     "hr": " - apartments in buildings of Hrushiv's type",
     "ser": " - apartments in tipical siries buildings of last period USSR residential construction industry",
