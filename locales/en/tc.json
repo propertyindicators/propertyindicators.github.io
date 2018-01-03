@@ -65,5 +65,21 @@
     "hr": " - apartments in buildings of Hrushiv's type",
     "ser": " - apartments in tipical siries buildings of last period USSR residential construction industry",
     "mod": " - apartments in modern buildings and complexes"
+  },
+
+  "tabrows": {
+    "allres": "Average for Kiev",
+    "1r": "1 room appartaments",
+    "2r": "2 rooms appartaments",
+    "3r": "2 rooms appartaments",
+    "4r": "4 and more rooms appartaments",
+    "sta": "Stalin's type",
+    "hru": "Krushchev's type",
+    "ser": "Siries types",
+    "mod": "Modern buildings",
+    "с": "Central zone",
+    "nc": "Close to center zone",
+    "m": "In midle to centre zone",
+    "o": "Outskirts zone"
   }
 }
