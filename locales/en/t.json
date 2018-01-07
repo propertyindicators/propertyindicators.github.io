@@ -16,7 +16,8 @@
   "mycontact": {
     "hc": "CONTACTS",
     "chat": "aaa_xxx_aaa",
-    "skypehref": "skype:aaa_xxx_aaa?chat"
+    "skypehref": "skype:aaa_xxx_aaa?chat",
+    "site": "Project Info Site"
   },
   "inx": {
     "hello": "Hello, real estate market analyst!",
@@ -75,5 +76,15 @@
     "nc": "Close to center",
     "m": "In middle to center",
     "o": "Outskirts"
+  },
+
+  "btabs": {
+    "titressale": "Apartments - sale",
+    "butrooms": "number of rooms",
+    "buttypes": "types of building",
+    "butzones": "territorial zones",
+    "indicators": "indicators",
+    "indexes": "indexes"
   }
+
 }

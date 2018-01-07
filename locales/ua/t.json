@@ -19,7 +19,8 @@
   "mycontact": {
     "hc": "КОНТАКТИ",
     "chat": "live:zzzseva",
-    "skypehref": "skype:live:zzzseva?chat"
+    "skypehref": "skype:live:zzzseva?chat",
+    "site": "Інформаційна сторінка"
   },
   "inx": {
     "hello": "Вітаємо тебе, аналітик ринку нерухомості!",
@@ -71,6 +72,15 @@
     "nc": "Близько до центру",
     "m": "Середина",
     "o": "Периферія"
+  },
+
+  "btabs": {
+    "titressale": "Квартири - продаж",
+    "butrooms": "кількість кімнат",
+    "buttypes": "типи будинків",
+    "butzones": "територіальні зони",
+    "indicators": "індикатори",
+    "indexes": "індекси"
   }
 
 }
