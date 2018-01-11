@@ -84,7 +84,12 @@
     "buttypes": "types of building",
     "butzones": "territorial zones",
     "indicators": "indicators",
-    "indexes": "indexes"
+    "indexes": "indexes",
+    "titcomsale": "Non-residential premises - sale",
+    "titcomrent": "Non-residential premises - rent",
+    "butcomall": "all types",
+    "butoffice": "offices",
+    "buttrade": "trading"
   }
 
 }

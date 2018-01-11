@@ -72,7 +72,7 @@
     "allnonres": "Average for nonresidential premises",
     "1r": "1 room appartaments",
     "2r": "2 rooms appartaments",
-    "3r": "2 rooms appartaments",
+    "3r": "3 rooms appartaments",
     "4r": "4 and more rooms appartaments",
     "sta": "Stalin's type",
     "hru": "Krushchev's type",
@@ -85,6 +85,5 @@
     "firstcol": "Indicators group",
     "notdat": "data as of"
   },
-
   "getlang": {"v": 2 }
 }
