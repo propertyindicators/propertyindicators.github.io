@@ -89,7 +89,21 @@
     "titcomrent": "Non-residential premises - rent",
     "butcomall": "all types",
     "butoffice": "offices",
-    "buttrade": "trading"
-  }
+    "buttrade": "trading",
+    "titcomm": "Aggregated indicators",
+    "titcomsale_of": "Office premises - sale",
+    "titcomrent_of": "Office premises - rent",
+    "titcomsale_tr": "Trade premises - sale",
+    "titcomrent_tr": "Trade premises - rent"
+  },
 
+  "pagestitle": {
+    "main": "Dynamics of price indicators in the main segments of the real estate market of Kiev",
+    "comdynamicsale": "Dynamics of price indicators of non-residential premises (sale) in Kiev",
+    "comdynamicrent": "Dynamics of price indicators of non-residential premises (rent) in Kiev",
+    "resdynamicsale": "Dynamics of price indicators of residential appartments (sale) in Kiev",
+    "comstaticsale": "Current sale prices level of non-residential premises market in Kiev",
+    "comstaticrent": "Current rental rates level of non-residential premises market in Kiev",
+    "resstaticsale": "Current sale prices level of residential appartments in Kiev"
+  }
 }
