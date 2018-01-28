@@ -1,302 +1,46 @@
 {
-   "cols": [
-    {
-      "id": "col0",
-      "lable": "ID",
-      "type": "number"
-    },
-    {
-      "id": "col1",
-      "lable": "Key",
-      "type": "string"
-    },
-    {
-      "id": "col2",
-      "lable": "v1",
-      "type": "number"
-    },
-    {
-      "id": "col3",
-      "lable": "v2",
-      "type": "number"
-    },
-    {
-      "id": "col4",
-      "lable": "v3",
-      "type": "number"
-    },
-    {
-      "id": "col5",
-      "lable": "v4",
-      "type": "number"
-    },
-    {
-      "id": "col6",
-      "lable": "v5",
-      "type": "number"
-    },
-    {
-      "id": "col7",
-      "lable": "v6",
-      "type": "number"
-    },
-    {
-      "id": "col8",
-      "lable": "v7",
-      "type": "number"
-    },
-    {
-      "id": "col9",
-      "lable": "v8",
-      "type": "number"
-    },
-    {
-      "id": "col10",
-      "lable": "v9",
-      "type": "number"
-    },
-    {
-      "id": "col11",
-      "lable": "v10",
-      "type": "number"
-    },
-    {
-      "id": "col12",
-      "lable": "v11",
-      "type": "number"
-    },
-    {
-      "id": "col13",
-      "lable": "v12",
-      "type": "number"
-    },
-    {
-      "id": "col14",
-      "lable": "v13",
-      "type": "number"
-    },
-    {
-      "id": "col15",
-      "lable": "v14",
-      "type": "number"
-    },
-    {
-      "id": "col16",
-      "lable": "v15",
-      "type": "number"
-    },
-    {
-      "id": "col17",
-      "lable": "v16",
-      "type": "number"
-    },
-    {
-      "id": "col18",
-      "lable": "v17",
-      "type": "number"
-    },
-    {
-      "id": "col19",
-      "lable": "v18",
-      "type": "number"
-    },
-    {
-      "id": "col20",
-      "lable": "v19",
-      "type": "number"
-    },
-    {
-      "id": "col21",
-      "lable": "v20",
-      "type": "number"
-    },
-    {
-      "id": "col22",
-      "lable": "v21",
-      "type": "number"
-    },
-    {
-      "id": "col23",
-      "lable": "v22",
-      "type": "number"
-    },
-    {
-      "id": "col24",
-      "lable": "v23",
-      "type": "number"
-    },
-    {
-      "id": "col25",
-      "lable": "v24",
-      "type": "number"
-    },
-    {
-      "id": "col26",
-      "lable": "v25",
-      "type": "number"
-    },
-    {
-      "id": "col27",
-      "lable": "v26",
-      "type": "number"
-    },
-    {
-      "id": "col28",
-      "lable": "v27",
-      "type": "number"
-    },
-    {
-      "id": "col29",
-      "lable": "v28",
-      "type": "number"
-    },
-    {
-      "id": "col30",
-      "lable": "v29",
-      "type": "number"
-    },
-    {
-      "id": "col31",
-      "lable": "v30",
-      "type": "number"
-    }
-  ],
-  "rows": [
-    [
-      1,
-      "Диаграмма1",
-      1113,
-      857,
-      2078,
-      1568,
-      1401,
-      1069,
-      1099,
-      847,
-      821,
-      641,
-      30924,
-      23808,
-      57736,
-      43581,
-      38937,
-      29717,
-      30549,
-      23531,
-      22807,
-      17821,
-      940,
-      723,
-      1754,
-      1324,
-      1183,
-      903,
-      928,
-      715,
-      693,
-      542
-    ],
-    [
-      2,
-      "Диаграмма2",
-      931,
-      857,
-      1664,
-      1568,
-      1150,
-      1069,
-      920,
-      847,
-      709,
-      641,
-      25863,
-      23808,
-      46251,
-      43581,
-      31956,
-      29717,
-      25578,
-      23531,
-      19690,
-      17821,
-      786,
-      723,
-      1405,
-      1324,
-      971,
-      903,
-      777,
-      715,
-      598,
-      542
-    ],
-    [
-      3,
-      "Диаграмма3",
-      1470,
-      1113,
-      2724,
-      2078,
-      1845,
-      1401,
-      1452,
-      1099,
-      1090,
-      821,
-      40845,
-      30924,
-      75692,
-      57736,
-      51260,
-      38937,
-      40357,
-      30549,
-      30294,
-      22807,
-      1241,
-      940,
-      2300,
-      1754,
-      1558,
-      1183,
-      1226,
-      928,
-      921,
-      693
-    ],
-    [
-      4,
-      "Диаграмма4",
-      665,
-      0,
-      1191,
-      0,
-      822,
-      0,
-      657,
-      0,
-      506,
-      0,
-      18470,
-      0,
-      33083,
-      0,
-      22838,
-      0,
-      18266,
-      0,
-      14046,
-      0,
-      561,
-      0,
-      1005,
-      0,
-      694,
-      0,
-      555,
-      0,
-      427,
-      0
-    ]
-  ]
+"cols":[
+{"id":"col0", "label":"ID", "type":"number"},
+{"id":"col1", "label":"Name", "type":"string"},
+{"id":"col2", "label":"D_K_1", "type":"number"},
+{"id":"col3", "label":"D_K_2", "type":"number"},
+{"id":"col4", "label":"D_C_1", "type":"number"},
+{"id":"col5", "label":"D_C_2", "type":"number"},
+{"id":"col6", "label":"D_NC_1", "type":"number"},
+{"id":"col7", "label":"D_NC_2", "type":"number"},
+{"id":"col8", "label":"D_EV_1", "type":"number"},
+{"id":"col9", "label":"D_EV_2", "type":"number"},
+{"id":"col10", "label":"D_P_1", "type":"number"},
+{"id":"col11", "label":"D_P_2", "type":"number"},
+{"id":"col12", "label":"H_K_1", "type":"number"},
+{"id":"col13", "label":"H_K_2", "type":"number"},
+{"id":"col14", "label":"H_C_1", "type":"number"},
+{"id":"col15", "label":"H_C_2", "type":"number"},
+{"id":"col16", "label":"H_NC_1", "type":"number"},
+{"id":"col17", "label":"H_NC_2", "type":"number"},
+{"id":"col18", "label":"H_EV_1", "type":"number"},
+{"id":"col19", "label":"H_EV_2", "type":"number"},
+{"id":"col20", "label":"H_P_1", "type":"number"},
+{"id":"col21", "label":"H_P_2", "type":"number"},
+{"id":"col22", "label":"E_K_1", "type":"number"},
+{"id":"col23", "label":"E_K_2", "type":"number"},
+{"id":"col24", "label":"E_C_1", "type":"number"},
+{"id":"col25", "label":"E_C_2", "type":"number"},
+{"id":"col26", "label":"E_NC_1", "type":"number"},
+{"id":"col27", "label":"E_NC_2", "type":"number"},
+{"id":"col28", "label":"E_EV_1", "type":"number"},
+{"id":"col29", "label":"E_EV_2", "type":"number"},
+{"id":"col30", "label":"E_P_1", "type":"number"},
+{"id":"col31", "label":"E_P_2", "type":"number"}
+],
+"rows":[
+[1,"Диаграмма1",1113,857,2078,1568,1401,1069,1099,847,821,641,30924,23808,57736,43581,38937,29717,30549,23531,22807,17821,940,723,1754,1324,1183,903,928,715,693,542
+],
+[2,"Диаграмма2",931,857,1664,1568,1150,1069,920,847,709,641,25863,23808,46251,43581,31956,29717,25578,23531,19690,17821,786,723,1405,1324,971,903,777,715,598,542
+],
+[3,"Диаграмма3",1470,1113,2724,2078,1845,1401,1452,1099,1090,821,40845,30924,75692,57736,51260,38937,40357,30549,30294,22807,1241,940,2300,1754,1558,1183,1226,928,921,693
+],
+[4,"Диаграмма4",665,0,1191,0,822,0,657,0,506,0,18470,0,33083,0,22838,0,18266,0,14046,0,561,0,1005,0,694,0,555,0,427,0
+]
+]
 }
