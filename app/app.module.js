@@ -1,3 +1,3 @@
-/*! PILab 04-04-2018 (c) 2017 propertyindicators@gmail.com */
+/*! PILab 21-04-2018 (c) 2017 propertyindicators@gmail.com */
 
 "use strict";var __decorate=this&&this.__decorate||function(a,b,c,d){var e,f=arguments.length,g=f<3?b:null===d?d=Object.getOwnPropertyDescriptor(b,c):d;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)g=Reflect.decorate(a,b,c,d);else for(var h=a.length-1;h>=0;h--)(e=a[h])&&(g=(f<3?e(g):f>3?e(b,c,g):e(b,c))||g);return f>3&&g&&Object.defineProperty(b,c,g),g};Object.defineProperty(exports,"__esModule",{value:!0});var core_1=require("@angular/core"),platform_browser_1=require("@angular/platform-browser"),app_component_test1_1=require("./app.component.test1"),AppModule=function(){function a(){}return a=__decorate([core_1.NgModule({imports:[platform_browser_1.BrowserModule],declarations:[app_component_test1_1.test1Component1],bootstrap:[app_component_test1_1.test1Component1]})],a)}();exports.AppModule=AppModule;

@@ -1,3 +1,3 @@
-/*! PILab 04-04-2018 (c) 2017 propertyindicators@gmail.com */
+/*! PILab 21-04-2018 (c) 2017 propertyindicators@gmail.com */
 
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});var app_component_1=require("./app.component"),testing_1=require("@angular/core/testing"),platform_browser_1=require("@angular/platform-browser");describe("AppComponent",function(){var a,b,c;beforeEach(testing_1.async(function(){testing_1.TestBed.configureTestingModule({declarations:[app_component_1.AppComponent]}).compileComponents()})),beforeEach(function(){c=testing_1.TestBed.createComponent(app_component_1.AppComponent),b=c.componentInstance,a=c.debugElement.query(platform_browser_1.By.css("h1"))}),it("should create component",function(){return expect(b).toBeDefined()}),it("should have expected <h1> text",function(){c.detectChanges();var b=a.nativeElement;expect(b.innerText).toMatch(/angular/i,'<h1> should say something about "Angular"')})});

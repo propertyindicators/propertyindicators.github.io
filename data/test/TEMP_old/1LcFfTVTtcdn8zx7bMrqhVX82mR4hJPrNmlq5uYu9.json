@@ -1,0 +1,46 @@
+﻿{
+  "cols": [
+    {
+      "id": "col0",
+      "label": "RegDate",
+      "type": "date"
+    },
+    {
+      "id": "col2",
+      "label": "C_C",
+      "type": "number"
+    },
+    {
+      "id": "col3",
+      "label": "C_NC",
+      "type": "number"
+    },
+    {
+      "id": "col4",
+      "label": "C_EV",
+      "type": "number"
+    },
+    {
+      "id": "col5",
+      "label": "C_P",
+      "type": "number"
+    }
+  ],
+  "rows": [
+    [
+      "2010/05/01",
+      19.27,
+      15.16,
+      13.02,
+      10.77
+    ],
+    [
+      "2010/05/02",
+      16.67,
+      14.66,
+      12.62,
+      11.17
+    ]
+
+  ]
+}
