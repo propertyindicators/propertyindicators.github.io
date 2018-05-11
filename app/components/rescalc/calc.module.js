@@ -1,3 +1,29 @@
-/*! PILab 11-05-2018 (c) 2017 propertyindicators@gmail.com */
-
-"use strict";var __decorate=this&&this.__decorate||function(a,b,c,d){var e,f=arguments.length,g=f<3?b:null===d?d=Object.getOwnPropertyDescriptor(b,c):d;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)g=Reflect.decorate(a,b,c,d);else for(var h=a.length-1;h>=0;h--)(e=a[h])&&(g=(f<3?e(g):f>3?e(b,c,g):e(b,c))||g);return f>3&&g&&Object.defineProperty(b,c,g),g};Object.defineProperty(exports,"__esModule",{value:!0});var core_1=require("@angular/core"),platform_browser_1=require("@angular/platform-browser"),forms_1=require("@angular/forms"),http_1=require("@angular/common/http"),calc_component_main_1=require("./calc.component.main"),calc_component_addr_1=require("./calc.component.addr"),calc_component_temptab_1=require("./calc.component.temptab"),AppModule=function(){function a(){}return a=__decorate([core_1.NgModule({imports:[platform_browser_1.BrowserModule,forms_1.FormsModule,http_1.HttpClientModule],declarations:[calc_component_main_1.MainComponent,calc_component_addr_1.AddrForm,calc_component_temptab_1.TempTab],bootstrap:[calc_component_main_1.MainComponent]})],a)}();exports.AppModule=AppModule;
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var platform_browser_1 = require("@angular/platform-browser");
+var forms_1 = require("@angular/forms");
+var http_1 = require("@angular/common/http");
+var calc_component_main_1 = require("./calc.component.main");
+var calc_component_addr_1 = require("./calc.component.addr");
+var calc_component_temptab_1 = require("./calc.component.temptab");
+var AppModule = /** @class */ (function () {
+    function AppModule() {
+    }
+    AppModule = __decorate([
+        core_1.NgModule({
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpClientModule],
+            declarations: [calc_component_main_1.MainComponent, calc_component_addr_1.AddrForm, calc_component_temptab_1.TempTab],
+            bootstrap: [calc_component_main_1.MainComponent]
+        })
+    ], AppModule);
+    return AppModule;
+}());
+exports.AppModule = AppModule;
+//# sourceMappingURL=calc.module.js.map

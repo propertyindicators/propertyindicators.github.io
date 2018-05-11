@@ -1,3 +1,70 @@
-/*! PILab 11-05-2018 (c) 2017 propertyindicators@gmail.com */
-
-"use strict";var __decorate=this&&this.__decorate||function(a,b,c,d){var e,f=arguments.length,g=f<3?b:null===d?d=Object.getOwnPropertyDescriptor(b,c):d;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)g=Reflect.decorate(a,b,c,d);else for(var h=a.length-1;h>=0;h--)(e=a[h])&&(g=(f<3?e(g):f>3?e(b,c,g):e(b,c))||g);return f>3&&g&&Object.defineProperty(b,c,g),g},__metadata=this&&this.__metadata||function(a,b){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(a,b)};Object.defineProperty(exports,"__esModule",{value:!0});var core_1=require("@angular/core"),AddrModel=function(){function a(a,b,c){this.district=a,this.street=b,this.number_str=c,this.distrdict={"Голосеевский":1,"Дарницкий":2,"Деснянский":3,"Днепровский":4,"Оболонский":5,"Печерский":6,"Подольский":7,"Святошинский":8,"Соломенский":9,"Шевченковский":10}}return a.prototype.getdistrnum=function(){return this.distrdict[this.district]?this.distrdict[this.district]:0},a}();exports.AddrModel=AddrModel;var AddrForm=function(){function a(){this.count=0,this.hid_2b="none",this.addr_visible="none",this.addr=new AddrModel("Выберите район","",""),this.on_distr_changed=new core_1.EventEmitter}return a.prototype.onDistrIn=function(){this.addr_visible="inline",this.on_distr_changed.emit(this.addr.getdistrnum())},__decorate([core_1.Output(),__metadata("design:type",Object)],a.prototype,"on_distr_changed",void 0),a=__decorate([core_1.Component({selector:"comp-addr",moduleId:module.id,templateUrl:"calc.component.addr.html",styleUrls:["calc.component.addr.css"]})],a)}();exports.AddrForm=AddrForm;
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var AddrModel = /** @class */ (function () {
+    function AddrModel(district, street, number_str) {
+        this.district = district;
+        this.street = street;
+        this.number_str = number_str;
+        this.distrdict = {
+            "Голосеевский": 1,
+            "Дарницкий": 2,
+            "Деснянский": 3,
+            "Днепровский": 4,
+            "Оболонский": 5,
+            "Печерский": 6,
+            "Подольский": 7,
+            "Святошинский": 8,
+            "Соломенский": 9,
+            "Шевченковский": 10
+        };
+    }
+    AddrModel.prototype.getdistrnum = function () {
+        if (!!this.distrdict[this.district]) {
+            return this.distrdict[this.district];
+        }
+        else {
+            return 0;
+        }
+        ;
+    };
+    return AddrModel;
+}());
+exports.AddrModel = AddrModel;
+var AddrForm = /** @class */ (function () {
+    function AddrForm() {
+        this.count = 0;
+        this.hid_2b = "none";
+        this.addr_visible = "none";
+        this.addr = new AddrModel("Выберите район", "", "");
+        this.on_distr_changed = new core_1.EventEmitter();
+    }
+    AddrForm.prototype.onDistrIn = function () {
+        this.addr_visible = "inline";
+        this.on_distr_changed.emit(this.addr.getdistrnum());
+    };
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], AddrForm.prototype, "on_distr_changed", void 0);
+    AddrForm = __decorate([
+        core_1.Component({
+            selector: 'comp-addr',
+            moduleId: module.id,
+            templateUrl: 'calc.component.addr.html',
+            styleUrls: ['calc.component.addr.css']
+        })
+    ], AddrForm);
+    return AddrForm;
+}());
+exports.AddrForm = AddrForm;
+//# sourceMappingURL=calc.component.addr.js.map

@@ -1,3 +1,49 @@
-/*! PILab 11-05-2018 (c) 2017 propertyindicators@gmail.com */
+var templateUrlRegex = /templateUrl\s*:(\s*['"`](.*?)['"`]\s*)/gm;
+var stylesRegex = /styleUrls *:(\s*\[[^\]]*?\])/g;
+var stringRegex = /(['`"])((?:[^\\]\\\1|.)*?)\1/g;
 
-var templateUrlRegex=/templateUrl\s*:(\s*['"`](.*?)['"`]\s*)/gm,stylesRegex=/styleUrls *:(\s*\[[^\]]*?\])/g,stringRegex=/(['`"])((?:[^\\]\\\1|.)*?)\1/g;module.exports.translate=function(a){if(-1!=a.source.indexOf("moduleId"))return a;var b=document.createElement("a");b.href=a.address;var c=b.pathname.split("/");c.pop();var d=c.join("/"),e=document.createElement("a");return e.href=this.baseURL,e=e.pathname,e.startsWith("/base/")||(d=d.replace(e,"")),a.source=a.source.replace(templateUrlRegex,function(a,b,c){var e=c;return c.startsWith(".")&&(e=d+c.substr(1)),'templateUrl: "'+e+'"'}).replace(stylesRegex,function(a,b){for(var c=[];null!==(a=stringRegex.exec(b));)a[2].startsWith(".")?c.push('"'+d+a[2].substr(1)+'"'):c.push('"'+a[2]+'"');return"styleUrls: ["+c.join(", ")+"]"}),a};
+module.exports.translate = function(load){
+  if (load.source.indexOf('moduleId') != -1) return load;
+
+  var url = document.createElement('a');
+  url.href = load.address;
+
+  var basePathParts = url.pathname.split('/');
+
+  basePathParts.pop();
+  var basePath = basePathParts.join('/');
+
+  var baseHref = document.createElement('a');
+  baseHref.href = this.baseURL;
+  baseHref = baseHref.pathname;
+
+  if (!baseHref.startsWith('/base/')) { // it is not karma
+    basePath = basePath.replace(baseHref, '');
+  }
+
+  load.source = load.source
+    .replace(templateUrlRegex, function(match, quote, url){
+      var resolvedUrl = url;
+
+      if (url.startsWith('.')) {
+        resolvedUrl = basePath + url.substr(1);
+      }
+
+      return 'templateUrl: "' + resolvedUrl + '"';
+    })
+    .replace(stylesRegex, function(match, relativeUrls) {
+      var urls = [];
+
+      while ((match = stringRegex.exec(relativeUrls)) !== null) {
+        if (match[2].startsWith('.')) {
+          urls.push('"' + basePath + match[2].substr(1) + '"');
+        } else {
+          urls.push('"' + match[2] + '"');
+        }
+      }
+
+      return "styleUrls: [" + urls.join(', ') + "]";
+    });
+
+  return load;
+};

@@ -1,3 +1,29 @@
-/*! PILab 11-05-2018 (c) 2017 propertyindicators@gmail.com */
-
-"use strict";var __decorate=this&&this.__decorate||function(a,b,c,d){var e,f=arguments.length,g=f<3?b:null===d?d=Object.getOwnPropertyDescriptor(b,c):d;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)g=Reflect.decorate(a,b,c,d);else for(var h=a.length-1;h>=0;h--)(e=a[h])&&(g=(f<3?e(g):f>3?e(b,c,g):e(b,c))||g);return f>3&&g&&Object.defineProperty(b,c,g),g};Object.defineProperty(exports,"__esModule",{value:!0});var core_1=require("@angular/core"),MainComponent=function(){function a(){this.distr=0,this.tabvisible="none"}return a.prototype.onAddrChanged=function(a){this.distr=a,this.tabvisible="inline"},a=__decorate([core_1.Component({selector:"main-app",moduleId:module.id,template:'<div>\n                   <comp-addr (on_distr_changed)="onAddrChanged($event)"></comp-addr>\n               </div>\n               <div>\n                   <comp-temptab [distr]="distr" [tabvisible]="tabvisible"></comp-temptab>\n               <div>'})],a)}();exports.MainComponent=MainComponent;
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var MainComponent = /** @class */ (function () {
+    function MainComponent() {
+        this.distr = 0;
+        this.tabvisible = "none";
+    }
+    MainComponent.prototype.onAddrChanged = function (distr) {
+        this.distr = distr;
+        this.tabvisible = "inline";
+    };
+    MainComponent = __decorate([
+        core_1.Component({
+            selector: 'main-app',
+            moduleId: module.id,
+            template: "<div>\n                   <comp-addr (on_distr_changed)=\"onAddrChanged($event)\"></comp-addr>\n               </div>\n               <div>\n                   <comp-temptab [distr]=\"distr\" [tabvisible]=\"tabvisible\"></comp-temptab>\n               <div>"
+        })
+    ], MainComponent);
+    return MainComponent;
+}());
+exports.MainComponent = MainComponent;
+//# sourceMappingURL=calc.component.main.js.map
