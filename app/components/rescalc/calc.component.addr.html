@@ -1,1 +1,22 @@
-<form class="well form-inline"><div class=controls><select class=form-control (change)=onDistrIn() name=district [(ngmodel)]=addr.district #addrdistrict=ngModel><option disabled>Выберите район</option><option>Голосеевский</option><option>Дарницкий</option><option>Деснянский</option><option>Днепровский</option><option>Оболонский</option><option>Печерский</option><option>Подольский</option><option>Святошинский</option><option>Соломенский</option><option>Шевченковский</option></select></div><input type=text class=input-small placeholder=Улица name=street [(ngmodel)]=addr.street #addrstreet=ngModel [style.display]=addr_visible> <input type=text class=input-small placeholder="№ дома" [style.display]=addr_visible> <button type=submit class=btn [style.display]=addr_visible>Применить</button><p class=help-block [style.display]=addr_visible>Выбран район: {{addr.district}}</p></form>
+﻿<form class="well form-inline">
+    <div class="controls">
+        <select class="form-control" (change)="onDistrIn()" name="district" [(ngModel)]="addr.district" #addrDistrict="ngModel">
+            <option disabled>Выберите район</option>
+            <option>Голосеевский</option>
+            <option>Дарницкий</option>
+            <option>Деснянский</option>
+            <option>Днепровский</option>
+            <option>Оболонский</option>
+            <option>Печерский</option>
+            <option>Подольский</option>
+            <option>Святошинский</option>
+            <option>Соломенский</option>
+            <option>Шевченковский</option>
+        </select>
+    </div>
+    <input type="text" class="input-small" placeholder="Улица" name="street" [(ngModel)]="addr.street" #addrStreet="ngModel" [style.display]="addr_visible" />
+    <input type="text" class="input-small" placeholder="№ дома" [style.display]="addr_visible"/>
+    <button type="submit" class="btn" [style.display]="addr_visible">Применить</button>
+        <p class="help-block" [style.display]="addr_visible">Выбран район: {{addr.district}}</p>
+</form>
+

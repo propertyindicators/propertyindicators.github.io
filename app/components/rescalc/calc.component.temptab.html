@@ -1,1 +1,29 @@
-<table class="table table-striped" [style.display]=tabvisible><thead><tr><th>ID</th><th>Массив</th><th>Район</th><th>Улица(рус)</th><th>Улица(ukr)</th><th>ФМР</th><th>№ от</th><th>№ до</th><th>Чёт</th></tr></thead><tbody><tr *ngfor="let line of streets"><td>{{line.id}}</td><td>{{line.mas}}</td><td>{{line.distr}}</td><td>{{line.street_rus}}</td><td>{{line.street_ukr}}</td><td>{{line.multidistr}}</td><td>{{line.number_from}}</td><td>{{line.number_till}}</td><td>{{line.parity}}</td></tr></tbody></table>
+﻿<table class="table table-striped" [style.display]="tabvisible">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Массив</th>
+            <th>Район</th>
+            <th>Улица(рус)</th>
+            <th>Улица(ukr)</th>
+            <th>ФМР</th>
+            <th>№ от</th>
+            <th>№ до</th>
+            <th>Чёт</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let line of streets">
+            <td>{{line.id}}</td>
+            <td>{{line.mas}}</td>
+            <td>{{line.distr}}</td>
+            <td>{{line.street_rus}}</td>
+            <td>{{line.street_ukr}}</td>
+            <td>{{line.multidistr}}</td>
+            <td>{{line.number_from}}</td>
+            <td>{{line.number_till}}</td>
+            <td>{{line.parity}}</td>
+        </tr>
+    </tbody>
+</table>
+
