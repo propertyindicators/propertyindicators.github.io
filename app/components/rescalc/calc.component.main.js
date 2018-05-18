@@ -10,17 +10,26 @@ var core_1 = require("@angular/core");
 var MainComponent = /** @class */ (function () {
     function MainComponent() {
         this.distr = 0;
+        this.massive = 0;
         this.tabvisible = "none";
+        this.paramsvisible = "none";
     }
-    MainComponent.prototype.onAddrChanged = function (distr) {
+    MainComponent.prototype.onDistrChanged = function (distr) {
         this.distr = distr;
         this.tabvisible = "inline";
+    };
+    MainComponent.prototype.onMassiveChanged = function (massive) {
+        this.massive = massive;
+        if (massive === 0)
+            this.paramsvisible = "none";
+        else
+            this.paramsvisible = "inline";
     };
     MainComponent = __decorate([
         core_1.Component({
             selector: 'main-app',
             moduleId: module.id,
-            template: "<div>\n                   <comp-addr (on_distr_changed)=\"onAddrChanged($event)\"></comp-addr>\n               </div>\n               <div>\n                   <comp-temptab [distr]=\"distr\" [tabvisible]=\"tabvisible\"></comp-temptab>\n               <div>"
+            template: "<div>\n                   <comp-addr (on_distr_changed)=\"onDistrChanged($event)\" (on_massive_changed)=\"onMassiveChanged($event)\"></comp-addr>\n               </div>\n                <div [style.display]=\"paramsvisible\">\n                   <comp-params></comp-params>\n               </div>\n               <div>\n                   <comp-temptab [distr]=\"distr\" [tabvisible]=\"tabvisible\"></comp-temptab>\n               <div>"
         })
     ], MainComponent);
     return MainComponent;

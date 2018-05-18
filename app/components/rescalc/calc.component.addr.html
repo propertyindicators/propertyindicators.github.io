@@ -14,9 +14,18 @@
             <option>Шевченковский</option>
         </select>
     </div>
-    <input type="text" class="input-small" placeholder="Улица" name="street" [(ngModel)]="addr.street" #addrStreet="ngModel" [style.display]="addr_visible" />
-    <input type="text" class="input-small" placeholder="№ дома" [style.display]="addr_visible"/>
-    <button type="submit" class="btn" [style.display]="addr_visible">Применить</button>
-        <p class="help-block" [style.display]="addr_visible">Выбран район: {{addr.district}}</p>
+    <ng-autocomplete (selected)="Selected($event)" [classes]="['']" [group]="group"></ng-autocomplete>
+    <input [style.display]="addr_visible" type="text" placeholder="Улица" name="street" [ngModel]="addr.street" (ngModelChange)="streetChange($event)" (blur)="streetAutofillBlur()" (keydown)="streetAutofillEnter($event)" #addrStreet="ngModel"  />
+    <input #number [style.display]="number_visible" type="text" placeholder="№ дома" name="number_str" [ngModel]="addr.number_str" (ngModelChange)="numberChange($event)"  />
+    <!--<button type="submit" class="btn" [style.display]="addr_visible">Применить</button>-->
+    <br [style.display]="addr_visible" />
+    <p  [style.display]="addr_visible" class="infotitle">Результаты поиска:</p>
+    <br [style.display]="addr_visible" />
+    <p  [style.display]="addr_visible" class="infotitle">Улица:&nbsp;&nbsp;&nbsp;</p>
+    <p  [style.display]="addr_visible" [style.color]="addr.street_color"> {{addr.street_found}} </p>
+    <br [style.display]="addr_visible" />
+    <p  [style.display]="addr_visible" class="infotitle">Массив:&nbsp;&nbsp;&nbsp;</p>
+    <p  [style.display]="addr_visible" [style.color]="addr.massive_color" > {{addr.massive_str}} </p>
 </form>
+
 

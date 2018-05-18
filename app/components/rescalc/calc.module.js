@@ -11,16 +11,19 @@ var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/common/http");
 var calc_component_main_1 = require("./calc.component.main");
+var ng_auto_complete_1 = require("ng-auto-complete");
 var calc_component_addr_1 = require("./calc.component.addr");
 var calc_component_temptab_1 = require("./calc.component.temptab");
+var calc_component_params_1 = require("./calc.component.params");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpClientModule],
-            declarations: [calc_component_main_1.MainComponent, calc_component_addr_1.AddrForm, calc_component_temptab_1.TempTab],
-            bootstrap: [calc_component_main_1.MainComponent]
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpClientModule, ng_auto_complete_1.NgAutoCompleteModule],
+            declarations: [calc_component_main_1.MainComponent, calc_component_addr_1.AddrForm, calc_component_temptab_1.TempTab, calc_component_params_1.ParamsForm],
+            bootstrap: [calc_component_main_1.MainComponent],
+            providers: []
         })
     ], AppModule);
     return AppModule;

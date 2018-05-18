@@ -11,11 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
-var User = /** @class */ (function () {
-    function User() {
-    }
-    return User;
-}());
 var StreetLine = /** @class */ (function () {
     function StreetLine(data) {
         if (data.length < 9) {
@@ -75,6 +70,158 @@ var SearchWorker = /** @class */ (function () {
                 resolve();
             }, function (error) { reject(error); });
         });
+    };
+    SearchWorker.prototype.checkStreet = function (addr) {
+        if (this.data === null) {
+            this.checkMassive(addr);
+            addr.setIformColors();
+            return;
+        }
+        if (addr.street === null || addr.street === "") {
+            addr.street_is = false;
+            addr.multimas = false;
+            addr.street_found = "Введите улицу!";
+            this.checkMassive(addr);
+            addr.setIformColors();
+            return;
+        }
+        var regex = new RegExp('^' + addr.street, 'i');
+        var foundline = null;
+        var rus_ukr = "";
+        for (var _i = 0, _a = this.data; _i < _a.length; _i++) {
+            var sl = _a[_i];
+            var matchrus = sl.street_rus.match(regex);
+            if (matchrus != null) {
+                foundline = sl;
+                rus_ukr = "street_rus";
+                break;
+            }
+            else {
+                var matchukr = sl.street_ukr.match(regex);
+                if (matchukr != null) {
+                    foundline = sl;
+                    rus_ukr = "street_ukr";
+                    break;
+                }
+            }
+        }
+        if (foundline === null) {
+            addr.street_is = false;
+            addr.street_found = "Улица \"" + addr.street + "\" не обнаружена в пределах района \"" + addr.district + "\"";
+            addr.multimas = null;
+        }
+        else {
+            addr.street_is = true;
+            addr.street_found = sl[rus_ukr];
+            addr.multimas = sl.multidistr;
+        }
+        this.checkMassive(addr);
+        addr.setIformColors();
+    };
+    SearchWorker.prototype.checkNumber = function (addr) {
+        var intmatch = addr.number_str.match(/\d+/);
+        if (intmatch === null) {
+            addr.number_is = false;
+            addr.number_int = 0;
+            this.checkMassive(addr);
+            addr.setIformColors();
+            return;
+        }
+        else {
+            addr.number_int = parseInt(addr.number_str, 10);
+            if (addr.number_int < 1 || addr.number_int > 300) {
+                addr.massive_str = "Номер дома введён не корректно!";
+                addr.number_is = false;
+                addr.massive_is = false;
+                addr.number_int = 0;
+                addr.setIformColors();
+                return;
+            }
+            else {
+                addr.number_is = true;
+                this.checkMassive(addr);
+            }
+            addr.setIformColors();
+            return;
+        }
+    };
+    SearchWorker.prototype.checkMassive = function (addr) {
+        if (this.data === null) {
+            addr.street_found = "NoSearchData";
+            addr.massive_str = "NoSearchData";
+            addr.massive_is = false;
+        }
+        ;
+        if (addr.street_is)
+            if (addr.multimas)
+                if (addr.number_is) {
+                    addr.massive_int = this.getMassive(addr.street_found, true, addr.number_int);
+                    if (addr.massive_int === 0)
+                        addr.massive_str = "Номер дома указан за пределами допустимого диапазона";
+                    else
+                        addr.massive_str = addr.massivedict[addr.massive_int];
+                    addr.massive_is = (addr.massive_int !== 0);
+                }
+                else {
+                    addr.massive_str = "Указанная улица расположена в разных массивах! Укажите номер дома!";
+                    addr.massive_is = false;
+                }
+            else {
+                addr.massive_int = this.getMassive(addr.street_found, false, null);
+                addr.massive_str = addr.massivedict[addr.massive_int];
+                addr.massive_is = (addr.massive_int !== 0);
+            }
+        else {
+            if (addr.street !== "")
+                addr.massive_str = "Укажите корректно улицу, пожалуйста!";
+            else
+                addr.massive_str = "";
+            addr.massive_is = false;
+        }
+    };
+    SearchWorker.prototype.getMassive = function (street, multimas, num) {
+        //входящая проверка
+        if (this.data === null)
+            return 0;
+        if (street === null || street === "")
+            return 0;
+        if (multimas && num === null)
+            return 0;
+        //далее функционал поиска
+        var parity = num % 2;
+        var regex = new RegExp('^' + street, 'i');
+        var foundline = null;
+        var rus_ukr = "";
+        for (var _i = 0, _a = this.data; _i < _a.length; _i++) {
+            var sl = _a[_i];
+            var matchrus = sl.street_rus.match(regex);
+            var matchukr = sl.street_rus.match(regex);
+            if (matchrus != null || matchukr != null) {
+                if (multimas) {
+                    var flag = true;
+                    if (sl.parity !== "")
+                        flag = (flag && (parity === 0 && sl.parity === "ч" || parity !== 0 && sl.parity === "н"));
+                    if (sl.number_from !== -1)
+                        flag = flag && num >= sl.number_from;
+                    if (sl.number_till !== -1)
+                        flag = flag && num <= sl.number_till;
+                    if (flag) {
+                        foundline = sl;
+                        break;
+                    }
+                }
+                else {
+                    foundline = sl;
+                    break;
+                }
+            }
+        }
+        if (foundline === null) {
+            return 0;
+        }
+        else {
+            return sl.mas;
+        }
     };
     SearchWorker = __decorate([
         core_1.Injectable(),
