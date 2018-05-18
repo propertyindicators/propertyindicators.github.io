@@ -23,13 +23,13 @@ var MainComponent = /** @class */ (function () {
         if (massive === 0)
             this.paramsvisible = "none";
         else
-            this.paramsvisible = "inline";
+            this.paramsvisible = "block";
     };
     MainComponent = __decorate([
         core_1.Component({
             selector: 'main-app',
             moduleId: module.id,
-            template: "<div>\n                   <comp-addr (on_distr_changed)=\"onDistrChanged($event)\" (on_massive_changed)=\"onMassiveChanged($event)\"></comp-addr>\n               </div>\n                <div [style.display]=\"paramsvisible\">\n                   <comp-params></comp-params>\n               </div>\n               <div>\n                   <comp-temptab [distr]=\"distr\" [tabvisible]=\"tabvisible\"></comp-temptab>\n               <div>"
+            template: "<div class=\"container\" style=\"padding-top: 25px\">\n                   <h2>\u041E\u0446\u0435\u043D\u043A\u0430 \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u0438 \u043A\u0432\u0430\u0440\u0442\u0438\u0440\u044B on-line</h2> \n                   <comp-addr (on_distr_changed)=\"onDistrChanged($event)\" (on_massive_changed)=\"onMassiveChanged($event)\"></comp-addr>\n               </div>\n                <div [style.display]=\"paramsvisible\" class=\"container\">\n                   <comp-params></comp-params>\n               </div>\n               <div class=\"container\">\n                   <comp-temptab [distr]=\"distr\" [tabvisible]=\"tabvisible\"></comp-temptab>\n               <div class=\"container\">"
         })
     ], MainComponent);
     return MainComponent;

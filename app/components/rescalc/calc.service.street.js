@@ -107,7 +107,7 @@ var SearchWorker = /** @class */ (function () {
         }
         if (foundline === null) {
             addr.street_is = false;
-            addr.street_found = "Улица \"" + addr.street + "\" не обнаружена в пределах района \"" + addr.district + "\"";
+            addr.street_found = "Улица \"" + addr.street + "\" не обнаружена в пределах района \"" + addr.district + "\"!";
             addr.multimas = null;
         }
         else {
@@ -157,13 +157,13 @@ var SearchWorker = /** @class */ (function () {
                 if (addr.number_is) {
                     addr.massive_int = this.getMassive(addr.street_found, true, addr.number_int);
                     if (addr.massive_int === 0)
-                        addr.massive_str = "Номер дома указан за пределами допустимого диапазона";
+                        addr.massive_str = "Номер дома указан за пределами допустимого диапазона!";
                     else
                         addr.massive_str = addr.massivedict[addr.massive_int];
                     addr.massive_is = (addr.massive_int !== 0);
                 }
                 else {
-                    addr.massive_str = "Указанная улица расположена в разных массивах! Укажите номер дома!";
+                    addr.massive_str = "Указанная улица пролегает через несколько массивов! Укажите номер дома, пожалуйста!";
                     addr.massive_is = false;
                 }
             else {

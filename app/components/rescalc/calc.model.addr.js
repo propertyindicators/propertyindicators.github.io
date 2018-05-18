@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var AddrModel = /** @class */ (function () {
     function AddrModel(district, street_is, street, street_found, number_is, number_str, number_int, multimas, massive_is, massive_int, massive_str, validate_colors, street_color, massive_color) {
-        if (validate_colors === void 0) { validate_colors = ["rgb(212,75,56)", "rgb(0, 255, 33)"]; }
+        if (validate_colors === void 0) { validate_colors = ["rgb(152,15,0)", "rgb(0, 152, 8)"]; }
         if (street_color === void 0) { street_color = validate_colors[0]; }
         if (massive_color === void 0) { massive_color = validate_colors[0]; }
         this.district = district;
@@ -119,6 +119,20 @@ var AddrModel = /** @class */ (function () {
             else
                 _this.massive_color = _this.validate_colors[0];
         }, 0);
+    };
+    AddrModel.prototype.setNullData = function () {
+        this.street_is = false;
+        this.street = "";
+        this.street_found = "";
+        this.number_is = false;
+        this.number_str = "";
+        this.number_int = null;
+        this.multimas = null;
+        this.massive_is = false;
+        this.massive_int = null;
+        this.massive_str = "";
+        this.street_color = this.validate_colors[0];
+        this.massive_color = this.validate_colors[0];
     };
     return AddrModel;
 }());

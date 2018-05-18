@@ -30,6 +30,8 @@ var AddrForm = /** @class */ (function () {
         this.on_distr_changed.emit(this.addr.getdistrnum()); //передача сообщения о смене района родительской компоненте
         //инициализация поискового сервиса (с подгрузкой поисковых данных json) в текущей компоненете
         this.search.initData(this.addr.getdistrnum()).then(function () { t.addr_visible = "inline"; }, function () { alert("Не удалось получить  с сервера поисковые данные для определения местоположения"); });
+        this.addr.setNullData();
+        this.OutMessageOfMas();
     };
     AddrForm.prototype.streetChange = function (newvalue) {
         this.addr.street = newvalue;
