@@ -14,7 +14,6 @@
             <option>Шевченковский</option>
         </select>
     </div>
-    <ng-autocomplete (selected)="Selected($event)" [classes]="['']" [group]="group"></ng-autocomplete>
     <input [style.display]="addr_visible" type="text" placeholder="Улица" name="street" [ngModel]="addr.street" (ngModelChange)="streetChange($event)" (blur)="streetAutofillBlur()" (keydown)="streetAutofillEnter($event)" #addrStreet="ngModel"  />
     <input #number [style.display]="number_visible" type="text" placeholder="№ дома" name="number_str" [ngModel]="addr.number_str" (ngModelChange)="numberChange($event)"  />
     <!--<button type="submit" class="btn" [style.display]="addr_visible">Применить</button>-->
