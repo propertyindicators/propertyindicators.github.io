@@ -10,15 +10,90 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var calc_model_params_1 = require("./calc.model.params");
 var ParamsForm = /** @class */ (function () {
     function ParamsForm() {
-        this.on_params_validate = new core_1.EventEmitter();
+        this.on_params_changed = new core_1.EventEmitter();
         this.headcolor = "rgb(152,15,0)";
+        this.params = new calc_model_params_1.ParamsModel();
+        this.roomsKeys = Object.keys;
+        this.floorKeys = Object.keys;
+        this.buildtypeKeys = Object.keys;
+        this.stateKeys = Object.keys;
+        this.square_str = "";
+        this.sqm_lable = "кв.м";
+        this.sqr_visible = "none";
     }
+    //контролы изменения полей
+    ParamsForm.prototype.onRoomsIn = function (select) {
+        this.params.rooms = select;
+        this.params.rooms_is = true;
+        this.onModelChange();
+    };
+    ParamsForm.prototype.onFloorIn = function (select) {
+        this.params.floor = select;
+        this.params.floor_is = true;
+        this.onModelChange();
+    };
+    ParamsForm.prototype.onBuildTypeIn = function (select) {
+        this.params.buildtype = select;
+        this.params.buildtype_is = true;
+        this.onModelChange();
+    };
+    ParamsForm.prototype.onStateIn = function (select) {
+        this.params.state = select - 1;
+        this.params.state_is = true;
+        this.onModelChange();
+    };
+    ParamsForm.prototype.onModelChange = function () {
+        this.on_params_changed.emit(this.params);
+    };
+    ParamsForm.prototype.onSqrChange = function (newval) {
+        this.params.square_str = newval;
+        this.validateSquare();
+        if (this.params.square_is) {
+            this.sqr_visible = "none";
+        }
+        else {
+            if (this.params.square_err === "") {
+                this.sqr_visible = "none";
+            }
+            else {
+                this.sqr_visible = "block";
+            }
+        }
+        this.onModelChange();
+    };
+    ParamsForm.prototype.validateSquare = function () {
+        if (/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
+            .test(this.params.square_str)) {
+            var s = Number(this.params.square_str);
+            if (s >= 10 && s <= 1000) {
+                this.params.square = s;
+                this.params.square_is = true;
+                this.params.square_err = "";
+            }
+            else {
+                this.params.square = 0;
+                this.params.square_is = false;
+                this.params.square_err = "*значение площади должно быть в диапазоне 10-1000 кв.м";
+            }
+        }
+        else {
+            this.params.square = 0;
+            this.params.square_is = false;
+            if (this.params.square_str === "") {
+                this.params.square_err = "";
+            }
+            else {
+                this.params.square_err = "*значение площади не является числовым";
+            }
+        }
+    };
     __decorate([
         core_1.Output(),
         __metadata("design:type", Object)
-    ], ParamsForm.prototype, "on_params_validate", void 0);
+    ], ParamsForm.prototype, "on_params_changed", void 0);
     ParamsForm = __decorate([
         core_1.Component({
             selector: 'comp-params',

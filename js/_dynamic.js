@@ -1,3 +1,3 @@
-/*! PILab 18-05-2018 (c) 2017 propertyindicators@gmail.com */
+/*! PILab 02-06-2018 (c) 2017 propertyindicators@gmail.com */
 
 function _MyBuildTest(){alert("TEST: Dynamic build")}

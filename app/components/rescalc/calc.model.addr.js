@@ -20,16 +20,17 @@ var AddrModel = /** @class */ (function () {
         this.street_color = street_color;
         this.massive_color = massive_color;
         this.distrdict = {
-            "Голосеевский": 1,
-            "Дарницкий": 2,
-            "Деснянский": 3,
-            "Днепровский": 4,
-            "Оболонский": 5,
-            "Печерский": 6,
-            "Подольский": 7,
-            "Святошинский": 8,
-            "Соломенский": 9,
-            "Шевченковский": 10
+            0: "Выберите район",
+            1: "Голосеевский",
+            2: "Дарницкий",
+            3: "Деснянский",
+            4: "Днепровский",
+            5: "Оболонский",
+            6: "Печерский",
+            7: "Подольский",
+            8: "Святошинский",
+            9: "Соломенский",
+            10: "Шевченковский"
         };
         this.massivedict = {
             1: "Березняки",
@@ -98,15 +99,6 @@ var AddrModel = /** @class */ (function () {
             64: "Шулявка (Южная)"
         };
     }
-    AddrModel.prototype.getdistrnum = function () {
-        if (!!this.distrdict[this.district]) {
-            return this.distrdict[this.district];
-        }
-        else {
-            return 0;
-        }
-        ;
-    };
     AddrModel.prototype.setIformColors = function () {
         var _this = this;
         setTimeout(function () {

@@ -14,13 +14,14 @@ var calc_component_main_1 = require("./calc.component.main");
 var calc_component_addr_1 = require("./calc.component.addr");
 var calc_component_temptab_1 = require("./calc.component.temptab");
 var calc_component_params_1 = require("./calc.component.params");
+var calc_component_result_1 = require("./calc.component.result");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpClientModule],
-            declarations: [calc_component_main_1.MainComponent, calc_component_addr_1.AddrForm, calc_component_temptab_1.TempTab, calc_component_params_1.ParamsForm],
+            declarations: [calc_component_main_1.MainComponent, calc_component_addr_1.AddrForm, calc_component_temptab_1.TempTab, calc_component_params_1.ParamsForm, calc_component_result_1.ResultForm],
             bootstrap: [calc_component_main_1.MainComponent],
             providers: []
         })

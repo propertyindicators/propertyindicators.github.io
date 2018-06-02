@@ -25,7 +25,10 @@ var TempTab = /** @class */ (function () {
     TempTab.prototype.initSearchData = function () {
         var t = this;
         this.searchWorker.initData(this.distr)
-            .then(function () { t.streets = t.searchWorker.getData(); }, function (e) { alert("Не удалось получить с сервера данные об улицах района:\n" + e.message); });
+            .then(function () {
+            t.streets = t.searchWorker.getData();
+            var a = 0;
+        }, function (e) { alert("Не удалось получить с сервера данные об улицах района:\n" + e.message); });
     };
     __decorate([
         core_1.Input(),

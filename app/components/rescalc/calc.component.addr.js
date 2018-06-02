@@ -24,12 +24,15 @@ var AddrForm = /** @class */ (function () {
         this.addr = new calc_model_addr_1.AddrModel("Выберите район", false, "", "", false, "", null, null, false, null, "");
         this.on_distr_changed = new core_1.EventEmitter();
         this.on_massive_changed = new core_1.EventEmitter();
+        this.objectKeys = Object.keys;
     }
-    AddrForm.prototype.onDistrIn = function () {
+    AddrForm.prototype.onDistrIn = function (distr) {
+        this.addr.district = this.addr.distrdict[distr];
         var t = this;
-        this.on_distr_changed.emit(this.addr.getdistrnum()); //передача сообщения о смене района родительской компоненте
+        this.on_distr_changed.emit(distr); //передача сообщения о смене района родительской компоненте
         //инициализация поискового сервиса (с подгрузкой поисковых данных json) в текущей компоненете
-        this.search.initData(this.addr.getdistrnum()).then(function () { t.addr_visible = "inline"; }, function () { alert("Не удалось получить  с сервера поисковые данные для определения местоположения"); });
+        var p = this.search.initData(distr);
+        p.then(function () { return t.addr_visible = "inline"; }).catch(function () { return alert("Не удалось получить с сервера поисковые данные для определения местоположения"); });
         this.addr.setNullData();
         this.OutMessageOfMas();
     };
@@ -62,7 +65,7 @@ var AddrForm = /** @class */ (function () {
     };
     AddrForm.prototype.OutMessageOfMas = function () {
         if (this.addr.massive_is)
-            this.on_massive_changed.emit(this.addr.getdistrnum()); //передача сообщения о смене массива родительской компоненте
+            this.on_massive_changed.emit(this.addr.massive_int); //передача сообщения о смене массива родительской компоненте
         else
             this.on_massive_changed.emit(0); //передача сообщения родительской компоненте об отсутсвии валидации адреса
     };
@@ -81,6 +84,10 @@ var AddrForm = /** @class */ (function () {
         core_1.ViewChild("number", { read: core_1.ElementRef }),
         __metadata("design:type", core_1.ElementRef)
     ], AddrForm.prototype, "number_element", void 0);
+    __decorate([
+        core_1.ViewChild("districtdefoult", { read: core_1.ElementRef }),
+        __metadata("design:type", core_1.ElementRef)
+    ], AddrForm.prototype, "distr_defoultval", void 0);
     AddrForm = __decorate([
         core_1.Component({
             selector: 'comp-addr',

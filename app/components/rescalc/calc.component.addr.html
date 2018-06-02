@@ -1,21 +1,16 @@
 ﻿<form class="col-md-6 well form-inline addrinput">
-    <div class="controls" class="inp_distr">
-        <select class="form-control" (change)="onDistrIn()" name="district" [(ngModel)]="addr.district" #addrDistrict="ngModel">
-            <option disabled>Выберите район</option>
-            <option>Голосеевский</option>
-            <option>Дарницкий</option>
-            <option>Деснянский</option>
-            <option>Днепровский</option>
-            <option>Оболонский</option>
-            <option>Печерский</option>
-            <option>Подольский</option>
-            <option>Святошинский</option>
-            <option>Соломенский</option>
-            <option>Шевченковский</option>
+    <div class="controls">
+        <select (change)="onDistrIn($event.target.value)" class="form-control inp_distr">
+            <ng-container *ngFor="let d of objectKeys(addr.distrdict)">
+                <option *ngIf="d>0;else disoption" [value]="d"> {{addr.distrdict[d]}}</option>
+                <ng-template #disoption>
+                    <option #disoption disabled selected [value]="d">{{addr.distrdict[d]}}</option>
+                </ng-template>
+           </ng-container>
         </select>
     </div>
-    <input [style.display]="addr_visible" type="text" placeholder="Улица" name="street" [ngModel]="addr.street" (ngModelChange)="streetChange($event)" (blur)="streetAutofillBlur()" (keydown)="streetAutofillEnter($event)" #addrStreet="ngModel" class="form-control inp_street"/>
-    <input #number [style.display]="number_visible" type="text" placeholder="№ дома" name="number_str" [ngModel]="addr.number_str" (ngModelChange)="numberChange($event)"  class="form-control inp_num"/>
+    <input [style.display]="addr_visible" type="text" placeholder="Улица" name="street" [ngModel]="addr.street" (ngModelChange)="streetChange($event)" (blur)="streetAutofillBlur()" (keydown)="streetAutofillEnter($event)" class="form-control inp_street" />
+    <input #number [style.display]="number_visible" type="text" placeholder="№ дома" name="number_str" [ngModel]="addr.number_str" (ngModelChange)="numberChange($event)" class="form-control inp_num" />
     <!--<button type="submit" class="btn" [style.display]="addr_visible">Применить</button>-->
 </form>
 <form class="col-md-6 well form-inline addrvalidate">

@@ -5,14 +5,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var calc_model_result_1 = require("./calc.model.result");
+var calc_service_calc_1 = require("./calc.service.calc");
 var MainComponent = /** @class */ (function () {
-    function MainComponent() {
+    function MainComponent(calcserv) {
+        this.calcserv = calcserv;
         this.distr = 0;
         this.massive = 0;
         this.tabvisible = "none";
-        this.paramsvisible = "none";
+        this.paramsvisible = "none"; //none
+        this.resultvisible = "none"; //none
+        this.currency = "usd";
+        this.result = new calc_model_result_1.ResultViewModel();
     }
     MainComponent.prototype.onDistrChanged = function (distr) {
         this.distr = distr;
@@ -20,17 +29,40 @@ var MainComponent = /** @class */ (function () {
     };
     MainComponent.prototype.onMassiveChanged = function (massive) {
         this.massive = massive;
-        if (massive === 0)
-            this.paramsvisible = "none";
-        else
+        this.changeView();
+    };
+    MainComponent.prototype.onParamsChanged = function (p) {
+        this.params = p;
+        this.changeView();
+    };
+    MainComponent.prototype.changeView = function () {
+        var _this = this;
+        if (this.massive === 0) {
+            this.paramsvisible = "none"; //none
+            this.resultvisible = "none"; //none
+        }
+        else {
             this.paramsvisible = "block";
+            var p = this.params;
+            if (p != null && p.rooms_is && p.floor_is && p.square_is && p.state_is) {
+                this.calcserv.getResultPromise(this.massive, this.params).then(function (view) {
+                    _this.result = view;
+                    _this.resultvisible = "block";
+                }).catch(function (err) { return alert("Не удалось загрузить данные о ценах на недвижимость с сервера: \n" + err.message); });
+            }
+            else {
+                this.resultvisible = "none";
+            } //none
+        }
     };
     MainComponent = __decorate([
         core_1.Component({
             selector: 'main-app',
             moduleId: module.id,
-            template: "<div class=\"container\" style=\"padding-top: 25px\">\n                   <h2>\u041E\u0446\u0435\u043D\u043A\u0430 \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u0438 \u043A\u0432\u0430\u0440\u0442\u0438\u0440\u044B on-line</h2> \n                   <comp-addr (on_distr_changed)=\"onDistrChanged($event)\" (on_massive_changed)=\"onMassiveChanged($event)\"></comp-addr>\n               </div>\n                <div [style.display]=\"paramsvisible\" class=\"container\">\n                   <comp-params></comp-params>\n               </div>\n               <div class=\"container\">\n                   <comp-temptab [distr]=\"distr\" [tabvisible]=\"tabvisible\"></comp-temptab>\n               <div class=\"container\">"
-        })
+            templateUrl: 'calc.component.main.html',
+            providers: [calc_service_calc_1.CalcService]
+        }),
+        __metadata("design:paramtypes", [calc_service_calc_1.CalcService])
     ], MainComponent);
     return MainComponent;
 }());
