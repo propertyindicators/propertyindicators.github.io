@@ -22,12 +22,27 @@ var ParamsForm = /** @class */ (function () {
         this.stateKeys = Object.keys;
         this.square_str = "";
         this.sqm_lable = "кв.м";
+        this.sqm_tip = "квартиры в кв.м, дробная часть - точка";
         this.sqr_visible = "none";
     }
+    ParamsForm.prototype.ngOnInit = function () {
+        $(document).ready(function () {
+            $('[data - toggle="tooltip"]').tooltip();
+        });
+    };
     //контролы изменения полей
     ParamsForm.prototype.onRoomsIn = function (select) {
         this.params.rooms = select;
         this.params.rooms_is = true;
+        if (this.params.square > 0)
+            this.params.validateSqrRange();
+        if (this.params.square_err === "") {
+            this.sqr_visible = "none";
+        }
+        else {
+            this.sqr_visible = "block";
+        }
+        this.params.schemaTypeRooms();
         this.onModelChange();
     };
     ParamsForm.prototype.onFloorIn = function (select) {
@@ -38,6 +53,15 @@ var ParamsForm = /** @class */ (function () {
     ParamsForm.prototype.onBuildTypeIn = function (select) {
         this.params.buildtype = select;
         this.params.buildtype_is = true;
+        if (this.params.square > 0)
+            this.params.validateSqrRange();
+        if (this.params.square_err === "") {
+            this.sqr_visible = "none";
+        }
+        else {
+            this.sqr_visible = "block";
+        }
+        this.params.schemaTypeRooms();
         this.onModelChange();
     };
     ParamsForm.prototype.onStateIn = function (select) {
@@ -67,17 +91,8 @@ var ParamsForm = /** @class */ (function () {
     ParamsForm.prototype.validateSquare = function () {
         if (/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
             .test(this.params.square_str)) {
-            var s = Number(this.params.square_str);
-            if (s >= 10 && s <= 1000) {
-                this.params.square = s;
-                this.params.square_is = true;
-                this.params.square_err = "";
-            }
-            else {
-                this.params.square = 0;
-                this.params.square_is = false;
-                this.params.square_err = "*значение площади должно быть в диапазоне 10-1000 кв.м";
-            }
+            this.params.square = Number(this.params.square_str);
+            this.params.validateSqrRange();
         }
         else {
             this.params.square = 0;

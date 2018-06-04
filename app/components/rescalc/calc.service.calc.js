@@ -34,15 +34,6 @@ var CalcService = /** @class */ (function () {
         this.tabmin = new CalcTabsPool();
         this.tabmax = new CalcTabsPool();
         this.tabmain = new CalcTabsPool();
-        this.typesnumeric = {
-            "sta": 0,
-            "hru": 1,
-            "che": 2,
-            "80y": 3,
-            "ser": 4,
-            "90y": 5,
-            "mod": 6,
-        };
         this.valsnumeric = ["min", "max", "main"];
         this.cursnumeric = ["usd", "eur", "hrn"];
         this.curssymb = { usd: "$", eur: "€", hrn: "₴" };
@@ -90,41 +81,9 @@ var CalcService = /** @class */ (function () {
     };
     //финишная логика расчёта, когда есть все необходимые ресурсы финишного расчёта заданы созданы
     CalcService.prototype.appriseVal = function (mas, p, currency, valtype) {
-        var a = 0;
         var worktab = this["tab" + valtype][currency];
-        var typenum;
-        //проверка логики параметров
-        if (p.buildtype === "hot" && p.rooms !== "1r") {
-            alert("\"гостинка\" не может иметь 2-е и более комнат - выберите другой тип квартиры");
-            return new EvalPool();
-        }
-        if (p.buildtype === "hru" && p.rooms === "4r") {
-            alert("\"хрущёвки\" имеют  максимум 3 комнаты - выберите другой тип квартиры");
-            return new EvalPool();
-        }
-        if (p.buildtype === "che" && p.rooms === "4r") {
-            alert("\"чешки\" имеют максимум 3 комнаты - выберите другой тип квартиры");
-            return new EvalPool();
-        }
-        //основная логика (работает при условии валидации)
-        if (p.buildtype === "hot") {
-            typenum = 0;
-        }
-        else {
-            if (p.rooms === "1r")
-                typenum = 4;
-            if (p.rooms === "2r")
-                typenum = 11;
-            if (p.rooms === "3r")
-                typenum = 18;
-            if (p.rooms === "4r")
-                typenum = 25;
-        }
-        var offset = this.typesnumeric[p.buildtype];
-        if (p.rooms === "4r" && offset > 2)
-            offset = offset - 2;
-        typenum = typenum + offset;
-        var evalsqm = worktab[typenum][mas - 1];
+        var typeindex = p.getTypeIndex();
+        var evalsqm = worktab[typeindex][mas - 1];
         //коррекция по этажу
         if (p.floor === "first")
             evalsqm = evalsqm * 0.9;
@@ -132,7 +91,8 @@ var CalcService = /** @class */ (function () {
             evalsqm = evalsqm * 0.94;
         if (p.floor === "pent")
             evalsqm = evalsqm * 1.1;
-        //коррекция по площади не реализована
+        //коррекция по площади
+        evalsqm = evalsqm * (10000 / (p.square * 0.719 + 2.2876) + 950) / (10000 / (p.getRoomTypeAverage() * 0.719 + 2.2876) + 950);
         //коррекция по состоянию
         evalsqm = evalsqm + (p.state - 4) * this.cpar.cenabala;
         return { sqm: Math.round(evalsqm), flat: Math.round(evalsqm * p.square) };

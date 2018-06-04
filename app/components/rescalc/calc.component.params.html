@@ -3,9 +3,9 @@
     <div class="controls">
         <select #rooms (change)="onRoomsIn($event.target.value)" class="form-control mycontrol">
             <ng-container *ngFor="let k of roomsKeys(params.rooms_dict)">
-                <option *ngIf="k>0;else disoption" [value]="params.rooms_dict[k][1]"> {{params.rooms_dict[k][0]}}</option>
+                <option *ngIf="k>0;else disoption" [disabled]="params.rooms_dict[k][2]" [value]="params.rooms_dict[k][1]"> {{params.rooms_dict[k][0]}}</option>
                 <ng-template #disoption>
-                    <option #disoption disabled selected [value]="params.rooms_dict[k][1]">{{params.rooms_dict[k][0]}}</option>
+                    <option #disoption [disabled]="params.rooms_dict[k][2]" selected [value]="params.rooms_dict[k][1]">{{params.rooms_dict[k][0]}}</option>
                 </ng-template>
             </ng-container>
         </select>
@@ -17,15 +17,15 @@
                 </ng-template>
             </ng-container>
         </select>
-        <input #square type="text" placeholder="Общая площадь" name="square" [ngModel]="params.square_str" (ngModelChange)="onSqrChange($event)" class="form-control form-inline sqrcontrol" />
-        <p class="form-inline sqmlable" > {{sqm_lable}} </p>
+        <input #square type="text" placeholder="Общая площадь" name="square" [ngModel]="params.square_str" (ngModelChange)="onSqrChange($event)" class="form-control form-inline sqrcontrol" data-toggle="tooltip" [title]="sqm_tip" id="square"/>
+        <label for="square" class="form-inline sqmlable" > {{sqm_lable}} </label>
         <br [style.display]="sqr_visible"/>
         <p class="form-inline sqrvalidate" [style.display]="sqr_visible"> {{params.square_err}} </p>
         <select #buildtype (change)="onBuildTypeIn($event.target.value)" class="form-control mycontrol">
             <ng-container *ngFor="let k of buildtypeKeys(params.buildtype_dict)">
-                <option *ngIf="k>0;else disoption" [value]="params.buildtype_dict[k][1]"> {{params.buildtype_dict[k][0]}}</option>
+                <option *ngIf="k>0;else disoption" [disabled]="params.buildtype_dict[k][2]" [value]="params.buildtype_dict[k][1]"> {{params.buildtype_dict[k][0]}}</option>
                 <ng-template #disoption>
-                    <option #disoption disabled selected [value]="params.buildtype_dict[k][1]">{{params.buildtype_dict[k][0]}}</option>
+                    <option #disoption [disabled]="params.buildtype_dict[k][2]" selected [value]="params.buildtype_dict[k][1]">{{params.buildtype_dict[k][0]}}</option>
                 </ng-template>
             </ng-container>
         </select>
