@@ -64,7 +64,7 @@
             <legend>Дополнительно в квартире: </legend>
             <p>
                 <ng-container *ngFor="let k of tfaKeys(remstate.tfa_dict)">
-                    <input [(ngModel)]="remstate.tfa_dict[k][1]" type="checkbox" [name]="k" [id]="k" class="checkbox" (change)="onTfaChange()">
+                    <input [(ngModel)]="remstate.tfa_dict[k][1]" type="checkbox" [name]="k" [id]="k" class="checkbox" (change)="validateState()">
                     <label [for]="k">{{remstate.tfa_dict[k][0]}}</label>
                     <Br *ngIf="k!='authdesign'">
                 </ng-container>

@@ -36,7 +36,7 @@ var ParamsForm = /** @class */ (function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
     };
-    //контролы изменения полей
+    //контролы изменения общих параметров квартиры
     ParamsForm.prototype.onRoomsIn = function (select) {
         this.params.rooms = select;
         this.params.rooms_is = true;
@@ -70,46 +70,6 @@ var ParamsForm = /** @class */ (function () {
         this.params.schemaTypeRooms();
         this.onModelChange();
     };
-    //убрать потом
-    ParamsForm.prototype.onStateIn = function (select) {
-        this.params.state = select - 1;
-        this.params.state_is = true;
-        this.onModelChange();
-    };
-    //обработчики выбора формы состояния отделки
-    ParamsForm.prototype.onRemclassIn = function (select) {
-        this.remstate.remclass = Number(select);
-        this.remstate.remclass_is = true;
-        this.remstate.modelvalidate();
-        if (this.remstate.common_is) {
-            this.params.state = this.remstate.common_val;
-            this.params.state_is = true;
-            this.onModelChange();
-        }
-    };
-    ParamsForm.prototype.onDevaluationIn = function (select) {
-        this.remstate.devaluation = Number(select);
-        this.remstate.devaluation_is = true;
-        this.remstate.modelvalidate();
-        if (this.remstate.common_is) {
-            this.params.state = this.remstate.common_val;
-            this.params.state_is = true;
-            this.onModelChange();
-        }
-    };
-    ParamsForm.prototype.onAvailIn = function (select) {
-        this.remstate.avail = Number(select);
-        this.remstate.avail_is = true;
-        this.remstate.modelvalidate();
-        if (this.remstate.common_is) {
-            this.params.state = this.remstate.common_val;
-            this.params.state_is = true;
-            this.onModelChange();
-        }
-    };
-    ParamsForm.prototype.onModelChange = function () {
-        this.on_params_changed.emit(this.params);
-    };
     ParamsForm.prototype.onSqrChange = function (newval) {
         this.params.square_str = newval;
         this.validateSquare();
@@ -126,13 +86,31 @@ var ParamsForm = /** @class */ (function () {
         }
         this.onModelChange();
     };
-    ParamsForm.prototype.onTfaChange = function () {
-        this.remstate.modelvalidate();
-        if (this.remstate.common_is) {
-            this.params.state = this.remstate.common_val;
-            this.params.state_is = true;
-            this.onModelChange();
-        }
+    //убрать потом
+    ParamsForm.prototype.onStateIn = function (select) {
+        this.params.state = select - 1;
+        this.params.state_is = true;
+        this.onModelChange();
+    };
+    //обработчики выбора формы состояния отделки
+    ParamsForm.prototype.onRemclassIn = function (select) {
+        this.remstate.remclass = Number(select);
+        this.remstate.remclass_is = true;
+        this.validateState();
+    };
+    ParamsForm.prototype.onDevaluationIn = function (select) {
+        this.remstate.devaluation = Number(select);
+        this.remstate.devaluation_is = true;
+        this.validateState();
+    };
+    ParamsForm.prototype.onAvailIn = function (select) {
+        this.remstate.avail = Number(select);
+        this.remstate.avail_is = true;
+        this.validateState();
+    };
+    //метод отправки события об изменении общей модели параметров "наверх"
+    ParamsForm.prototype.onModelChange = function () {
+        this.on_params_changed.emit(this.params);
     };
     //валидатор поля площади
     ParamsForm.prototype.validateSquare = function () {
@@ -151,6 +129,13 @@ var ParamsForm = /** @class */ (function () {
                 this.params.square_err = "*значение площади не является числовым";
             }
         }
+    };
+    //постоянный рендеринг для состояния отделки
+    ParamsForm.prototype.validateState = function () {
+        this.remstate.modelvalidate();
+        this.params.state = this.remstate.common_val;
+        this.params.state_is = this.remstate.common_is;
+        this.onModelChange();
     };
     __decorate([
         core_1.Output(),
