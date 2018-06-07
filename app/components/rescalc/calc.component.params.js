@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var calc_model_params_1 = require("./calc.model.params");
+var calc_model_remstate_1 = require("./calc.model.remstate");
 var ParamsForm = /** @class */ (function () {
     function ParamsForm() {
         this.on_params_changed = new core_1.EventEmitter();
@@ -19,15 +20,20 @@ var ParamsForm = /** @class */ (function () {
         this.roomsKeys = Object.keys;
         this.floorKeys = Object.keys;
         this.buildtypeKeys = Object.keys;
-        this.stateKeys = Object.keys;
+        this.remclassKeys = Object.keys;
+        this.devaluationKeys = Object.keys;
+        this.availKeys = Object.keys;
+        this.tfaKeys = Object.keys;
+        this.stateKeys = Object.keys; //убрать потом
         this.square_str = "";
         this.sqm_lable = "кв.м";
-        this.sqm_tip = "квартиры в кв.м, дробная часть - точка";
+        this.sqm_tip = "общая площадь квартиры в кв.м, разделитель дробной части - точка";
         this.sqr_visible = "none";
+        this.remstate = new calc_model_remstate_1.RemStateModel();
     }
     ParamsForm.prototype.ngOnInit = function () {
         $(document).ready(function () {
-            $('[data - toggle="tooltip"]').tooltip();
+            $('[data-toggle="tooltip"]').tooltip();
         });
     };
     //контролы изменения полей
@@ -64,10 +70,42 @@ var ParamsForm = /** @class */ (function () {
         this.params.schemaTypeRooms();
         this.onModelChange();
     };
+    //убрать потом
     ParamsForm.prototype.onStateIn = function (select) {
         this.params.state = select - 1;
         this.params.state_is = true;
         this.onModelChange();
+    };
+    //обработчики выбора формы состояния отделки
+    ParamsForm.prototype.onRemclassIn = function (select) {
+        this.remstate.remclass = Number(select);
+        this.remstate.remclass_is = true;
+        this.remstate.modelvalidate();
+        if (this.remstate.common_is) {
+            this.params.state = this.remstate.common_val;
+            this.params.state_is = true;
+            this.onModelChange();
+        }
+    };
+    ParamsForm.prototype.onDevaluationIn = function (select) {
+        this.remstate.devaluation = Number(select);
+        this.remstate.devaluation_is = true;
+        this.remstate.modelvalidate();
+        if (this.remstate.common_is) {
+            this.params.state = this.remstate.common_val;
+            this.params.state_is = true;
+            this.onModelChange();
+        }
+    };
+    ParamsForm.prototype.onAvailIn = function (select) {
+        this.remstate.avail = Number(select);
+        this.remstate.avail_is = true;
+        this.remstate.modelvalidate();
+        if (this.remstate.common_is) {
+            this.params.state = this.remstate.common_val;
+            this.params.state_is = true;
+            this.onModelChange();
+        }
     };
     ParamsForm.prototype.onModelChange = function () {
         this.on_params_changed.emit(this.params);
@@ -88,6 +126,15 @@ var ParamsForm = /** @class */ (function () {
         }
         this.onModelChange();
     };
+    ParamsForm.prototype.onTfaChange = function () {
+        this.remstate.modelvalidate();
+        if (this.remstate.common_is) {
+            this.params.state = this.remstate.common_val;
+            this.params.state_is = true;
+            this.onModelChange();
+        }
+    };
+    //валидатор поля площади
     ParamsForm.prototype.validateSquare = function () {
         if (/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
             .test(this.params.square_str)) {
