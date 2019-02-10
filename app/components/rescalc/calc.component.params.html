@@ -4,7 +4,7 @@
         <div class="form-inline">
             <select #rooms (change)="onRoomsIn($event.target.value)" class="form-control mycontrol">
                 <ng-container *ngFor="let k of roomsKeys(params.rooms_dict)">
-                    <option *ngIf="k>0;else disoption" [disabled]="params.rooms_dict[k][2]" [value]="params.rooms_dict[k][1]"> {{params.rooms_dict[k][0]}}</option>
+                    <option *ngIf="k>0;else disoption" [disabled]="params.rooms_dict[k][2]" [value]="params.rooms_dict[k][1]">{{params.rooms_dict[k][0]}}</option>
                     <ng-template #disoption>
                         <option #disoption [disabled]="params.rooms_dict[k][2]" selected [value]="params.rooms_dict[k][1]">{{params.rooms_dict[k][0]}}</option>
                     </ng-template>
@@ -19,9 +19,9 @@
                 </ng-container>
             </select>
             <input #square type="text" placeholder="Общая площадь, кв.м" name="square" [ngModel]="params.square_str" (ngModelChange)="onSqrChange($event)" class="form-control sqrcontrol" data-toggle="tooltip" [title]="sqm_tip" id="square" />
-            <!--<label for="square" class="form-inline sqmlable" > {{sqm_lable}} </label>-->
+            <!--<label for="square" class="form-inline sqmlable" >{{sqm_lable}}</label>-->
             <br [style.display]="sqr_visible" />
-            <p class="form-inline sqrvalidate" [style.display]="sqr_visible"> {{params.square_err}} </p>
+            <p class="form-inline sqrvalidate" [style.display]="sqr_visible">{{params.square_err}}</p>
         </div>
         <select #buildtype (change)="onBuildTypeIn($event.target.value)" class="form-control mycontrol">
             <ng-container *ngFor="let k of buildtypeKeys(params.buildtype_dict)">
