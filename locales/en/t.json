@@ -91,7 +91,7 @@
     "butcomall": "all types",
     "butoffice": "offices",
     "buttrade": "trading",
-    "titcomm": "Aggregated indicators",
+    "titcomm": "MARKET SEGMENTS",
     "titcomsale_of": "Office premises - sale",
     "titcomrent_of": "Office premises - rent",
     "titcomsale_tr": "Trade premises - sale",
@@ -99,7 +99,7 @@
   },
 
   "pagestitle": {
-    "main": "Dynamics of price indicators in the main segments of the real estate market of Kiev",
+    "main": "Dynamics of price indicators of the real estate market in Kiev",
     "comdynamicsale": "Dynamics of price indicators of non-residential premises (sale) in Kiev",
     "comdynamicrent": "Dynamics of price indicators of non-residential premises (rent) in Kiev",
     "resdynamicsale": "Dynamics of price indicators of residential appartments (sale) in Kiev",
