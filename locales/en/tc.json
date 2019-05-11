@@ -87,6 +87,5 @@
     "commres": "Residential appartaments (sale)",
     "commcomsale": "Non-residential premises (sale)",
     "commcomrent": "Non-residential premises (rent)"
-  },
-  "getlang": {"v": 2 }
+  }
 }

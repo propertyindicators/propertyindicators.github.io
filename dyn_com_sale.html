@@ -5,24 +5,26 @@
  //   _MyBuildTest();
 </script><script type=text/javascript src=https://www.gstatic.com/charts/loader.js></script><script src=js/DataTableSource.js></script><script src=js/tabs.js></script><script src=js/dyn_com_sale.js></script><script type=text/javascript>
     window.onload = function () {
-        //пакет инициализации индексной таблицы
-        var tabinit1 = [
-            { file: "comindexsaleall", fusion: "", rows: ["allres", "c", "nc", "m", "o"], sql: "" },
-            { file: "comindexsaleof", fusion: "", rows: ["allres", "c", "nc", "m", "o"], sql: "" },
-            { file: "comindexsaletr", fusion: "", rows: ["allres", "c", "nc", "m", "o"], sql: "" }
-        ];
+        SetHandleAfterLocalize(function () {
+            //пакет инициализации индексной таблицы
+            var tabinit1 = [
+                { file: "comindexsaleall", fusion: "", rows: ["allres", "c", "nc", "m", "o"], sql: "" },
+                { file: "comindexsaleof", fusion: "", rows: ["allres", "c", "nc", "m", "o"], sql: "" },
+                { file: "comindexsaletr", fusion: "", rows: ["allres", "c", "nc", "m", "o"], sql: "" }
+            ];
 
-        //Инициализация библиотеки GV
-        google.charts.load("visualization", "1", { packages: ["table", "corechart"] });
-        //Инициализация  таблиц
-        google.charts.setOnLoadCallback(init_base);
-        //Инициализация графиков
-        google.charts.setOnLoadCallback(initialize_base_common);
-        //создание таблиц
-        function init_base() {
-            var t1 = new MyTab(1, tabinit1);
-            t1.initall(true);
-        }
-        //создание графиков в файле dyn_res_sale.js
+            //Инициализация библиотеки GV
+            google.charts.load("visualization", "1", { packages: ["table", "corechart"] });
+            //Инициализация  таблиц
+            google.charts.setOnLoadCallback(init_base);
+            //Инициализация графиков
+            google.charts.setOnLoadCallback(initialize_base_common);
+            //создание таблиц
+            function init_base() {
+                var t1 = new MyTab(1, tabinit1);
+                t1.initall(true);
+            }
+            //создание графиков в файле dyn_res_sale.js
+        });
     }
 </script></body></html>
