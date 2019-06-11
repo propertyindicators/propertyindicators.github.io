@@ -5,30 +5,6 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://propertyindicators.github.io/index.html?lng=en</loc>
-    <priority>1.00</priority>
-  </url>
-  <url>
-    <loc>https://propertyindicators.github.io/about.html?lng=en</loc>
-    <priority>1.00</priority>
-  </url>
-  <url>
-    <loc>https://propertyindicators.github.io/index.html?lng=ru</loc>
-    <priority>1.00</priority>
-  </url>
-  <url>
-    <loc>https://propertyindicators.github.io/about.html?lng=ru</loc>
-    <priority>1.00</priority>
-  </url>
-  <url>
-    <loc>https://propertyindicators.github.io/index.html?lng=ua</loc>
-    <priority>1.00</priority>
-  </url>
-  <url>
-    <loc>https://propertyindicators.github.io/about.html?lng=ua</loc>
-    <priority>1.00</priority>
-  </url>
-  <url>
     <loc>https://propertyindicators.github.io/index.html</loc>
     <priority>1.00</priority>
   </url>
