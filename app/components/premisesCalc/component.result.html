@@ -1,0 +1,105 @@
+﻿<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="text-center text-uppercase resultheader" data-i18n="inx.calc">Результаты автоматизированной оценки</h3>
+			</div>
+			<div class="panel-body resultcontainer">
+				<div class="btn-group btn-group-xs pull-right">
+					<button (click)="currChange('usd')" type="button" class="btn btn-primary">USD</button>
+					<button (click)="currChange('eur')" type="button" class="btn btn-primary">EUR</button>
+					<button (click)="currChange('hrn')" type="button" class="btn btn-primary">UAH</button>
+				</div>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Стоимость продажи</th>
+							<th>Мин</th>
+							<th>Макс</th>
+							<th>Ожидание</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>За помещение в целом</td>
+							<td>{{result[currency].sale.premises.min}}</td>
+							<td>{{result[currency].sale.premises.max}}</td>
+							<td>{{result[currency].sale.premises.main}}</td>
+						</tr>
+						<tr>
+							<td>За 1 кв.м общей площади</td>
+							<td>{{result[currency].sale.sqm.min}}</td>
+							<td>{{result[currency].sale.sqm.max}}</td>
+							<td>{{result[currency].sale.sqm.main}}</td>
+						</tr>
+					</tbody>
+					<thead><tr><th></th><th></th><th></th><th></th></tr></thead>
+					<thead>
+						<tr>
+							<th>Стоимость аренды (в месяц)</th>
+							<th>Мин</th>
+							<th>Макс</th>
+							<th>Ожидание</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>За помещение в целом</td>
+							<td>{{result[currency].rent.premises.min}}</td>
+							<td>{{result[currency].rent.premises.max}}</td>
+							<td>{{result[currency].rent.premises.main}}</td>
+						</tr>
+						<tr>
+							<td>За 1 кв.м общей площади</td>
+							<td>{{result[currency].rent.sqm.min}}</td>
+							<td>{{result[currency].rent.sqm.max}}</td>
+							<td>{{result[currency].rent.sqm.main}}</td>
+						</tr>
+					</tbody>
+					<thead><tr><th></th><th></th><th></th><th></th></tr></thead>
+					<thead>
+						<tr>
+							<th>Капитализация</th>
+							<th>Мин</th>
+							<th>Макс</th>
+							<th>Ожидание</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Прямая ставка капитализации</td>
+							<td>{{result.capitalizRate.min}}</td>
+							<td>{{result.capitalizRate.max}}</td>
+							<td>{{result.capitalizRate.main}}</td>
+						</tr>
+						<tr>
+							<td>Мультипликатор годовой ренты</td>
+							<td>{{result.rentMultiplicator.min}}</td>
+							<td>{{result.rentMultiplicator.max}}</td>
+							<td>{{result.rentMultiplicator.main}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div>
+					<p style="font-size: 85%; text-align: justify ">
+						<b>Примечание:</b> 
+						Результаты оценки выше отражают анализ вторичного рынка для индивидуальных нежилых помещений. Стоимость помещений в высококлассных торговых и офисных центрах может существенно отличаться. Если Вы хотите достоверно знать стоимость помещения в высококлассном торговом/офисном комплексе - пожалуйста, закажите квалифицированную экспертную оценку или отправьте нам email.
+					</p>
+				</div>
+			</div>
+			<!--Temporary set of data for debugging - see model.result.ts-->
+			<!--<div class="panel-body resultcontainer">
+				<p> S : {{result.S}}</p>
+				<p> DC : {{result.DC}}</p>
+				<p> P : {{result.P}}</p>
+				<p> MB : {{result.MB}}</p>
+				<p> OTB : {{result.OTB}}</p>
+				<p> PTS : {{result.PTS}}</p>
+				<p> TV : {{result.TV}}</p>
+				<p> TV_PTS : {{result.TV_PTS}}</p>
+				<p> B : {{result.B}}</p>
+				<p> TempV0 : {{result.TempV0}}</p>
+			</div>-->
+		</div>
+	</div>
+</div>

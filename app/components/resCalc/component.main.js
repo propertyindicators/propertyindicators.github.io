@@ -29,13 +29,13 @@ var MainComponent = /** @class */ (function () {
     };
     MainComponent.prototype.onMassiveChanged = function (massive) {
         this.massive = massive;
-        this.changeView();
+        this.changeResultView();
     };
     MainComponent.prototype.onParamsChanged = function (p) {
         this.params = p;
-        this.changeView();
+        this.changeResultView();
     };
-    MainComponent.prototype.changeView = function () {
+    MainComponent.prototype.changeResultView = function () {
         var _this = this;
         if (this.massive === 0) {
             this.paramsvisible = "none"; //none

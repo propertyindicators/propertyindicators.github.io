@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
 var StreetLine = /** @class */ (function () {
     function StreetLine(data) {
-        if (data.length < 9) {
+        if (data.length < 12) {
             alert("Подгруженный поисковый пул улиц не соответствует по формату проектной структуре");
         }
         this.id = data[0];
@@ -25,6 +25,9 @@ var StreetLine = /** @class */ (function () {
         this.number_from = data[6];
         this.number_till = data[7];
         this.parity = data[8];
+        this.peopleStreamValue = data[10];
+        this.transportStreamValue = data[11];
+        this.destinationCenter = data[12];
     }
     return StreetLine;
 }());
@@ -56,7 +59,7 @@ var SearchWorker = /** @class */ (function () {
     ;
     SearchWorker.prototype.initData = function (distr) {
         var _this = this;
-        var temp = this.http.get("./data/test/streets/res_" + this.distrdict[distr] + ".json");
+        var temp = this.http.get("./data/test/streets/com_" + this.distrdict[distr] + ".json");
         return new Promise(function (resolve, reject) {
             return temp.subscribe(function (data) {
                 var temp = [];
@@ -150,25 +153,26 @@ var SearchWorker = /** @class */ (function () {
             addr.massive_is = false;
         }
         ;
-        if (addr.street_is)
-            if (addr.multimas)
+        if (addr.street_is) {
+            if (addr.multimas) {
                 if (addr.number_is) {
-                    addr.massive_int = this.getMassive(addr.street_found, true, addr.number_int);
-                    if (addr.massive_int === 0)
-                        addr.massive_str = "Номер дома указан за пределами допустимого диапазона!";
-                    else
-                        addr.massive_str = addr.massivedict[addr.massive_int];
+                    this.assignLocationData(addr);
+                    addr.massive_str = addr.massive_int === 0
+                        ? "Номер дома указан за пределами допустимого диапазона!"
+                        : addr.massivedict[addr.massive_int];
                     addr.massive_is = (addr.massive_int !== 0);
                 }
                 else {
                     addr.massive_str = "Указанная улица пролегает через несколько массивов! Укажите номер дома, пожалуйста!";
                     addr.massive_is = false;
                 }
+            }
             else {
-                addr.massive_int = this.getMassive(addr.street_found, false, null);
+                this.assignLocationData(addr);
                 addr.massive_str = addr.massivedict[addr.massive_int];
                 addr.massive_is = (addr.massive_int !== 0);
             }
+        }
         else {
             if (addr.street !== "")
                 addr.massive_str = "Укажите корректно улицу, пожалуйста!";
@@ -177,31 +181,35 @@ var SearchWorker = /** @class */ (function () {
             addr.massive_is = false;
         }
     };
-    SearchWorker.prototype.getMassive = function (street, multimas, num) {
+    SearchWorker.prototype.assignLocationData = function (addr) {
+        // сброс данных
+        addr.massive_int = 0;
+        addr.peopleStreamValue = 0;
+        addr.transportStreamValue = 0;
+        addr.destinationCenter = 0;
         //входящая проверка
-        if (this.data === null)
-            return 0;
-        if (street === null || street === "")
-            return 0;
-        if (multimas && num === null)
-            return 0;
+        if (this.data === null
+            || addr.street_found === null
+            || addr.street_found === ""
+            || addr.multimas && addr.number_int === 0)
+            return;
         //далее функционал поиска
-        var parity = num % 2;
-        var regex = new RegExp('^' + street, 'i');
+        var parity = addr.number_int % 2;
+        var regex = new RegExp('^' + addr.street_found, 'i');
         var foundline = null;
         for (var _i = 0, _a = this.data; _i < _a.length; _i++) {
             var sl = _a[_i];
             var matchrus = sl.street_rus.match(regex);
             var matchukr = sl.street_ukr.match(regex);
             if (matchrus != null || matchukr != null) {
-                if (multimas) {
+                if (addr.multimas) {
                     var flag = true;
                     if (sl.parity !== "")
                         flag = (flag && (parity === 0 && sl.parity === "ч" || parity !== 0 && sl.parity === "н"));
                     if (sl.number_from !== -1)
-                        flag = flag && num >= sl.number_from;
+                        flag = flag && addr.number_int >= sl.number_from;
                     if (sl.number_till !== -1)
-                        flag = flag && num <= sl.number_till;
+                        flag = flag && addr.number_int <= sl.number_till;
                     if (flag) {
                         foundline = sl;
                         break;
@@ -213,11 +221,14 @@ var SearchWorker = /** @class */ (function () {
                 }
             }
         }
-        if (foundline === null) {
-            return 0;
-        }
+        if (foundline === null)
+            return;
         else {
-            return sl.mas;
+            addr.massive_int = sl.mas;
+            addr.peopleStreamValue = sl.peopleStreamValue;
+            addr.transportStreamValue = sl.transportStreamValue;
+            addr.destinationCenter = sl.destinationCenter;
+            return;
         }
     };
     SearchWorker = __decorate([

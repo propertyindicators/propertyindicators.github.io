@@ -1,14 +1,11 @@
 ﻿<div class="container" style="padding-top: 25px">
-    <h2>Оценка стоимости нежилого помещения on-line</h2>
-    <!--<comp-addr (on_distr_changed)="onDistrChanged($event)" (on_massive_changed)="onMassiveChanged($event)"></comp-addr>-->
+	<h2>Оценка стоимости нежилого помещения on-line</h2>
+	<comp-addr (onAddrChanged)="onAddrChanged($event)"></comp-addr>
+	<!--<comp-addr (on_distr_changed)="onDistrChanged($event)" (on_massive_changed)="onMassiveChanged($event)"></comp-addr>-->
 </div>
-<!--<div [style.display]="paramsvisible" class="container">
-    <comp-params (on_params_changed)="onParamsChanged($event)"></comp-params>
+<div [style.display]="paramsVisible" class="container">
+	<comp-params (on_params_changed)="onParamsChanged($event)"></comp-params>
 </div>
-<div [style.display]="resultvisible" class="container">
-    <comp-result [result]="result"></comp-result>
-</div>-->
-<!--<div class="container">
-    <comp-temptab [distr]="distr" [tabvisible]="tabvisible"></comp-temptab>
-</div>-->
-<!--<div class="container">-->
+<div [style.display]="resultVisible" class="container">
+	<comp-result [result]="result"></comp-result>
+</div>

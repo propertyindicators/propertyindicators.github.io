@@ -12,13 +12,15 @@ var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/common/http");
 var component_main_1 = require("./component.main");
 var component_addr_1 = require("./component.addr");
+var component_params_1 = require("./component.params");
+var component_result_1 = require("./component.result");
 var PremisesCalcModule = /** @class */ (function () {
     function PremisesCalcModule() {
     }
     PremisesCalcModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpClientModule],
-            declarations: [component_main_1.MainComponent, component_addr_1.AddrForm],
+            declarations: [component_main_1.MainComponent, component_addr_1.AddrForm, component_params_1.ParamsForm, component_result_1.ResultView],
             bootstrap: [component_main_1.MainComponent],
             providers: []
         })
@@ -26,4 +28,4 @@ var PremisesCalcModule = /** @class */ (function () {
     return PremisesCalcModule;
 }());
 exports.PremisesCalcModule = PremisesCalcModule;
-//# sourceMappingURL=module.main.js.map
+//# sourceMappingURL=module.js.map

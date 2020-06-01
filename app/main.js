@@ -21,11 +21,11 @@ require("core-js/es6/set");
 require("core-js/es7/reflect");
 require("tslib");
 var module_1 = require("./components/resCalc/module");
-var module_main_1 = require("./components/premisesCalc/module.main");
+var module_2 = require("./components/premisesCalc/module");
 if (window.location.pathname == "/calc_res.html") {
     platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(module_1.ResidentialCalcModule);
 }
 else if (window.location.pathname == "/calc_premises.html") {
-    platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(module_main_1.PremisesCalcModule);
+    platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(module_2.PremisesCalcModule);
 }
 //# sourceMappingURL=main.js.map
