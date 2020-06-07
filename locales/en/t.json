@@ -1,105 +1,110 @@
 ﻿{
-  "nav": {
-    "swlng": "ENG",
-    "home": "HOME",
-    "contact": "CONTACT"
-  },
-  "myabout": {
-    "hmain": "Property Indicators Laboratory",
-    "habout": "ABOUT US",
-    "hmiss": "MISSION",
-    "hprj": "PROJECT"
-   },
-  "mycontact": {
-    "hc": "CONTACTS",
-    "chat": "aaa_xxx_aaa",
-    "skypehref": "skype:aaa_xxx_aaa?chat",
-    "site": "Project Info Site"
-  },
-  "inx": {
-    "hello": "Hello, real estate market analyst!",
-    "prjdet": "About Us»",
-    "h3comerc": "Indicators of the commercial real estate market in Kiev",
-    "h3resident": "Indicators of the residential real estate market in Kiev",
-    "prdyn": "Dynamics of prices",
-    "prlvl": "Current price level",
-    "btnsale": "Sale »",
-    "btnrent": "Rent »",
-    "nrpricechng": "Live charts of price changes in the secondary market of non-residential premises in Kiev",
-    "nrpricelvl": "Live diagrams of the current price level in the secondary market of non-residential premises in Kiev",
-    "rpricechng": "Live charts of price changes in the secondary market of apartments in Kiev",
-    "rpricelvl": "Live diagrams of the current price level in the secondary market of apartments in Kiev"
-  },
-  "dyn": {
-    "terzona": "Territorial zones of Kiev",
-    "dynapppi": "General indicators of the market of Kiev apartments",
-    "f2006": "since 2006",
-    "f2010": "since 2010",
-    "10y": "10 years",
-    "5y": "5 y",
-    "3y": "3 y",
-    "2y": "2 y",
-    "1y": "1 year",
-    "half": "half-year",
-    "quarter": "quarter"
-  },
-  "bkind": {
-    "nm": "Type of apartment building",
-    "st": "Stalin's",
-    "hr": "Khrushchev's",
-    "ser": "Series",
-    "mod": "Modern",
-    "allt": "All types"
-  },
-  "rooms": {
-    "nm": "Number of rooms (bedrooms including)",
-    "r1": "1 room",
-    "r2": "2 rooms",
-    "r3": "3 rooms",
-    "r4": "4 and more rooms"
-  },
-  "pubs": {
-    "nm": "Our publications",
-    "ba": "Business analysis",
-    "prog": "Software Development",
-    "art": "Author's article",
-    "lit": "References"
-  },
+	"nav": {
+		"swlng": "ENG",
+		"home": "HOME",
+		"contact": "ABOUT US"
+	},
+	"myabout": {
+		"hmain": "Property Indicators Laboratory",
+		"habout": "ABOUT US",
+		"hmiss": "MISSION",
+		"hprj": "PROJECT"
+	},
+	"mycontact": {
+		"hc": "CONTACTS",
+		"chat": "aaa_xxx_aaa",
+		"skypehref": "skype:aaa_xxx_aaa?chat",
+		"site": "Project Info Site"
+	},
+	"inx": {
+		"hello": "Hello, real estate market analyst!",
+		"prjdet": "About Us»",
+		"h3comerc": "Indicators of the commercial real estate market in Kiev",
+		"h3resident": "Indicators of the residential real estate market in Kiev",
+		"prdyn": "Dynamics of prices",
+		"prlvl": "Current price level",
+		"btnsale": "Sale »",
+		"btnrent": "Rent »",
+		"nrpricechng": "Live charts of price changes in the secondary market of non-residential premises in Kiev",
+		"nrpricelvl": "Live diagrams of the current price level in the secondary market of non-residential premises in Kiev",
+		"rpricechng": "Live charts of price changes in the secondary market of apartments in Kiev",
+		"rpricelvl": "Live diagrams of the current price level in the secondary market of apartments in Kiev"
+	},
+	"dyn": {
+		"terzona": "Territorial zones of Kiev",
+		"dynapppi": "General indicators of the market of Kiev apartments",
+		"f2006": "since 2006",
+		"f2010": "since 2010",
+		"10y": "10 years",
+		"5y": "5 y",
+		"3y": "3 y",
+		"2y": "2 y",
+		"1y": "1 year",
+		"half": "half-year",
+		"quarter": "quarter"
+	},
+	"bkind": {
+		"nm": "Type of apartment building",
+		"st": "Stalin's",
+		"hr": "Khrushchev's",
+		"ser": "Series",
+		"mod": "Modern",
+		"allt": "All types"
+	},
+	"rooms": {
+		"nm": "Number of rooms (bedrooms including)",
+		"r1": "1 room",
+		"r2": "2 rooms",
+		"r3": "3 rooms",
+		"r4": "4 and more rooms"
+	},
+	"pubs": {
+		"nm": "Our publications",
+		"ba": "Business analysis",
+		"prog": "Software Development",
+		"art": "Author's article",
+		"lit": "References"
+	},
 
-  "zones": {
-    "k": "Kiev",
-    "c": "Center",
-    "nc": "Close to center",
-    "m": "In middle to center",
-    "o": "Outskirts"
-  },
+	"zones": {
+		"k": "Kiev",
+		"c": "Center",
+		"nc": "Close to center",
+		"m": "In middle to center",
+		"o": "Outskirts"
+	},
 
-  "btabs": {
-    "titressale": "Apartments - sale",
-    "butrooms": "number of rooms",
-    "buttypes": "types of building",
-    "butzones": "territorial zones",
-    "indicators": "indicators",
-    "indexes": "indexes",
-    "titcomsale": "Non-residential premises - sale",
-    "titcomrent": "Non-residential premises - rent",
-    "butcomall": "all types",
-    "butoffice": "offices",
-    "buttrade": "trading",
-    "titcomm": "MARKET SEGMENTS",
-    "titcomsale_of": "Office premises - sale",
-    "titcomrent_of": "Office premises - rent",
-    "titcomsale_tr": "Trade premises - sale",
-    "titcomrent_tr": "Trade premises - rent"
-  },
+	"btabs": {
+		"titressale": "Apartments - sale",
+		"butrooms": "number of rooms",
+		"buttypes": "types of building",
+		"butzones": "territorial zones",
+		"indicators": "indicators",
+		"indexes": "indexes",
+		"titcomsale": "Non-residential premises - sale",
+		"titcomrent": "Non-residential premises - rent",
+		"butcomall": "all types",
+		"butoffice": "offices",
+		"buttrade": "trading",
+		"titcomm": "MARKET SEGMENTS",
+		"titcomsale_of": "Office premises - sale",
+		"titcomrent_of": "Office premises - rent",
+		"titcomsale_tr": "Trade premises - sale",
+		"titcomrent_tr": "Trade premises - rent"
+	},
 
-  "pagestitle": {
-    "main": "Dynamics of price indicators of the real estate market in Kiev",
-    "comdynamicsale": "Dynamics of price indicators of non-residential premises (sale) in Kiev",
-    "comdynamicrent": "Dynamics of price indicators of non-residential premises (rent) in Kiev",
-    "resdynamicsale": "Dynamics of price indicators of residential appartments (sale) in Kiev",
-    "comstaticsale": "Current sale prices level of non-residential premises market in Kiev",
-    "comstaticrent": "Current rental rates level of non-residential premises market in Kiev",
-    "resstaticsale": "Current sale prices level of residential appartments in Kiev"
-  }
+	"pagestitle": {
+		"main": "Dynamics of price indicators of the real estate market in Kiev",
+		"comdynamicsale": "Dynamics of price indicators of non-residential premises (sale) in Kiev",
+		"comdynamicrent": "Dynamics of price indicators of non-residential premises (rent) in Kiev",
+		"resdynamicsale": "Dynamics of price indicators of residential appartments (sale) in Kiev",
+		"comstaticsale": "Current sale prices level of non-residential premises market in Kiev",
+		"comstaticrent": "Current rental rates level of non-residential premises market in Kiev",
+		"resstaticsale": "Current sale prices level of residential appartments in Kiev"
+	},
+
+	"calc": {
+		"apart": "Apartments",
+		"prem": "Non-residential premises"
+	}
 }
