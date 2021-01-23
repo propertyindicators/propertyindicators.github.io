@@ -1,11 +1,2 @@
-/**
- * Add barrels and stuff
- * Adjust as necessary for your application needs.
- */
-// (function (global) {
-//   System.config({
-//     packages: {
-//       // add packages here
-//     }
-//   });
-// })(this);
+/*! PILab 23-01-2021 (c) 2017 propertyindicators@gmail.com */
+

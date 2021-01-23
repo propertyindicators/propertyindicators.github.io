@@ -1,31 +1,3 @@
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
-var forms_1 = require("@angular/forms");
-var http_1 = require("@angular/common/http");
-var component_main_1 = require("./component.main");
-var component_addr_1 = require("./component.addr");
-var component_params_1 = require("./component.params");
-var component_result_1 = require("./component.result");
-var ResidentialCalcModule = /** @class */ (function () {
-    function ResidentialCalcModule() {
-    }
-    ResidentialCalcModule = __decorate([
-        core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpClientModule],
-            declarations: [component_main_1.MainComponent, component_addr_1.AddrForm, component_params_1.ParamsForm, component_result_1.ResultForm],
-            bootstrap: [component_main_1.MainComponent],
-            providers: []
-        })
-    ], ResidentialCalcModule);
-    return ResidentialCalcModule;
-}());
-exports.ResidentialCalcModule = ResidentialCalcModule;
-//# sourceMappingURL=module.js.map
+/*! PILab 23-01-2021 (c) 2017 propertyindicators@gmail.com */
+
+"use strict";var __decorate=this&&this.__decorate||function(a,b,c,d){var e,f=arguments.length,g=f<3?b:null===d?d=Object.getOwnPropertyDescriptor(b,c):d;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)g=Reflect.decorate(a,b,c,d);else for(var h=a.length-1;h>=0;h--)(e=a[h])&&(g=(f<3?e(g):f>3?e(b,c,g):e(b,c))||g);return f>3&&g&&Object.defineProperty(b,c,g),g};Object.defineProperty(exports,"__esModule",{value:!0});var core_1=require("@angular/core"),platform_browser_1=require("@angular/platform-browser"),forms_1=require("@angular/forms"),http_1=require("@angular/common/http"),component_main_1=require("./component.main"),component_addr_1=require("./component.addr"),component_params_1=require("./component.params"),component_result_1=require("./component.result"),ResidentialCalcModule=function(){function a(){}return a=__decorate([core_1.NgModule({imports:[platform_browser_1.BrowserModule,forms_1.FormsModule,http_1.HttpClientModule],declarations:[component_main_1.MainComponent,component_addr_1.AddrForm,component_params_1.ParamsForm,component_result_1.ResultForm],bootstrap:[component_main_1.MainComponent],providers:[]})],a)}();exports.ResidentialCalcModule=ResidentialCalcModule;
