@@ -1,1 +1,103 @@
-<form class="col-md-12 well"><h2 class=formheader>Определите параметры и характеристики помещения:</h2><div class=controls><div class=form-inline><input #square type=text placeholder="Общая площадь, кв.м" name=square [ngmodel]=params.square_str (ngmodelchange)=onSqrChanged($event) [class.required]=reqparam.square class="form-control sqrcontrol" data-toggle=tooltip [title]=sqm_tip id=square><select #placement (change)=onPlacementChanged($event.target.selectedIndex) [class.required]=reqparam.placement class="form-control mycontrol"><ng-container *ngfor="let k of objectKeys(params.placement_dict)"><option *ngif="k > 0; else disoption" [disabled]=false>{{params.placement_dict[k][0]}}</option><ng-template #disoption><option #disoption [disabled]=true selected>{{params.placement_dict[k][0]}}</option></ng-template></ng-container></select><br [style.display]=sqr_err_visible><p class="form-inline sqrvalidate" [style.display]=sqr_err_visible>{{params.square_err}}</p></div><select #buildtype_mb (change)=onBuildTypeMbChanged($event.target.selectedIndex) [class.required]=reqparam.buildtype_mb class="form-control mycontrol"><ng-container *ngfor="let k of objectKeys(params.buildtype_mb_dict)"><option *ngif="k > 0; else disoption" [disabled]=false>{{params.buildtype_mb_dict[k][0]}}</option><ng-template #disoption><option #disoption [disabled]=true selected>{{params.buildtype_mb_dict[k][0]}}</option></ng-template></ng-container></select><select #buildtype_otb (change)=onBuildTypeOtbChanged($event.target.selectedIndex) [class.required]=reqparam.buildtype_otb class="form-control mycontrol"><ng-container *ngfor="let k of objectKeys(params.buildtype_otb_dict)"><option *ngif="k > 0; else disoption" [disabled]=false>{{params.buildtype_otb_dict[k][0]}}</option><ng-template #disoption><option #disoption [disabled]=true selected>{{params.buildtype_otb_dict[k][0]}}</option></ng-template></ng-container></select><select #entery_type (change)=onEnteryTypeChanged($event.target.selectedIndex) [class.required]=reqparam.entry_type class="form-control mycontrol"><ng-container *ngfor="let k of objectKeys(params.entery_type_dict)"><option *ngif="k > 0; else disoption" [disabled]=false>{{params.entery_type_dict[k]}}</option><ng-template #disoption><option #disoption [disabled]=true selected>{{params.entery_type_dict[k]}}</option></ng-template></ng-container></select><select #entery_placement (change)=onEnteryPlacementChanged($event.target.selectedIndex) [class.required]=reqparam.entry_placement class="form-control mycontrol"><ng-container *ngfor="let k of objectKeys(params.entery_placement_dict)"><option *ngif="k > 0; else disoption" [disabled]=false>{{params.entery_placement_dict[k]}}</option><ng-template #disoption><option #disoption [disabled]=true selected>{{params.entery_placement_dict[k]}}</option></ng-template></ng-container></select><fieldset><legend>Дополнительные факторы торговой ценности</legend><p><ng-container *ngfor="let k of objectKeys(params.tradevalue_features)"><input [(ngmodel)]=params.tradevalue_features[k][1] type=checkbox [name]="'tf'+k" [id]="'tf'+k" class=checkbox (change)=onTradevalueFeaturesChanged()> <label [for]="'tf'+k">{{params.tradevalue_features[k][0]}}</label><br *ngif="k!='authdesign'"></ng-container></p></fieldset><div style="padding-top:0.4em; padding-left:0.4em;"><input [(ngmodel)]=params.is_residential_fund type=checkbox name=res_fund id=res_fund class=checkbox (change)=onParamsChanged()> <label for=res_fund>{{params.res_fund_ui}}</label></div></div></form><form class="col-md-12 well"><h2 class=formheader>Определите состояние внутренней отделки:</h2><div class=controls><select #remclass (change)=onRemclassIn($event.target.selectedIndex) [class.required]=reqparam.remclass class="form-control mycontrol"><ng-container *ngfor="let k of objectKeys(remstate.remclass_dict)"><option *ngif="k>0;else disoption" [value]=k>{{remstate.remclass_dict[k][0]}}</option><ng-template #disoption><option #disoption disabled selected [value]=k>{{remstate.remclass_dict[k][0]}}</option></ng-template></ng-container></select><select #devaluation (change)=onDevaluationIn($event.target.selectedIndex) [class.required]=reqparam.devaluation class="form-control mycontrol" [style.display]=remstate.devaluation_visible><ng-container *ngfor="let k of objectKeys(remstate.devaluation_dict)"><option *ngif="k>0;else disoption" [value]=k>{{remstate.devaluation_dict[k][0]}}</option><ng-template #disoption><option #disoption disabled selected [value]=k>{{remstate.devaluation_dict[k][0]}}</option></ng-template></ng-container></select><select #avail (change)=onAvailIn($event.target.selectedIndex) [class.required]=reqparam.avail class="form-control mycontrol" [style.display]=remstate.avail_visible><ng-container *ngfor="let k of objectKeys(remstate.avail_dict)"><option *ngif="k>0;else disoption" [value]=k>{{remstate.avail_dict[k][0]}}</option><ng-template #disoption><option #disoption disabled selected [value]=k>{{remstate.avail_dict[k][0]}}</option></ng-template></ng-container></select><fieldset [style.display]=remstate.addelements_visible><legend>Дополнительно в помещении:</legend><p><ng-container *ngfor="let k of objectKeys(remstate.addelements_dict)"><input [(ngmodel)]=remstate.addelements_dict[k][1] type=checkbox [name]="'ae'+k" [id]="'ae'+k" class=checkbox (change)=validateState()> <label [for]="'ae'+k">{{remstate.addelements_dict[k][0]}}</label><br *ngif="k!='authdesign'"></ng-container></p></fieldset></div></form>
+﻿<form class="col-md-12 well">
+	<h2 class="formheader">Определите параметры и характеристики помещения:</h2>
+	<div class="controls">
+		<div class="form-inline">
+			<input #square type="text" placeholder="Общая площадь, кв.м" name="square" [ngModel]="params.square_str" (ngModelChange)="onSqrChanged($event)" [class.required]="reqparam.square" class="form-control sqrcontrol" data-toggle="tooltip" [title]="sqm_tip" id="square" />
+			<select #placement (change)="onPlacementChanged($event.target.selectedIndex)" [class.required]="reqparam.placement" class="form-control mycontrol">
+				<ng-container *ngFor="let k of objectKeys(params.placement_dict)">
+					<option *ngIf="k > 0; else disoption" [disabled]="false">{{params.placement_dict[k][0]}}</option>
+					<ng-template #disoption>
+						<option #disoption [disabled]="true" selected>{{params.placement_dict[k][0]}}</option>
+					</ng-template>
+				</ng-container>
+			</select>
+			<br [style.display]="sqr_err_visible" />
+			<p class="form-inline sqrvalidate" [style.display]="sqr_err_visible">{{params.square_err}}</p>
+		</div>
+		<select #buildtype_mb (change)="onBuildTypeMbChanged($event.target.selectedIndex)" [class.required]="reqparam.buildtype_mb" class="form-control mycontrol">
+			<ng-container *ngFor="let k of objectKeys(params.buildtype_mb_dict)">
+				<option *ngIf="k > 0; else disoption" [disabled]="false"> {{params.buildtype_mb_dict[k][0]}}</option>
+				<ng-template #disoption>
+					<option #disoption [disabled]="true" selected>{{params.buildtype_mb_dict[k][0]}}</option>
+				</ng-template>
+			</ng-container>
+		</select>
+		<select #buildtype_otb (change)="onBuildTypeOtbChanged($event.target.selectedIndex)" [class.required]="reqparam.buildtype_otb" class="form-control mycontrol">
+			<ng-container *ngFor="let k of objectKeys(params.buildtype_otb_dict)">
+				<option *ngIf="k > 0; else disoption" [disabled]="false"> {{params.buildtype_otb_dict[k][0]}}</option>
+				<ng-template #disoption>
+					<option #disoption [disabled]="true" selected>{{params.buildtype_otb_dict[k][0]}}</option>
+				</ng-template>
+			</ng-container>
+		</select>
+		<select #entery_type (change)="onEnteryTypeChanged($event.target.selectedIndex)" [class.required]="reqparam.entry_type" class="form-control mycontrol">
+			<ng-container *ngFor="let k of objectKeys(params.entery_type_dict)">
+				<option *ngIf="k > 0; else disoption" [disabled]="false"> {{params.entery_type_dict[k]}}</option>
+				<ng-template #disoption>
+					<option #disoption [disabled]="true" selected>{{params.entery_type_dict[k]}}</option>
+				</ng-template>
+			</ng-container>
+		</select>
+		<select #entery_placement (change)="onEnteryPlacementChanged($event.target.selectedIndex)" [class.required]="reqparam.entry_placement" class="form-control mycontrol">
+			<ng-container *ngFor="let k of objectKeys(params.entery_placement_dict)">
+				<option *ngIf="k > 0; else disoption" [disabled]="false"> {{params.entery_placement_dict[k]}}</option>
+				<ng-template #disoption>
+					<option #disoption [disabled]="true" selected>{{params.entery_placement_dict[k]}}</option>
+				</ng-template>
+			</ng-container>
+		</select>
+		<fieldset>
+			<legend>Дополнительные факторы торговой ценности</legend>
+			<p>
+				<ng-container *ngFor="let k of objectKeys(params.tradevalue_features)">
+					<input [(ngModel)]="params.tradevalue_features[k][1]" type="checkbox" [name]="'tf'+k" [id]="'tf'+k" class="checkbox" (change)="onTradevalueFeaturesChanged()">
+					<label [for]="'tf'+k">{{params.tradevalue_features[k][0]}}</label>
+					<br *ngIf="k!='authdesign'">
+				</ng-container>
+			</p>
+		</fieldset>
+		<div style="padding-top:0.4em; padding-left:0.4em;">
+			<input [(ngModel)]="params.is_residential_fund" type="checkbox" name="res_fund" id="res_fund" class="checkbox" (change)="onParamsChanged()">
+			<label for="res_fund">{{params.res_fund_ui}}</label>
+		</div>
+	</div>
+</form>
+<form class="col-md-12 well">
+	<h2 class="formheader">Определите состояние внутренней отделки:</h2>
+	<div class="controls">
+		<select #remclass (change)="onRemclassIn($event.target.selectedIndex)" [class.required]="reqparam.remclass" class="form-control mycontrol">
+			<ng-container *ngFor="let k of objectKeys(remstate.remclass_dict)">
+				<option *ngIf="k>0;else disoption" [value]="k"> {{remstate.remclass_dict[k][0]}}</option>
+				<ng-template #disoption>
+					<option #disoption disabled selected [value]="k">{{remstate.remclass_dict[k][0]}}</option>
+				</ng-template>
+			</ng-container>
+		</select>
+		<select #devaluation (change)="onDevaluationIn($event.target.selectedIndex)" [class.required]="reqparam.devaluation" class="form-control mycontrol" [style.display]="remstate.devaluation_visible">
+			<ng-container *ngFor="let k of objectKeys(remstate.devaluation_dict)">
+				<option *ngIf="k>0;else disoption" [value]="k"> {{remstate.devaluation_dict[k][0]}}</option>
+				<ng-template #disoption>
+					<option #disoption disabled selected [value]="k">{{remstate.devaluation_dict[k][0]}}</option>
+				</ng-template>
+			</ng-container>
+		</select>
+		<select #avail (change)="onAvailIn($event.target.selectedIndex)" [class.required]="reqparam.avail" class="form-control mycontrol" [style.display]="remstate.avail_visible">
+			<ng-container *ngFor="let k of objectKeys(remstate.avail_dict)">
+				<option *ngIf="k>0;else disoption" [value]="k"> {{remstate.avail_dict[k][0]}}</option>
+				<ng-template #disoption>
+					<option #disoption disabled selected [value]="k">{{remstate.avail_dict[k][0]}}</option>
+				</ng-template>
+			</ng-container>
+		</select>
+		<fieldset [style.display]="remstate.addelements_visible">
+			<legend>Дополнительно в помещении: </legend>
+			<p>
+				<ng-container *ngFor="let k of objectKeys(remstate.addelements_dict)">
+					<input [(ngModel)]="remstate.addelements_dict[k][1]" type="checkbox" [name]="'ae'+k" [id]="'ae'+k" class="checkbox" (change)="validateState()">
+					<label [for]="'ae'+k">{{remstate.addelements_dict[k][0]}}</label>
+					<br *ngIf="k!='authdesign'">
+				</ng-container>
+			</p>
+		</fieldset>
+	 </div>
+</form>

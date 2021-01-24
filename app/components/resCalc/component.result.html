@@ -1,1 +1,41 @@
-<div class=row><div class=col-md-12><div class="panel panel-default"><div class=panel-heading><h3 class="text-center text-uppercase resultheader" data-i18n=inx.calc>Результаты автоматизированной оценки</h3></div><div class="panel-body resultcontainer"><div class="btn-group btn-group-xs pull-right"><button (click)="currChange('usd')" type=button class="btn btn-primary">USD</button> <button (click)="currChange('eur')" type=button class="btn btn-primary">EUR</button> <button (click)="currChange('hrn')" type=button class="btn btn-primary">UAH</button></div><table class="table table-striped"><thead><tr><th>Показатели стоимости</th><th>Мин</th><th>Макс</th><th>Ожидание</th></tr></thead><tbody><tr><td>За квартиру в целом</td><td>{{result[currency].flat_min}}</td><td>{{result[currency].flat_max}}</td><td>{{result[currency].flat_main}}</td></tr><tr><td>За 1 кв.м общей площади</td><td>{{result[currency].sqm_min}}</td><td>{{result[currency].sqm_max}}</td><td>{{result[currency].sqm_main}}</td></tr></tbody></table></div></div></div></div>
+﻿
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="text-center text-uppercase resultheader" data-i18n="inx.calc">Результаты автоматизированной оценки</h3>
+            </div>
+            <div class="panel-body resultcontainer">
+                <div class="btn-group btn-group-xs pull-right">
+                    <button (click)="currChange('usd')" type="button" class="btn btn-primary">USD</button>
+                    <button (click)="currChange('eur')" type="button" class="btn btn-primary">EUR</button>
+                    <button (click)="currChange('hrn')" type="button" class="btn btn-primary">UAH</button>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Показатели стоимости</th>
+                            <th>Мин</th>
+                            <th>Макс</th>
+                            <th>Ожидание</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>За квартиру в целом</td>
+                            <td>{{result[currency].flat_min}}</td>
+                            <td>{{result[currency].flat_max}}</td>
+                            <td>{{result[currency].flat_main}}</td>
+                        </tr>
+                        <tr>
+                            <td>За 1 кв.м общей площади</td>
+                            <td>{{result[currency].sqm_min}}</td>
+                            <td>{{result[currency].sqm_max}}</td>
+                            <td>{{result[currency].sqm_main}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
