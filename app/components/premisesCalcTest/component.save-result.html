@@ -2,7 +2,11 @@
 	<div class="col-md-3">
 		<button (click)="save()" type="button" class="btn btn-primary btn-save">Добавить объект в Мои объекты</button>
 	</div>
-	<div class="col-md-9">
+	<div class="col-md-6">
 		<p [textContent]="message" [style.display]="showMessage" [style.color]="messageColor"></p>
+	</div>
+	<div class="col-md-3" style="text-align: right;float: right;">
+		<!--<button (click)="save()" type="button" class="btn btn-primary btn-save">Мои объекты</button>-->
+		<a href="/about.html" class="btn btn-primary btn-save">My objects</a>
 	</div>
 </div>

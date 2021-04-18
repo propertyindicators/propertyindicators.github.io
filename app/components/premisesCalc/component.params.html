@@ -31,18 +31,18 @@
 			</ng-container>
 		</select>
 		<select #entery_type (change)="onEnteryTypeChanged($event.target.selectedIndex)" [class.required]="reqparam.entry_type" class="form-control mycontrol">
-			<ng-container *ngFor="let k of objectKeys(params.entery_type_dict)">
-				<option *ngIf="k > 0; else disoption" [disabled]="false"> {{params.entery_type_dict[k]}}</option>
+			<ng-container *ngFor="let k of objectKeys(params.entry_type_dict)">
+				<option *ngIf="k > 0; else disoption" [disabled]="false"> {{params.entry_type_dict[k]}}</option>
 				<ng-template #disoption>
-					<option #disoption [disabled]="true" selected>{{params.entery_type_dict[k]}}</option>
+					<option #disoption [disabled]="true" selected>{{params.entry_type_dict[k]}}</option>
 				</ng-template>
 			</ng-container>
 		</select>
 		<select #entery_placement (change)="onEnteryPlacementChanged($event.target.selectedIndex)" [class.required]="reqparam.entry_placement" class="form-control mycontrol">
-			<ng-container *ngFor="let k of objectKeys(params.entery_placement_dict)">
-				<option *ngIf="k > 0; else disoption" [disabled]="false"> {{params.entery_placement_dict[k]}}</option>
+			<ng-container *ngFor="let k of objectKeys(params.entry_placement_dict)">
+				<option *ngIf="k > 0; else disoption" [disabled]="false"> {{params.entry_placement_dict[k]}}</option>
 				<ng-template #disoption>
-					<option #disoption [disabled]="true" selected>{{params.entery_placement_dict[k]}}</option>
+					<option #disoption [disabled]="true" selected>{{params.entry_placement_dict[k]}}</option>
 				</ng-template>
 			</ng-container>
 		</select>

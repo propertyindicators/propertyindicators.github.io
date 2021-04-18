@@ -1,6 +1,6 @@
 ﻿<form class="col-md-6 well form-inline addrinput">
     <div class="controls">
-        <select (change)="onDistrIn($event.target.value)" [class.required]="addr.req_district" class="form-control inp_distr">
+        <select (change)="onDistrIn($event.target.selectedIndex)" [class.required]="addr.req_district" class="form-control inp_distr">
             <ng-container *ngFor="let d of objectKeys(addr.distrdict)">
                 <option *ngIf="d>0;else disoption" [value]="d"> {{addr.distrdict[d]}}</option>
                 <ng-template #disoption>
