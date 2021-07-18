@@ -1,24 +1,22 @@
-﻿<div class="container" style="padding-top: 25px">
-	<div *ngIf ="!listEmpty">
-		<h2>Ваши сохранённые объекты</h2>
-		<table class="table table-condensed table-hover">
-			<thead>
-				<tr class="table-heading">
-					<th scope="col">#</th>
-					<th scope="col" class="text-center">Помещения</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let row of objRows" (click)="onSelected(row)" [class.table-active]="selectedPremises === row.index">
-					<th scope="row">{{row.index + 1}}</th>
-					<td>{{row.description}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div *ngIf ="listEmpty">
-		<h2>У вас нет сохранённых объектов.</h2>
-	</div>
+﻿<div class="claster-heading">Отслеживаемые объекты</div>
+<div *ngIf="!listEmpty">
+	<table class="table table-condensed table-hover">
+		<thead>
+			<tr class="table-heading">
+				<th scope="col">#</th>
+				<th scope="col" class="text-center">Помещения</th>
+				<th scope="col" class="text-center">Del</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let row of objRows" (click)="onSelected(row)" [class.table-active]="selectedPremises === row.index">
+				<th scope="row">{{row.index + 1}}</th>
+				<td class="obj-item">{{row.description}}</td>
+				<td (click)="onDelete(row)" class="del-item" style="text-align: center">×</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
-
-
+<div *ngIf="listEmpty">
+	<p style="font-size: 1.1em">У вас нет сохранённых объектов.</p>
+</div>

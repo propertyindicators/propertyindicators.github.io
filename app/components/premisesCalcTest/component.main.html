@@ -7,7 +7,7 @@
 	<comp-params [uiDictionaries]="uiDictionaries" (on_params_changed)="onParamsChanged($event)"></comp-params>
 </div>
 <div class="container" [style.display]="resultVisible">
-	<comp-save-result [addr]="addr" [params]="params" [result]="result" [evaluationResultChanged]="notifyChildWhenResultChanged.asObservable()"></comp-save-result>
+	<comp-save-result [addr]="addr" [params]="params" [result]="result" [calcserv]="calcserv" [evaluationResultChanged]="notifyChildWhenResultChanged.asObservable()"></comp-save-result>
 </div>
 <div [style.display]="resultVisible" class="container">
 	<comp-result [result]="result"></comp-result>
