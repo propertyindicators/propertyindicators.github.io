@@ -1,118 +1,120 @@
-﻿<div class="claster-heading" style="margin-top: 1.5em">Динамика объекта</div>
-<div class="row">
-	<div class="col-md-6">
-		<div class="btn-group btn-group-sm">
-			<button (click)="changePriceType('PerSqm')" type="button" class="btn btn-primary">За 1 кв.м</button>
-			<button (click)="changePriceType('WholeObj')" type="button" id="buttb_11" class="btn btn-primary" data-i18n="btabs.buttypes">За помещение</button>
+﻿<div *ngIf="objUISet">
+	<div class="claster-heading" style="margin-top: 1.5em">Динамика объекта</div>
+	<div class="row">
+		<div class="col-xs-5">
+			<div class="btn-group btn-group-xs">
+				<button (click)="changePriceType('PerSqm')" type="button" class="btn btn-primary">За 1 кв.м</button>
+				<button (click)="changePriceType('WholeObj')" type="button" id="buttb_11" class="btn btn-primary" data-i18n="btabs.buttypes">За помещение</button>
+			</div>
 		</div>
-	</div>
-	<div class="col-md-2 pull-right" style="direction:rtl">
-		<div class="btn-group btn-group-sm">
-			<button (click)="changeCurrChart('Usd')" type="button" id="buttc_1d" class="btn btn-primary">USD</button>
-			<button (click)="changeCurrChart('Eur')" type="button" id="buttc_1e" class="btn btn-primary">EUR</button>
-			<button (click)="changeCurrChart('Uah')" type="button" id="buttc_1h" class="btn btn-primary">UAH</button>
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<div id="chart" (onSelect)="onChartPointSelected($event)">
-			<div class="vertical-center">
-				<h1>
-					<i class="fa fa-refresh fa-spin fa-3x fa-fw center-block"></i>
-					<span class="sr-only">Loading...</span>
-				</h1>
+		<div class="col-xs-4 pull-right" style="direction:rtl">
+			<div class="btn-group btn-group-xs">
+				<button (click)="changeCurrChart('Usd')" type="button" id="buttc_1d" class="btn btn-primary">USD</button>
+				<button (click)="changeCurrChart('Eur')" type="button" id="buttc_1e" class="btn btn-primary">EUR</button>
+				<button (click)="changeCurrChart('Uah')" type="button" id="buttc_1h" class="btn btn-primary">UAH</button>
 			</div>
 		</div>
 	</div>
-</div>
-<div *ngIf="gvIsLoaded && viewIsCreated" class="row">
-	<div class="col-md-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="text-center text-uppercase resultheader" data-i18n="inx.calc">Результаты автоматизированной оценки на {{objUISet.FullResults[selectedResultIndex].onDate.toLocaleDateString('en-CA')}}</h3>
-			</div>
-			<div class="panel-body resultcontainer">
-				<div class="btn-group btn-group-xs pull-right">
-					<button (click)="changeCurrRes('usd')" type="button" class="btn btn-primary">USD</button>
-					<button (click)="changeCurrRes('eur')" type="button" class="btn btn-primary">EUR</button>
-					<button (click)="changeCurrRes('hrn')" type="button" class="btn btn-primary">UAH</button>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="chart" (onSelect)="onChartPointSelected($event)">
+				<div class="vertical-center">
+					<h1>
+						<i class="fa fa-refresh fa-spin fa-3x fa-fw center-block"></i>
+						<span class="sr-only">Loading...</span>
+					</h1>
 				</div>
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Стоимость продажи</th>
-							<th>Мин</th>
-							<th>Макс</th>
-							<th>Ожидание</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>За помещение в целом</td>
-							<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].sale.premises.min}}</td>
-							<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].sale.premises.max}}</td>
-							<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].sale.premises.main}}</td>
-						</tr>
-						<tr>
-							<td>За 1 кв.м общей площади</td>
-							<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].sale.sqm.min}}</td>
-							<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].sale.sqm.max}}</td>
-							<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].sale.sqm.main}}</td>
-						</tr>
-					</tbody>
-					<thead><tr><th></th><th></th><th></th><th></th></tr></thead>
-					<thead>
-						<tr>
-							<th>Стоимость аренды (в месяц)</th>
-							<th>Мин</th>
-							<th>Макс</th>
-							<th>Ожидание</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>За помещение в целом</td>
-							<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].rent.premises.min}}</td>
-							<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].rent.premises.max}}</td>
-							<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].rent.premises.main}}</td>
-						</tr>
-						<tr>
-							<td>За 1 кв.м общей площади</td>
-							<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].rent.sqm.min}}</td>
-							<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].rent.sqm.max}}</td>
-							<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].rent.sqm.main}}</td>
-						</tr>
-					</tbody>
-					<thead><tr><th></th><th></th><th></th><th></th></tr></thead>
-					<thead>
-						<tr>
-							<th>Капитализация</th>
-							<th>Мин</th>
-							<th>Макс</th>
-							<th>Ожидание</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Прямая ставка капитализации</td>
-							<td>{{objUISet.FullResults[selectedResultIndex].capitalizRate.min}}</td>
-							<td>{{objUISet.FullResults[selectedResultIndex].capitalizRate.max}}</td>
-							<td>{{objUISet.FullResults[selectedResultIndex].capitalizRate.main}}</td>
-						</tr>
-						<tr>
-							<td>Мультипликатор годовой ренты</td>
-							<td>{{objUISet.FullResults[selectedResultIndex].rentMultiplicator.min}}</td>
-							<td>{{objUISet.FullResults[selectedResultIndex].rentMultiplicator.max}}</td>
-							<td>{{objUISet.FullResults[selectedResultIndex].rentMultiplicator.main}}</td>
-						</tr>
-					</tbody>
-				</table>
-				<div>
-					<p style="font-size: 85%; text-align: justify ">
-						<b>Примечание:</b>
-						Результаты оценки выше отражают анализ вторичного рынка для индивидуальных нежилых помещений. Стоимость помещений в высококлассных торговых и офисных центрах может существенно отличаться. Если Вы хотите достоверно знать стоимость помещения в высококлассном торговом/офисном комплексе - пожалуйста, закажите квалифицированную экспертную оценку или отправьте нам <span><a href="mailto:propertyindicators@gmail.com">email</a></span>.
-					</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="text-center text-uppercase resultheader" data-i18n="inx.calc">Результаты автоматизированной оценки на {{objUISet.FullResults[selectedResultIndex].onDate.toLocaleDateString('en-CA')}}</h3>
+				</div>
+				<div class="panel-body resultcontainer">
+					<div class="btn-group btn-group-xs pull-right">
+						<button (click)="changeCurrRes('usd')" type="button" class="btn btn-primary">USD</button>
+						<button (click)="changeCurrRes('eur')" type="button" class="btn btn-primary">EUR</button>
+						<button (click)="changeCurrRes('hrn')" type="button" class="btn btn-primary">UAH</button>
+					</div>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Стоимость продажи</th>
+								<th>Мин</th>
+								<th>Макс</th>
+								<th>Ожидание</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>За помещение в целом</td>
+								<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].sale.premises.min}}</td>
+								<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].sale.premises.max}}</td>
+								<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].sale.premises.main}}</td>
+							</tr>
+							<tr>
+								<td>За 1 кв.м общей площади</td>
+								<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].sale.sqm.min}}</td>
+								<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].sale.sqm.max}}</td>
+								<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].sale.sqm.main}}</td>
+							</tr>
+						</tbody>
+						<thead><tr><th></th><th></th><th></th><th></th></tr></thead>
+						<thead>
+							<tr>
+								<th>Стоимость аренды (в месяц)</th>
+								<th>Мин</th>
+								<th>Макс</th>
+								<th>Ожидание</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>За помещение в целом</td>
+								<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].rent.premises.min}}</td>
+								<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].rent.premises.max}}</td>
+								<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].rent.premises.main}}</td>
+							</tr>
+							<tr>
+								<td>За 1 кв.м общей площади</td>
+								<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].rent.sqm.min}}</td>
+								<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].rent.sqm.max}}</td>
+								<td>{{objUISet.FullResults[selectedResultIndex][selectedCurrencyResult].rent.sqm.main}}</td>
+							</tr>
+						</tbody>
+						<thead><tr><th></th><th></th><th></th><th></th></tr></thead>
+						<thead>
+							<tr>
+								<th>Капитализация</th>
+								<th>Мин</th>
+								<th>Макс</th>
+								<th>Ожидание</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Прямая ставка капитализации</td>
+								<td>{{objUISet.FullResults[selectedResultIndex].capitalizRate.min}}</td>
+								<td>{{objUISet.FullResults[selectedResultIndex].capitalizRate.max}}</td>
+								<td>{{objUISet.FullResults[selectedResultIndex].capitalizRate.main}}</td>
+							</tr>
+							<tr>
+								<td>Мультипликатор годовой ренты</td>
+								<td>{{objUISet.FullResults[selectedResultIndex].rentMultiplicator.min}}</td>
+								<td>{{objUISet.FullResults[selectedResultIndex].rentMultiplicator.max}}</td>
+								<td>{{objUISet.FullResults[selectedResultIndex].rentMultiplicator.main}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<div>
+						<p style="font-size: 85%; text-align: justify ">
+							<b>Примечание:</b>
+							Результаты оценки выше отражают анализ вторичного рынка для индивидуальных нежилых помещений. Стоимость помещений в высококлассных торговых и офисных центрах может существенно отличаться. Если Вы хотите достоверно знать стоимость помещения в высококлассном торговом/офисном комплексе - пожалуйста, закажите квалифицированную экспертную оценку или отправьте нам <span><a href="mailto:propertyindicators@gmail.com">email</a></span>.
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>

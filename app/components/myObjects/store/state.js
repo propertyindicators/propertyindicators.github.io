@@ -1,0 +1,3 @@
+/*! PILab 02-02-2022 */
+
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var ObjRow=function(){function a(a,b){this.index=a,this.description=b}return a}();exports.ObjRow=ObjRow,exports.initObjectListState={IsLoadingStarted:!1,DataReady:!1,GoogleChartsLoaded:!1,IsObjListEmpty:!0,ObjRows:null,SelectedObjIndex:-1,IndexToDelete:-1,IsDeletingAction:!1,CustomerName:null,ParamsViewData:null,HistoryViewData:null,DocExtractor:null,CalcService:null},exports.initAppState={ObjectListState:exports.initObjectListState};

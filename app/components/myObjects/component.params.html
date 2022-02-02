@@ -1,16 +1,16 @@
-﻿<div *ngIf="paramsView">
+﻿<div *ngIf="paramsView$ | async">
 	<div class="claster-heading">Параметры выбранного помещения</div>
 	<div class="row">
 		<div class="col-md-6 parammargin">
 			<div style="border: 1px solid #808080; border-radius: 4px;">
 				<div class="paramtitle">Район:</div>
-				<div class="paramvalue">{{paramsView.district}}, {{paramsView.massif}}</div>
+				<div class="paramvalue">{{(paramsView$ | async)?.district}}, {{(paramsView$ | async)?.massif}}</div>
 			</div>
 		</div>
 		<div class="col-md-6 parammargin">
 			<div style="border: 1px solid #808080; border-radius: 4px;">
 				<div class="paramtitle">Адрес:</div>
-				<div class="paramvalue">{{paramsView.street}} {{paramsView.numberOnStreet}}</div>
+				<div class="paramvalue">{{(paramsView$ | async)?.street}} {{(paramsView$ | async)?.numberOnStreet}}</div>
 			</div>
 		</div>
 	</div>
@@ -18,13 +18,13 @@
 		<div class="col-md-6 parammargin">
 			<div style="border: 1px solid #808080; border-radius: 4px;">
 				<div class="paramtitle">Площадь:</div>
-				<div class="paramvalue">{{paramsView.square}}</div>
+				<div class="paramvalue">{{(paramsView$ | async)?.square}}</div>
 			</div>
 		</div>
 		<div class="col-md-6 parammargin">
 			<div style="border: 1px solid #808080; border-radius: 4px;">
 				<div class="paramtitle">Фонд:</div>
-				<div class="paramvalue">{{paramsView.fund}}</div>
+				<div class="paramvalue">{{(paramsView$ | async)?.fund}}</div>
 			</div>
 		</div>
 	</div>
@@ -32,13 +32,13 @@
 		<div class="col-md-6 parammargin">
 			<div style="border: 1px solid #808080; border-radius: 4px;">
 				<div class="paramtitle">Здание:</div>
-				<div class="paramvalue">{{paramsView.buildtype_otb}}</div>
+				<div class="paramvalue">{{(paramsView$ | async)?.buildtype_otb}}</div>
 			</div>
 		</div>
 		<div class="col-md-6 parammargin">
 			<div style="border: 1px solid #808080; border-radius: 4px;">
 				<div class="paramtitle">Этаж:</div>
-				<div class="paramvalue">{{paramsView.placement}}</div>
+				<div class="paramvalue">{{(paramsView$ | async)?.placement}}</div>
 			</div>
 		</div>
 	</div>
@@ -46,7 +46,7 @@
 		<div class="col-md-12 parammargin">
 			<div style="border: 1px solid #808080; border-radius: 4px;">
 				<div class="paramtitle">Построено:</div>
-				<div class="paramvalue"><p>{{paramsView.buildtype_mb}}</p></div>
+				<div class="paramvalue"><p>{{(paramsView$ | async)?.buildtype_mb}}</p></div>
 			</div>
 		</div>
 	</div>
@@ -56,18 +56,18 @@
 				<div class="panelheading">Вход в помещение:</div>
 				<div class="panelbody">
 					<ul>
-						<li>{{paramsView.entry_type}}</li>
-						<li>{{paramsView.entry_placement}}</li>
+						<li>{{(paramsView$ | async)?.entry_type}}</li>
+						<li>{{(paramsView$ | async)?.entry_placement}}</li>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div *ngIf="paramsView.add_trade_features.length > 0" class="col-xs-12 col-sm-6 parammargin">
+		<div *ngIf="(paramsView$ | async)?.add_trade_features.length > 0" class="col-xs-12 col-sm-6 parammargin">
 			<div style="border: 1px solid #808080; border-radius: 4px;">
 				<div class="panelheading">Дополнительные факторы торговой ценности:</div>
 				<div class="panelbody">
 					<ul>
-						<li *ngFor="let f of paramsView.add_trade_features">{{f}}</li>
+						<li *ngFor="let f of (paramsView$ | async)?.add_trade_features">{{f}}</li>
 					</ul>
 				</div>
 			</div>
@@ -79,18 +79,18 @@
 				<div class="panelheading">Внутренняя отделка:</div>
 				<div class="panelbody">
 					<ul>
-						<li>{{paramsView.remclass}}</li>
-						<li *ngIf="paramsView.needDeval">{{paramsView.devaluation}}<span *ngIf="paramsView.needAvail"> ({{paramsView.avail}})</span></li>
+						<li>{{(paramsView$ | async)?.remclass}}</li>
+						<li *ngIf="(paramsView$ | async)?.needDeval">{{(paramsView$ | async)?.devaluation}}<span *ngIf="(paramsView$ | async)?.needAvail"> ({{(paramsView$ | async)?.avail}})</span></li>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div *ngIf="paramsView.needAddElem" class="col-xs-12 col-sm-6 parammargin">
+		<div *ngIf="(paramsView$ | async)?.needAddElem" class="col-xs-12 col-sm-6 parammargin">
 			<div style="border: 1px solid #808080; border-radius: 4px;">
 				<div class="panelheading">Дополнительные элементы отделки:</div>
 				<div class="panelbody">
 					<ul>
-						<li *ngFor="let f of paramsView.addelements">{{f}}</li>
+						<li *ngFor="let f of (paramsView$ | async)?.addelements">{{f}}</li>
 					</ul>
 				</div>
 			</div>

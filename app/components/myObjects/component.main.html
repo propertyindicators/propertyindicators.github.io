@@ -1,12 +1,12 @@
-﻿<div *ngIf="dataReady" class="container" style="padding-top: 5.5em">
-	<comp-hello [cn]="cn"></comp-hello>
+﻿<div *ngIf="isDataReady$ | async" class="container" style="padding-top: 5.5em">
+	<comp-hello></comp-hello>
 </div>
-<div *ngIf="dataReady" [style.display]="objectsVisible" class="container">
-	<comp-objects [docExtractor]="docExtractor" (onObjectSelected)="onObjSelected($event)"></comp-objects>
+<div *ngIf="isDataReady$ | async" class="container">
+	<comp-objects></comp-objects>
 </div>
-<div *ngIf="dataReady" [style.display]="paramsAndHistoryistoryVisible" class="container">
-	<comp-params [docExtractor]="docExtractor" [onObjectSelected]="notifyChildWhenObjSelected.asObservable()"></comp-params>
+<div *ngIf="(isDataReady$ | async) && ((selectedObjIndex$ | async) >= 0)" class="container">
+	<comp-params></comp-params>
 </div>
-<div *ngIf="dataReady && selectedObj>=0" [style.display]="paramsAndHistoryistoryVisible" class="container">
-	<comp-history [docExtractor]="docExtractor" [initIndex]="selectedObj" [onObjectSelected]="notifyChildWhenObjSelected.asObservable()"></comp-history>
+<div *ngIf="(isDataReady$ | async) && ((selectedObjIndex$ | async) >= 0)" class="container">
+	<comp-history></comp-history>
 </div>

@@ -1,5 +1,5 @@
 ﻿<div class="claster-heading">Отслеживаемые объекты</div>
-<div *ngIf="!listEmpty">
+<div *ngIf="!(isListEmpty$ | async)">
 	<table class="table table-condensed table-hover">
 		<thead>
 			<tr class="table-heading">
@@ -9,7 +9,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let row of objRows" (click)="onSelected(row)" [class.table-active]="selectedPremises === row.index">
+			<tr *ngFor="let row of objRows$ | async" (click)="onSelected(row)" [class.table-active]="(selectedPremises$ | async) === row.index">
 				<th scope="row">{{row.index + 1}}</th>
 				<td class="obj-item">{{row.description}}</td>
 				<td (click)="onDelete(row)" class="del-item" style="text-align: center">×</td>
@@ -17,6 +17,6 @@
 		</tbody>
 	</table>
 </div>
-<div *ngIf="listEmpty">
+<div *ngIf="isListEmpty$ | async">
 	<p style="font-size: 1.1em">У вас нет сохранённых объектов.</p>
 </div>
