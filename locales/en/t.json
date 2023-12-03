@@ -19,20 +19,20 @@
 	"inx": {
 		"hello": "Hello, real estate market analyst!",
 		"prjdet": "About Us»",
-		"h3comerc": "Indicators of the commercial real estate market in Kiev",
-		"h3resident": "Indicators of the residential real estate market in Kiev",
+		"h3comerc": "Indicators of the commercial real estate market in Kyiv",
+		"h3resident": "Indicators of the residential real estate market in Kyiv",
 		"prdyn": "Dynamics of prices",
 		"prlvl": "Current price level",
 		"btnsale": "Sale »",
 		"btnrent": "Rent »",
-		"nrpricechng": "Live charts of price changes in the secondary market of non-residential premises in Kiev",
-		"nrpricelvl": "Live diagrams of the current price level in the secondary market of non-residential premises in Kiev",
-		"rpricechng": "Live charts of price changes in the secondary market of apartments in Kiev",
-		"rpricelvl": "Live diagrams of the current price level in the secondary market of apartments in Kiev"
+		"nrpricechng": "Live charts of price changes in the secondary market of non-residential premises in Kyiv",
+		"nrpricelvl": "Live diagrams of the current price level in the secondary market of non-residential premises in Kyiv",
+		"rpricechng": "Live charts of price changes in the secondary market of apartments in Kyiv",
+		"rpricelvl": "Live diagrams of the current price level in the secondary market of apartments in Kyiv"
 	},
 	"dyn": {
-		"terzona": "Territorial zones of Kiev",
-		"dynapppi": "General indicators of the market of Kiev apartments",
+		"terzona": "Territorial zones of Kyiv",
+		"dynapppi": "General indicators of the market of Kyiv apartments",
 		"f2006": "since 2006",
 		"f2010": "since 2010",
 		"10y": "10 years",
@@ -67,7 +67,7 @@
 	},
 
 	"zones": {
-		"k": "Kiev",
+		"k": "Kyiv",
 		"c": "Center",
 		"nc": "Close to center",
 		"m": "In middle to center",
@@ -94,13 +94,13 @@
 	},
 
 	"pagestitle": {
-		"main": "Dynamics of price indicators of the real estate market in Kiev",
-		"comdynamicsale": "Dynamics of price indicators of non-residential premises (sale) in Kiev",
-		"comdynamicrent": "Dynamics of price indicators of non-residential premises (rent) in Kiev",
-		"resdynamicsale": "Dynamics of price indicators of residential appartments (sale) in Kiev",
-		"comstaticsale": "Current sale prices level of non-residential premises market in Kiev",
-		"comstaticrent": "Current rental rates level of non-residential premises market in Kiev",
-		"resstaticsale": "Current sale prices level of residential appartments in Kiev"
+		"main": "Dynamics of price indicators of the real estate market in Kyiv",
+		"comdynamicsale": "Dynamics of price indicators of non-residential premises (sale) in Kyiv",
+		"comdynamicrent": "Dynamics of price indicators of non-residential premises (rent) in Kyiv",
+		"resdynamicsale": "Dynamics of price indicators of residential appartments (sale) in Kyiv",
+		"comstaticsale": "Current sale prices level of non-residential premises market in Kyiv",
+		"comstaticrent": "Current rental rates level of non-residential premises market in Kyiv",
+		"resstaticsale": "Current sale prices level of residential appartments in Kyiv"
 	},
 
 	"calc": {
